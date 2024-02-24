@@ -1,0 +1,162 @@
+html{
+    height: 100%;
+}
+
+body {
+    background: #141420;
+    background-attachment: fixed;
+    margin: 0;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.font-color-all{
+    color: #B4B4B4;
+}
+
+.font-color-all-white{
+    color: #ffffff;
+}
+
+header{
+    background: #13131F;
+    width: 100vw;
+    height: 100px;
+    padding: 15px;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+}
+
+.logo-header{
+    height: 48px;
+    width: 158px;
+}
+
+.nav-url{
+    text-decoration: none;
+    color: #B4B4B4;
+    margin-left: 65px;
+    font-size: 18px;
+    padding-top: 12px;
+}
+
+.nav-elements {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-url:hover{
+    color: #ffffff;
+}
+
+header ul {list-style: none}
+
+.nav-icon{
+    height: 35px;
+    width: 35px;
+}
+
+main .features{
+    float: none;
+    text-align: center;
+    color: black;
+    margin-top: 50px;
+    width: 100vw;
+}
+
+main .features h1{font-size: 50px;}
+main .features p{font-size:26px; max-width: 100vw; margin: 20px;}
+
+.footer-cls{
+    background-color: #39354d;
+    width: 100vw;
+    height: auto;
+    margin-bottom: 0px !important;
+    text-align: center;
+}
+
+footer h1{
+    margin-bottom: 0px !important;
+}
+
+.login{
+    margin-left: 300px;
+}
+
+.h-nav-content{
+    align-items: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.main-container{
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 1150px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid red;
+}
+
+.section-showcase{
+    width: 100vw;
+    padding-top: 20px;
+}
+
+.uniq-container{
+    height: auto;
+    width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+}
+
+.prd-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.prd-card-box{
+    width: 250px;
+    height: 250px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border: 1px solid aqua;
+    margin: 0px 18px 25px 18px;
+}
+
+.uniq-title{
+    border-bottom: 1px solid white;
+    height: 75px;
+}
+
+.title-showcase{
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.info-board {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}

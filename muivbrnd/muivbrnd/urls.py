@@ -22,5 +22,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
+    path('', include('main.urls', namespace='main')),
+    path('catalog/', include('goods.urls', namespace='catalog')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+"""
+www.site.com/admin
+www.site.com
+www.site.com/about
+www.site.com/catalog
+www.site.com/catalog/product
+"""

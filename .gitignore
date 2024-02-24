@@ -6,8 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# Django stuff
+media/
+
 # Distribution / packaging
 .Python
+.pylintrc
 build/
 develop-eggs/
 dist/
@@ -127,6 +131,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.idea
+.vscode
 
 # Spyder project settings
 .spyderproject

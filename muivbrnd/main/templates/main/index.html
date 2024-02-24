@@ -1,14 +1,26 @@
-{% extends 'main/layout.html' %}
+{% extends "main/base.html" %}
+{% load static %}
 
-{% block title%}Главная страница{% endblock%}
+{% block title %}{{ title }}{% endblock  %}
 
 {% block content %}
-    <div class="features">
-        <h1>{{ title }}</h1>
-        <p>Тестирование происходит разумным образом и странностей не наблюдается</p>
-        <button class="btn btn-warning">Просмотр информации</button>
-        {% for el in values %}
-        <p>{{el}}</p>
+    {% for el in values %}
+        <div class="uniq-container info-board">
+            <p class="font-color-all">{{ el }}</p>
+        </div>
     {% endfor %}
-    </div>
-{% endblock %}
+    <section class="section-showcase">
+        <div class="uniq-container">
+            <div class="title-showcase">
+                <h1 class="font-color-all-white uniq-title">Showcae random goods</h1>
+            </div>
+            <div class="prd-list">
+            {% for p in goods %}
+                <div class="prd-card-box ">
+                    <p class="font-color-all">{{ p }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock  %} 
