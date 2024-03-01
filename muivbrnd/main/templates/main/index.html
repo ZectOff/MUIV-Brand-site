@@ -4,22 +4,111 @@
 {% block title %}{{ title }}{% endblock  %}
 
 {% block content %}
-    {% for el in values %}
+    <section class="section-showcase">
         <div class="uniq-container info-board">
-            <p class="font-color-all">{{ el }}</p>
+            <div class="iboard-text">
+                <div class="iboard-title">
+                    <h1 class="font-color-all-white iboard-title">
+                        Добро пожаловать на MUIVBrand
+                    </h1>
+                </div>
+                <div class="iboard-msg">
+                    <p class="msg-welcome font-color-all">
+                        Наш портал предоставляет услуги по продаже брендированных товаров МУИВ, также здесь вы можете отслеживать новости касательно нашего портала!
+                    </p>
+                </div>
+                <div class="iboard-btns">
+                    <a class="btn-explore font-color-all-white" href="#">
+                        Смотреть
+                    </a>
+                    <a class="btn-pub font-color-all-white" href="#">
+                        Действие
+                    </a>
+                </div>
+            </div>
+            <div class="iboard-img">
+                <div class="slider">
+                    <img src="{% static 'deps/img/Muiv-Cloth-opRed.png'%}" alt="" class="iboard-img">
+                    <img src="{% static 'deps/img/Muiv-Cloth-opBlue.png'%}" alt="" class="iboard-img">
+                    <img src="{% static 'deps/img/Muiv-Cloth-opGreen.png'%}" alt="" class="iboard-img">
+                    <img src="{% static 'deps/img/Muiv-Notes.png'%}" alt="" class="iboard-img">
+                    <img src="{% static 'deps/img/Muiv-Cloth.png'%}" alt="" class="iboard-img">
+                </div>
+            </div>
         </div>
-    {% endfor %}
+    </section>
     <section class="section-showcase">
         <div class="uniq-container">
             <div class="title-showcase">
-                <h1 class="font-color-all-white uniq-title">Showcae random goods</h1>
+                <h1 class="font-color-all-white uniq-title">Showcase random goods</h1>
             </div>
             <div class="prd-list">
             {% for p in goods %}
-                <div class="prd-card-box ">
-                    <p class="font-color-all">{{ p }}</p>
+                <div class="prd-card-box">
+                    <div class="prd-img-box">
+                        <img class="prd-img" src="{% static 'deps/img/ProductTemplateBg.png' %}" alt="Product">
+                    </div>
+                    <div class="prd-desc">
+                        <p class="font-color-all-white"><b>{{ p }}</b></p>
+                        <p class="font-color-all-white"><b>100 Руб.</b></p>
+                    </div>
+                    <div class="prd-btn">
+                        <div class="btn-cart">
+                            <a href="#" class="btn-order">
+                                <div class="btn-cart-text">
+                                    <b class="font-color-all-white">В корзину</b>
+                                </div>
+                                <div class="btn-cart-img">
+                                    <img src="{% static 'deps/img/icons/CartIcon.svg' %}" alt="Cart" class="cart-icon">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase">
+        <div class="uniq-container">
+            <div class="title-popular">
+                <div class="tp-text">
+                    <h1 class="font-color-all-white uniq-title" id="spec-tp">Самые популярные</h1>
+                </div>
+                <div class="tp-btn">
+                    <div class="da">
+                        <a href="#" class="font-color-all-white btn-local">Смотреть все</a>
+                    </div>
+                </div>
+            </div>
+            <div class="pop-list">
+                <div class="pop-card-box">
+
+                </div>
+                <div class="pop-card-box">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase hto-section">
+        <div class="uniq-container hto-container">
+            <div class="hto-title">
+                <h1 class="font-color-all-white hto-h1">
+                    Как заказать?
+                </h1>
+                <p class="font-color-all hto-text">
+                    Используйте простую инструкцию, чтобы сделать заказ на нашем портале:
+                </p>
+            </div>
+            <div class="hto-content">
+                {% for inst in instruction %}
+                    <div class="inst-box">
+                        <div class="inst-items">
+                            <p class="font-color-all-white pepe">{{inst}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </section>

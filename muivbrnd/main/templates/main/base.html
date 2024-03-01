@@ -17,18 +17,30 @@
             <div class="nav-elements">
                 <a href="{% url 'main:home' %}"><img class="logo-header" src="{% static 'deps/img/MainLogo.png' %}" alt="Logo"></a>
                 <a href="{% url 'main:home' %}" class="nav-url"><b class="font-color-all-white">Главная</b></a>
-                <a href="{% url 'main:category' %}" class="nav-url"><b>Категории</a></b>
-                <a href="{% url 'main:contacts' %}" class="nav-url"><b>Контакты</b></a>
+                <div class="temp-box-catalog">
+                    <button class="nav-url catalog-menu"><b>Каталог &or;</b></button>
+                    <div class="menu-box">
+                        <a href="{% url 'goods:catalog' %}" class="h-menu">Одежда</a>
+                        <a href="{% url 'goods:catalog' %}" class="h-menu">Аксессуары</a>
+                        <a href="{% url 'goods:catalog' %}" class="h-menu">Канцелярия</a>
+                    </div>
+                </div>
+                <a href="{% url 'main:contacts' %}" class="nav-url"><b>Новости</b></a>
                 <a href="{% url 'main:about' %}" class="nav-url"><b>О нас</b></a>
-                <a href="{% url 'main:about' %}" class="nav-url login"><b>Вход</b></a>
+                <a href="{% url 'main:about' %}" class="nav-url login">
+                    <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
+                    <b class="font-color-all-white">Вход</b>
+                </a>
             </div>
         </header>
         <main>
             {% block content %}{% endblock %}
         </main>
-        <footer class="footer-cls">
-            <h1 class="font-color-all">Footer</h1>
-        </footer>
+        <section class="section-showcase">
+            <footer class="footer-cls">
+                <h1 class="font-color-all">Footer</h1>
+            </footer>
+        </section>
     </div>
 </body>
 </html> 
