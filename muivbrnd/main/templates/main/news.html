@@ -1,0 +1,41 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title%}{{ title }}{% endblock%}
+
+{% block content %}
+    <section class="section-showcase post-sect">
+        <div class="uniq-container bc-cont">
+            <div class="bread-crumbs">
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Новости</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase post-cont">
+        <div class="uniq-container un-post">
+            {% for post in posts %}
+                <div class="post-box">
+                    <div class="post-title">
+                        <h1 class="font-color-all-white">{{ post }}</h1>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-img"><p class="font-color-all-white nom font-weight">Image</p></div>
+                        <div class="post-text">
+                            <p class="font-color-all-white nom font-weight">В этот раз случилась {{ post }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

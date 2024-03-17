@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <div class="iboard-btns">
-                    <a class="btn-explore font-color-all-white" href="#">
+                    <a class="btn-explore font-color-all-white" href="{% url 'goods:catalog' %}">
                         Смотреть
                     </a>
                     <a class="btn-pub font-color-all-white" href="#">
@@ -40,7 +40,7 @@
     <section class="section-showcase">
         <div class="uniq-container">
             <div class="title-showcase">
-                <h1 class="font-color-all-white uniq-title">Showcase random goods</h1>
+                <h1 class="font-color-all-white uniq-title">Случайные товары</h1>
             </div>
             <div class="prd-list">
             {% for p in goods %}
@@ -83,10 +83,61 @@
             </div>
             <div class="pop-list">
                 <div class="pop-card-box">
-
+                    <div class="pop-imgs">
+                        <div class="pi-left">
+                            <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pop-img-left">
+                        </div>
+                        <div class="pi-right">
+                            <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pop-img-right-1">
+                            <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pop-img-right-2">
+                        </div>
+                    </div>
+                    <div class="pop-tit-fav">
+                        <div class="ptf-txt">
+                            <p class="font-color-all-white nom font-weight ptf-p">Канцелярия</p>
+                            <div class="ptf-likes">
+                                <img src="{% static 'deps/img/icons/HeartIcon.svg' %}" alt="" class="ptf-heart">
+                                <p class="ptf-num nom">1,2K</p>
+                            </div>
+                        </div>
+                        <div class="pcb-mon">
+                            <p class="font-color-all-white nom font-weight ppm">Популярные товары в марте</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="pop-card-box">
-                    
+                    <div class="pcb-inb">
+                        <div class="pop-imgs">
+                            <div class="pi-left-an">
+                                <img src="{% static 'deps/img/ClothesPrd.png' %}" alt="" class="pil-an">
+                            </div>
+                            <div class="pop-imgs-trio">
+                                <div class="pit-cont-row">
+                                    <div class="pci-1">
+                                        <img src="{% static 'deps/img/ClothesPrd.png' %}" alt="" class="pc-img-1">
+                                    </div>
+                                    <div class="pci-2">
+                                        <img src="{% static 'deps/img/ClothesPrd.png' %}" alt="" class="pc-img-2">
+                                    </div>
+                                </div>
+                                <div class="pit-cont">
+                                    <img src="{% static 'deps/img/ClothesPrd.png' %}" alt="" class="pc-img-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pop-tit-fav">
+                            <div class="ptf-txt">
+                                <p class="font-color-all-white nom font-weight ptf-p">Одежда</p>
+                                <div class="ptf-likes">
+                                    <img src="{% static 'deps/img/icons/HeartIcon.svg' %}" alt="" class="ptf-heart">
+                                    <p class="ptf-num nom">3,7K</p>
+                                </div>
+                            </div>
+                            <div class="pcb-mon">
+                                <p class="font-color-all-white nom font-weight ppm">Популярные товары в марте</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +156,7 @@
                 {% for inst in instruction %}
                     <div class="inst-box">
                         <div class="inst-items">
-                            <p class="font-color-all-white pepe">{{inst}}</p>
+                            <p class="font-color-all-white pepe font-weight">{{inst}}</p>
                         </div>
                     </div>
                 {% endfor %}

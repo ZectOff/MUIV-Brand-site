@@ -1,0 +1,59 @@
+{% extends "main/index.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock  %}
+
+{% block content %}
+    <section class="section-showcase bc-sect">
+        <div class="uniq-container bc-cont">
+            <div class="bread-crumbs">
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Поддержка</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase sup-sect">
+        <div class="uniq-container sup-conta">
+            <div class="sup-form-box">
+                <div class="sfb-img-con">
+                    <img src="{% static 'deps/img/SuppBg.svg' %}" alt="" class="sfb-img">
+                </div>
+                <div class="sfb-content">
+                    <div class="sfbc-title">
+                        <h1 class="font-color-all-white nom fw500 f40">Написать тикет в поддержку</h1>
+                    </div>
+                    <form action="{% url 'main:home' %}" class="sup-form">
+                        <div class="fl-split">
+                            <div class="sf-inp">
+                                <label for="nick" class="sfi-lab">Ваше имя</label>
+                                <input type="text" class="sfi-inpc" placeholder="Введите ваше имя">
+                            </div>
+                            <div class="sf-inp">
+                                <label for="noff" class="sfi-lab">Номер заказа</label>
+                                <input type="text" class="sfi-inpc" placeholder="Введите номер заказа">
+                            </div>
+                        </div>
+                        <div class="sf-inp sfi-txt">
+                            <label for="noff" class="sfi-lab">Опишите проблему</label>
+                            <textarea rows="5" name="message" id="message" class="sfi-inpc sfii-txt" placeholder="Введите ваше сообщение"></textarea>
+                        </div>
+                        <div class="sf-btn-box">
+                            <button type="submit" class="abb">
+                                Отправить тикет
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock  %}

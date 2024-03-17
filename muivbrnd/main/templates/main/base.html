@@ -20,14 +20,14 @@
                 <div class="temp-box-catalog">
                     <button class="nav-url catalog-menu"><b>Каталог &or;</b></button>
                     <div class="menu-box">
-                        <a href="{% url 'goods:catalog' %}" class="h-menu">Одежда</a>
-                        <a href="{% url 'goods:catalog' %}" class="h-menu">Аксессуары</a>
-                        <a href="{% url 'goods:catalog' %}" class="h-menu">Канцелярия</a>
+                        {% for cat in categories %}
+                            <a href="{% url 'goods:catalog' %}" class="h-menu">{{cat.name}}</a>
+                        {% endfor %}
                     </div>
                 </div>
-                <a href="{% url 'main:contacts' %}" class="nav-url"><b>Новости</b></a>
-                <a href="{% url 'main:about' %}" class="nav-url"><b>О нас</b></a>
-                <a href="{% url 'main:about' %}" class="nav-url login">
+                <a href="{% url 'main:news' %}" class="nav-url"><b>Новости</b></a>
+                <a href="{% url 'main:support' %}" class="nav-url"><b>Поддержка</b></a>
+                <a href="{% url 'main:login' %}" class="nav-url login">
                     <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
                     <b class="font-color-all-white">Вход</b>
                 </a>
@@ -36,11 +36,74 @@
         <main>
             {% block content %}{% endblock %}
         </main>
-        <section class="section-showcase">
-            <footer class="footer-cls">
-                <h1 class="font-color-all">Footer</h1>
-            </footer>
-        </section>
+        <footer class="footer-cls">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="f-c-box">
+                        <div class="f-img">
+                            <a href="{% url 'main:home' %}">
+                                <img src="{% static "deps/img/MainLogo.png" %}" alt="Logo" class="f-logo-company">
+                            </a>
+                        </div>
+                        <div class="f-c-text">
+                            <p class="font-color-all nom ftww" align="start">Заказывайте специальную продукцию университета на нашем удобном портале! Мы в соц. сетях:</p>
+                        </div>
+                        <div class="f-icons">
+                            <a href="https://github.com/ZectOff" class="f-ic">
+                                <img src="{% static 'deps/img/icons/GitIcon.svg' %}" alt="Git" class="f-icon">
+                            </a>
+                            <a href="#" class="f-ic">
+                                <img src="{% static 'deps/img/icons/VkIcon.svg' %}" alt="Vk" class="f-icon">
+                            </a>
+                            <a href="#" class="f-ic">
+                                <img src="{% static 'deps/img/icons/TelegramIcon.svg' %}" alt="Tg" class="f-icon">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="f-c-box">
+                        <div class="f-c-title">
+                            <p class="font-color-all-white font-weight nom ftt">Компания</p>
+                        </div>
+                        <div class="ft-urls">
+                            <a href="{% url 'main:about' %}" class="f-c-url">О компании</a>
+                            <a href="#" class="f-c-url">Услуги компании</a>
+                            <a href="#" class="f-c-url">Вакансии</a>
+                            <a href="#" class="f-c-url">Связаться с нами</a>
+                        </div>
+                    </div>
+                    <div class="f-c-box">
+                        <div class="f-c-title">
+                            <p class="font-color-all-white font-weight nom ftt">Клиент</p>
+                        </div>
+                        <div class="ft-urls">
+                            <a href="#" class="f-c-url">Поддержка</a>
+                            <a href="#" class="f-c-url">Последние новости</a>
+                            <a href="#" class="f-c-url">Сведения о компании</a>
+                            <a href="#" class="f-c-url">Кто мы такие</a>
+                        </div>
+                    </div>
+                    <div class="f-c-box">
+                        <div class="f-c-title">
+                            <p class="font-color-all-white font-weight nom ftt">10% за подписку</p>
+                        </div>
+                        <div class="f-c-text">
+                            <p class="font-color-all nom ftww" align="start">Подпишитесь на рассылку и получите скидку 10% по промокоду.</p>
+                        </div>
+                        <form action="#" class="ft-sub-form">
+                            <input type="email" placeholder="Введите адрес электронной почты" class="sub-inp">
+                            <button class="ft-ent-btn" type="submit">
+                                <img src="{% static 'deps/img/icons/EntBtn.svg' %}" alt="Ent ico" class="feb-i">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p class="f-t-cr nom">
+                        © Copyright 2024 - MUIVBrand, Все права защищены.
+                    </p>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html> 

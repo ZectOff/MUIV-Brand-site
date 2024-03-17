@@ -1,6 +1,88 @@
 {% extends "main/base.html" %}
 {% load static %}
 
+{% block title%}MUIVBrand - Каталог товаров{% endblock%}
+
 {% block content %}
-<h1 class="font-color-all-white">Страница каталог (goods)</h1>
+    <section class="section-showcase bc-sect">
+        <div class="uniq-container bc-cont">
+            <div class="bread-crumbs">
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Каталог</b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Все товары</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase cat-sect">
+        <div class="uniq-container cat-cont">
+            <div class="cm-scroll">
+                <div class="cat-side-menu">
+                    <div class="cat-m-tit">
+                        <p class="font-color-all-white nom font-weight ut">Категории</p>
+                    </div>
+                    <div class="cmb-list">
+                        <div class="en-dash-0"></div>
+                        <div class="cm-btn">
+                            <a href="#" class="cm-url font-color-all-white nom font-weight">Все товары</a>
+                        </div>
+                        <div class="cm-btn">
+                            <a href="#" class="cm-url font-color-all nom font-weight">Одежда</a>
+                        </div>
+                        <div class="cm-btn">
+                            <a href="#" class="cm-url font-color-all nom font-weight">Аксессуары</a>
+                        </div>
+                        <div class="cm-btn">
+                            <a href="#" class="cm-url font-color-all nom font-weight">Канцелярия</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cat-right-cont">
+                <div class="cat-search-l">
+                    <input class="csl-inp" type="text" id="searchInput" placeholder="Введите название или ID товара">
+                </div>
+                <div class="cat-prds-list">
+                    {% for cp in catgoods %}
+                        <div class="cpl-el-box">
+                            <div class="cpl-img-box">
+                                <img src="{% static 'deps/img/ProductTemplateBgAqua.png' %}" alt="" class="cpl-img">
+                            </div>
+                            <div class="cpl-content">
+                                <div class="cpl-inf">
+                                    <p class="font-color-all-white nom font-weight">{{ cp }}</p>
+                                    <p class="font-color-all-white nom font-weight">788 ₽</p>
+                                </div>
+                                <div class="cpl-id">
+                                    <p class="font-color-all nom">ID: 758694</p>
+                                </div>
+                                <button class="cb-btn">
+                                    <p class="font-color-all-white nom ctx">В корзину</p>
+                                    <img src="{% static 'deps/img/icons/CartIcon.svg' %}" alt="" class="cb-btn-img">
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="cpl-lm-btn">
+                        <button class="clb-btn">
+                            <p class="lm-txt font-color-all-white font-weight nom">Загрузить еще</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

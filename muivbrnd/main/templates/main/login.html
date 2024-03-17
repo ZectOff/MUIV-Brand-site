@@ -1,0 +1,77 @@
+{% extends "main/index.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock  %}
+
+{% block content %}
+    <section class="section-showcase bc-sect">
+        <div class="uniq-container bc-cont">
+            <div class="bread-crumbs">
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Авторизация</b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Вход</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase auth-sect">
+        <div class="uniq-container auth-cont">
+            <div class="auth-form-box">
+                {% block auth %}
+                    <div class="nice-bg">
+                        <img src="{% static "deps/img/LoginBgImg.png" %}" alt="Login bg" class="auth-img-bg">
+                    </div>
+                    <div class="auth-form">
+                        <div class="auth-form-title">
+                            <h1 class="font-color-all-white nom">Авторизация</h1>
+                        </div>
+                        <form class="form-container" action="{% url 'main:account' %}">
+                            <div class="form-input">
+                                <label for="name" class="font-color-all-white l-title">Имя пользователя</label>
+                                <input type="text" class="auth-inp" placeholder="Введите имя или E-mail" required>
+                            </div>
+                            <div class="form-input">
+                                <label for="password" class="font-color-all-white l-title">Пароль</label>
+                                <input type="password" class="auth-inp" placeholder="Введите пароль" required>
+                            </div>
+                            <div class="form-input">
+                                <button type="submit" class="abb">Войти</button>
+                            </div>
+                            <div class="form-input add-inf">
+                                <div class="remm">
+                                    <label class="remm-l font-color-all-white">
+                                        <input type="checkbox" class="chb-inp">
+                                        Запомнить меня
+                                    </label>
+                                </div>
+                                <div class="forg-p">
+                                    <a href="#" class="forg-p-url">
+                                        Забыли пароль?
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="reg-text">
+                            <p class="font-color-all-white">
+                                Еще нет аккаунта? <a href="{% url 'main:register' %}" class="reg-url">Зарегистрироваться</a>
+                            </p>
+                        </div>
+                    </div>
+                {% endblock  %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

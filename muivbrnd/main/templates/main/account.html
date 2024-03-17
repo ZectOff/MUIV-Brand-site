@@ -1,0 +1,68 @@
+{% extends "main/index.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock  %}
+
+{% block content %}
+    <section class="section-showcase bc-sect">
+        <div class="uniq-container bc-cont">
+            <div class="bread-crumbs">
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Аккаунт</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase profile-sect">
+        <div class="uniq-container prof-cont">
+            <div class="user-profile-box">
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <div class="us-back-l"></div>
+                        <div class="us-img">
+                            <img src="{% static 'deps/img/icons/UserIcon.png' %}" alt="User's avatar" class="ui-m">
+                        </div>
+                        <div class="usn-text">
+                            <p class="nom u-nick">Boba Fett</p>
+                        </div>
+                    </div>
+                    <div class="user-menu-btns">
+                        <div class="dash"></div>
+                        <div class="umb-el">
+                            <img src="{% static 'deps/img/icons/usprofile/MmenuIcon.svg' %}" alt="" class="upm-ico">
+                            <p class="umb-txt-1 font-color-all-white font-weight nom">Главная</p>
+                        </div>
+                        <div class="umb-el">
+                            <img src="{% static 'deps/img/icons/usprofile/ShCartIcon.svg' %}" alt="" class="upm-ico">
+                            <p class="umb-txt font-color-all-white font-weight nom">Корзина</p>
+                        </div>
+                        <div class="umb-el">
+                            <img src="{% static 'deps/img/icons/usprofile/HistoryIcon.svg' %}" alt="" class="upm-ico">
+                            <p class="umb-txt font-color-all-white font-weight nom">История заказов</p>
+                        </div>
+                        <div class="umb-el">
+                            <img src="{% static 'deps/img/icons/usprofile/LogOutIcon.svg' %}" alt="" class="upm-ico">
+                            <p class="umb-txt font-color-all-white font-weight nom">Выход</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-proile-inf">
+                    <div class="upi-title">
+                        <p class="user-nick font-color-all-white font-weight nom">Активность в сообществе</p>
+                    </div>
+                    <div class="upi-content">
+                        <p class="upi-text font-color-all-white font-weight nom">Содержание</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
