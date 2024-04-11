@@ -1,2 +1,141 @@
 {% extends "main/base.html" %}
 {% load static %}
+
+{% block title %}{{ title }}"{{product.name}}"{% endblock  %}
+
+{% block content %}
+    <section class="section-showcase bc-sect">
+        <div class="uniq-container bc-cont">
+            <div class="bread-crumbs">
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'catalog:catalog' %}" class="non-dec"></a>Каталог</b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>{{ product.category }}</b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>{{ product.name }}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="setion-showcase pp-sect">
+        <div class="uniq-container pp-cont">
+            <div class="prd-p-box">
+                <div class="ppb-title">
+                    <p class="nf f32 ppb-tit nom">
+                        {{product.name}}
+                    </p>
+                </div>
+                <div class="ppb-all-content">
+                    <div class="pac-box">
+                        <div class="ppbic-sl-btns">
+                            <!--Цикл-->
+                            <div class="sl-btn">
+                                <img src="{{ product.image.url }}" alt="" class="slb-img">
+                            </div>
+                            <div class="sl-btn">
+                                <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="slb-img">
+                            </div>
+                            <div class="sl-btn">
+                                <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="slb-img">
+                            </div>
+                            <div class="sl-btn">
+                                <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="slb-img">
+                            </div>
+                        </div>
+                        <div class="ppb-ic-big">
+                            <div class="pib-slides">
+                                <img src="{{ product.image.url }}" alt="" class="pib-prd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="adp-cont-box">
+                        <div class="adp-desc">
+                            <p class="ppb-desc ppb-tit f16 nf">
+                                {{product.description}} <a href="#" class="pdes-url nf f16">подробнее</a>
+                            </p>
+                        </div>
+                        <div class="adp-rate">
+                            <p class="adpr-txt fw600 f26 nf fcb">5.0 <span class="benk">&#9733; &#9733; &#9733; &#9733; &#9733;</span></p>
+                        </div>
+                        <div class="adp-label">
+                            <div class="adp-price-l">
+                                <div class="adppl-price">
+                                    {% if product.discount %}
+                                        <p class="fw600 nom nf fcr f26 now">
+                                            {{ product.sell_price }}0 ₽
+                                            <span class="di-pr"><s>{{ product.price }} ₽</s></span>
+                                        </p>
+                                    {% else %}
+                                        <p class="fw600 nom nf fcb f26 now">
+                                            {{ product.price }} ₽
+                                        </p>
+                                    {% endif %}
+                                </div>
+                                <div class="adp-quan">
+                                    <p class="fw500 nom nf fcb">В наличии:</p>
+                                    <p class="fw500 nom nf fcb">{{product.quantity}}</p>
+                                </div>
+                            </div>
+                            <div class="adpl-btns">
+                                <button class="adpl-btn-fav f32">&#9829;</button>
+                                <button class="adpl-btn-buy f20">Купить</button>
+                            </div>
+                        </div>
+                        <div class="adp-ult-desc">
+                            <div class="aud-t-box">
+                                <p class="aud-txt nf f16 at-l">Состав </p>
+                                <p class="aud-txt nf f16 tl"> .....................</p>
+                                <p class="fcb nf f16 flfl">Хлопок - 80%, Полиэстер - 20%</p>
+                            </div>
+                            <div class="aud-t-box">
+                                <p class="aud-txt nf f16 at-l">Материал прокладки</p>
+                                <p class="aud-txt nf f16 tl">.........</p>
+                                <p class="fcb nf f16 flfl">Без прокладки</p>
+                            </div>
+                            <div class="aud-t-box">
+                                <p class="aud-txt nf f16 at-l-1">Цвет</p>
+                                <p class="aud-txt nf f16 tl">.......................</p>
+                                <p class="fcb nf f16 flfl">Черный</p>
+                            </div>
+                            <div class="aud-t-box">
+                                <p class="aud-txt nf f16 at-l-2">Производитель</p>
+                                <p class="aud-txt nf f16 tl">.............</p>
+                                <p class="fcb nf f16 flfl">Россия, MUIV</p>
+                            </div>
+                            <div class="aud-t-box">
+                                <p class="aud-txt nf f16 at-l-1 nom">Артикул</p>
+                                <p class="aud-txt nf f16 tl nom">....................</p>
+                                <p class="fcb nf f16 flfl">MP002XM08S1E</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase prd-comms-sect">
+        <div class="uniq-container ts-fb">
+            <div class="title-showcase">
+                <div class="tp-text">
+                    <h1 class="fcb nf uniq-title fw600" id="spec-tp">Отзывы о товаре</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock  %}

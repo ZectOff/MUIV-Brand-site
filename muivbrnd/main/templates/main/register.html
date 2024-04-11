@@ -32,36 +32,36 @@
             <div class="auth-form-box">
                 {% block auth %}
                     <div class="nice-bg">
-                        <img src="{% static "deps/img/RegisterBgImg.png" %}" alt="Register" class="auth-img-bg">
+                        <img src="{% static "deps/img/RegisterBgImg.svg" %}" alt="Register" class="auth-img-bg">
                     </div>
                     <div class="auth-form">
                         <div class="auth-form-title">
-                            <h1 class="font-color-all-white nom">Регистрация</h1>
+                            <h1 class="fcb nom">Регистрация</h1>
                         </div>
                         <form class="form-container" action="{% url 'main:account' %}">
                             <div class="form-input">
-                                <label for="name" class="font-color-all-white l-title">Имя пользователя</label>
+                                <label for="name" class="fcb l-title">Имя пользователя</label>
                                 <input type="text" class="auth-inp" placeholder="Введите имя" required>
                             </div>
                             <div class="form-input">
-                                <label for="password" class="font-color-all-white l-title">Пароль</label>
+                                <label for="password" class="fcb l-title">Пароль</label>
                                 <input type="password" class="auth-inp" placeholder="Придумайте пароль" required>
                             </div>
                             <div class="form-input">
-                                <label for="password" class="font-color-all-white l-title">Подтверждение пароля</label>
+                                <label for="password" class="fcb l-title">Подтверждение пароля</label>
                                 <input type="password" class="auth-inp" placeholder="Подтвердите пароль" required>
                             </div>
                             <div class="form-input add-inf-la">
                                 <div class="accept-tac">
-                                    <label class="remm-l font-color-all-white">
+                                    <label class="remm-lr">
                                         <input type="checkbox" class="chb-inp">
                                         Согласен(на) на обработку персональных данных
                                     </label>
                                 </div>
                                 <div class="accept-tac nom">
-                                    <label class="remm-l font-color-all-white">
+                                    <label class="remm-lr">
                                         <input type="checkbox" class="chb-inp">
-                                        Я принимаю условия <a href="#" class="lic-agr">лицензионного соглашения</a>
+                                        <p class="fcb nom">Я принимаю условия <a href="#" class="lic-agr"> лицензионного соглашения</a></p>
                                     </label>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                             </div>
                         </form>
                         <div class="reg-text">
-                            <p class="font-color-all-white">
+                            <p class="fcb">
                                 Уже есть аккаунт? <a href="{% url 'main:login' %}" class="reg-url">Войти</a>
                             </p>
                         </div>

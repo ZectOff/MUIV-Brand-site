@@ -13,4 +13,5 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('register', views.register, name='register'),
     path('support', views.support, name='support'),
+    path('testing', views.testing, name='testing'), #page for debugging and testing code
 ]

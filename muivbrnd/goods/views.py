@@ -1,27 +1,31 @@
 from django.shortcuts import render
 
-from goods.models import Categories
+from goods.models import Products
+import random as rnd
+
+products_list = Products.objects.all()
+
 
 
 def catalog(request):
-    categories = Categories.objects.all()
+
+    length_ofp = len(products_list)
+    products_all_cat = rnd.sample(list(products_list), length_ofp)
 
     data = {
         'title': 'Категории',
-        'catgoods': ['Product_1', 'Product_2', 'Product_3',
-                     'Product_4', 'Product_5', 'Product_6',
-                     'Product_7', 'Product_8', 'Product_9',
-                     'Product_10', 'Product_11', 'Product_12',],
-        'categories': categories
+        'products': products_list,
+        'rnd_products': products_all_cat
     }
-    return render(request, 'goods/catalog.html', data)
+    return render(request, 'goods/catalog.html', context=data)
 
-def product(request):
-    categories = Categories.objects.all()
+def product(request, product_slug):
+
+    get_prd = Products.objects.get(slug=product_slug)
 
     prd_data = {
-        'title': 'MUIV Brand - Карта товара Prd1',
+        'title': 'MUIV Brand - Карта товара ',
         'catgoods': ['Img-1', 'Img-2', 'Img-3',],
-        'categories': categories
+        'product': get_prd
     }
-    return render(request, 'goods/product.html', prd_data)
+    return render(request, 'goods/product.html', context=prd_data)

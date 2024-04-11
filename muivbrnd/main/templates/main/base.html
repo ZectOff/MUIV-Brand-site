@@ -1,4 +1,6 @@
 {% load static %}
+{% load goods_tags %}
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -13,23 +15,24 @@
 </head>
 <body>
     <div class="main-container">
-        <header>
+        <header class="base-header">
             <div class="nav-elements">
-                <a href="{% url 'main:home' %}"><img class="logo-header" src="{% static 'deps/img/MainLogo.png' %}" alt="Logo"></a>
-                <a href="{% url 'main:home' %}" class="nav-url"><b class="font-color-all-white">Главная</b></a>
+                <a href="{% url 'main:home' %}"><img class="logo-header" src="{% static 'deps/img/MainLogo.svg' %}" alt="Logo"></a>
+                <a href="{% url 'main:home' %}" class="nav-url"><b class="fcb nf">Главная</b></a>
                 <div class="temp-box-catalog">
-                    <button class="nav-url catalog-menu"><b>Каталог &or;</b></button>
+                    <button class="nav-url catalog-menu"><b class="fcb nf cat-lab">Каталог &or;</b></button>
                     <div class="menu-box">
+                        {% tag_categories as categories%}
                         {% for cat in categories %}
-                            <a href="{% url 'goods:catalog' %}" class="h-menu">{{cat.name}}</a>
+                            <a href="{% url 'goods:catalog' %}" class="h-menu ffc">{{cat.name}}</a>
                         {% endfor %}
                     </div>
                 </div>
-                <a href="{% url 'main:news' %}" class="nav-url"><b>Новости</b></a>
-                <a href="{% url 'main:support' %}" class="nav-url"><b>Поддержка</b></a>
-                <a href="{% url 'main:login' %}" class="nav-url login">
+                <a href="{% url 'main:news' %}" class="nav-url"><b class="fcb nf">Новости</b></a>
+                <a href="{% url 'main:support' %}" class="nav-url"><b class="fcb nf">Поддержка</b></a>
+                <a href="{% url 'main:login' %}" class="nav-url nu-login">
                     <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
-                    <b class="font-color-all-white">Вход</b>
+                    <b class="font-color-all-white nf nom">Вход</b>
                 </a>
             </div>
         </header>
@@ -42,11 +45,11 @@
                     <div class="f-c-box">
                         <div class="f-img">
                             <a href="{% url 'main:home' %}">
-                                <img src="{% static "deps/img/MainLogo.png" %}" alt="Logo" class="f-logo-company">
+                                <img src="{% static "deps/img/MainLogoWhite.svg" %}" alt="Logo" class="f-logo-company">
                             </a>
                         </div>
                         <div class="f-c-text">
-                            <p class="font-color-all nom ftww" align="start">Заказывайте специальную продукцию университета на нашем удобном портале! Мы в соц. сетях:</p>
+                            <p class="ffc nom ftww" align="start">Заказывайте специальную продукцию университета на нашем удобном портале!<br /> Мы в соц. сетях:</p>
                         </div>
                         <div class="f-icons">
                             <a href="https://github.com/ZectOff" class="f-ic">
@@ -87,7 +90,7 @@
                             <p class="font-color-all-white font-weight nom ftt">10% за подписку</p>
                         </div>
                         <div class="f-c-text">
-                            <p class="font-color-all nom ftww" align="start">Подпишитесь на рассылку и получите скидку 10% по промокоду.</p>
+                            <p class="ffc nom ftww" align="start">Подпишитесь на рассылку и получите скидку 10% по промокоду.</p>
                         </div>
                         <form action="#" class="ft-sub-form">
                             <input type="email" placeholder="Введите адрес электронной почты" class="sub-inp">
