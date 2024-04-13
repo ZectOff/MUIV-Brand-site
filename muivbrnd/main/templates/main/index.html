@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <div class="iboard-btns">
-                    <a class="btn-explore font-color-all-white nf nom" href="{% url 'goods:catalog' %}">
+                    <a class="btn-explore font-color-all-white nf nom" href="{% url 'catalog:index' categories.0.slug %}">
                         Смотреть
                     </a>
                     <a class="btn-pub font-color-all-white nf nom" href="#">
@@ -135,15 +135,15 @@
                 <div class="pop-card-box">
                     <div class="pop-imgs">
                         <div class="pi-left">
-                            <a href="{% url 'catalog:catalog' %}" class="pop-img-left">
+                            <a href="#" class="pop-img-left">
                                 <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pop-img-left">
                             </a>
                         </div>
                         <div class="pi-right">
-                            <a href="{% url 'catalog:catalog' %}" class="pop-img-right-1">
+                            <a href="#" class="pop-img-right-1">
                                 <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pir-1">
                             </a>
-                            <a href="{% url 'catalog:catalog' %}" class="pop-img-right-2">
+                            <a href="#" class="pop-img-right-2">
                                 <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pir-2">
                             </a>
                         </div>
@@ -191,7 +191,7 @@
                             <div class="ptf-txt">
                                 <p class="font-color-all-white nom font-weight ptf-p">Одежда</p>
                                 <div class="ptf-likes">
-                                    <a href="{% url 'catalog:catalog' %}" class="src-prod">
+                                    <a href="#" class="src-prod">
                                         <img src="{% static 'deps/img/icons/HeartIcon.svg' %}" alt="" class="ptf-heart">
                                     </a>
                                     <p class="ptf-num nom">3,7K</p>

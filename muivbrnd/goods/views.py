@@ -1,23 +1,40 @@
-from django.shortcuts import render
+from django.core.paginator import Paginator
+from django.shortcuts import get_list_or_404, render
 
 from goods.models import Products
 import random as rnd
 
-products_list = Products.objects.all()
 
+def catalog(request, category_slug):
 
+    # prd_list = Products.objects.all()
+    # length_ofp = len(prd_list)
 
-def catalog(request):
+    page = request.GET.get('page', 1)
+    on_sale = request.GET.get('on_sale', None)
+    order_by = request.GET.get('order_by', None)
 
-    length_ofp = len(products_list)
-    products_all_cat = rnd.sample(list(products_list), length_ofp)
+    if category_slug == "vse-tovary":
+        # goods = rnd.sample(list(prd_list), length_ofp)
+        goods = Products.objects.all()
+    else:
+        goods = get_list_or_404(Products.objects.filter(category__slug=category_slug))
 
-    data = {
+    if on_sale:
+        goods = goods.filter(discount__gt=0)
+
+    if order_by and order_by != "default":
+        goods = goods.order_by(order_by)
+
+    paginator = Paginator(goods, 12)
+    current_page = paginator.page(int(page))
+
+    context = {
         'title': 'Категории',
-        'products': products_list,
-        'rnd_products': products_all_cat
+        'products': current_page,
+        'slug_url': category_slug
     }
-    return render(request, 'goods/catalog.html', context=data)
+    return render(request, 'goods/catalog.html', context)
 
 def product(request, product_slug):
 

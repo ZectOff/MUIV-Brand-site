@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{% static 'deps/img/OldLogo.png' %}" type="image/png" sizes="256x256">
+    <link rel="icon" href="{% static 'deps/img/icons/MainLogoWT.ico' %}" sizes="236x249">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'deps/css/main.css'%}">
@@ -18,18 +18,18 @@
         <header class="base-header">
             <div class="nav-elements">
                 <a href="{% url 'main:home' %}"><img class="logo-header" src="{% static 'deps/img/MainLogo.svg' %}" alt="Logo"></a>
-                <a href="{% url 'main:home' %}" class="nav-url"><b class="fcb nf">Главная</b></a>
+                <a href="{% url 'main:home' %}" class="non-dec"><b class="fcb nf nav-url">Главная</b></a>
                 <div class="temp-box-catalog">
-                    <button class="nav-url catalog-menu"><b class="fcb nf cat-lab">Каталог &or;</b></button>
+                    <button class="catalog-menu" class="non-dec"><b class="fcb nf cat-lab nav-url">Каталог &or;</b></button>
                     <div class="menu-box">
                         {% tag_categories as categories%}
                         {% for cat in categories %}
-                            <a href="{% url 'goods:catalog' %}" class="h-menu ffc">{{cat.name}}</a>
+                            <a href="{% url 'catalog:index' cat.slug %}" class="h-menu ffc">{{cat.name}}</a>
                         {% endfor %}
                     </div>
                 </div>
-                <a href="{% url 'main:news' %}" class="nav-url"><b class="fcb nf">Новости</b></a>
-                <a href="{% url 'main:support' %}" class="nav-url"><b class="fcb nf">Поддержка</b></a>
+                <a href="{% url 'main:news' %}" class="non-dec"><b class="fcb nf nav-url">Новости</b></a>
+                <a href="{% url 'main:support' %}" class="non-dec"><b class="fcb nf nav-url">Поддержка</b></a>
                 <a href="{% url 'main:login' %}" class="nav-url nu-login">
                     <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
                     <b class="font-color-all-white nf nom">Вход</b>
