@@ -64,11 +64,14 @@
                             </svg>
                         </p>
                     </div>
-                    <form action="{% url 'catalog:index' slug_url %}" method="get" class="cmb-list">
+                    <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url 'catalog:index' slug_url %}{% endif %}" method="get" class="cmb-list">
                         <div class="en-dash-0"></div>
                         <div class="cm-btn">
                             <label class="cmb-form-l" for="flexCheckDefault">
                                 <input class="cmb-form-inp" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
+                                {% if request.GET.q %}
+                                    <input type="hidden" name="q" value="{{ request.GET.q }}">
+                                {% endif %}
                                 <div class="cfi-cus cc-chbx">
                                     <svg class="chb-ic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 611.99 611.99" style="enable-background:new 0 0 611.99 611.99;" xml:space="preserve">
                                         <path d="M589.105,80.63c-30.513-31.125-79.965-31.125-110.478,0L202.422,362.344l-69.061-70.438 c-30.513-31.125-79.965-31.125-110.478,0c-30.513,31.125-30.513,81.572,0,112.678l124.29,126.776 c30.513,31.125,79.965,31.125,110.478,0l331.453-338.033C619.619,162.202,619.619,111.755,589.105,80.63z"/>

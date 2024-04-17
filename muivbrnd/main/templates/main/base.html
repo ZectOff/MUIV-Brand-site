@@ -14,99 +14,158 @@
     <link rel="stylesheet" href="{% static 'deps/css/main.css'%}">
 </head>
 <body>
-    <div class="main-container">
-        <header class="base-header">
-            <div class="nav-elements">
-                <a href="{% url 'main:home' %}"><img class="logo-header" src="{% static 'deps/img/MainLogo.svg' %}" alt="Logo"></a>
-                <a href="{% url 'main:home' %}" class="non-dec"><b class="fcb nf nav-url">Главная</b></a>
-                <div class="temp-box-catalog">
-                    <button class="catalog-menu" class="non-dec"><b class="fcb nf cat-lab nav-url">Каталог &or;</b></button>
-                    <div class="menu-box">
-                        {% tag_categories as categories%}
-                        {% for cat in categories %}
-                            <a href="{% url 'catalog:index' cat.slug %}" class="h-menu ffc">{{cat.name}}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <a href="{% url 'main:news' %}" class="non-dec"><b class="fcb nf nav-url">Новости</b></a>
-                <a href="{% url 'main:support' %}" class="non-dec"><b class="fcb nf nav-url">Поддержка</b></a>
-                <a href="{% url 'main:login' %}" class="nav-url nu-login">
-                    <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
-                    <b class="font-color-all-white nf nom">Вход</b>
-                </a>
-            </div>
-        </header>
-        <main>
-            {% block content %}{% endblock %}
-        </main>
-        <footer class="footer-cls">
-            <div class="footer-container">
-                <div class="footer-content">
-                    <div class="f-c-box">
-                        <div class="f-img">
+    <section class="section-showcase" id="ss-spec">
+        <div class="blur-box"></div>
+        <div class="uniq-container uc-header">
+            <header class="base-header">
+                <div class="nav-elements">
+                    <div class="nes-links">
+                        <div class="nesl-item-logo">
                             <a href="{% url 'main:home' %}">
-                                <img src="{% static "deps/img/MainLogoWhite.svg" %}" alt="Logo" class="f-logo-company">
+                                <img class="logo-header" src="{% static 'deps/img/MainLogo.svg' %}" alt="Logo">
                             </a>
                         </div>
-                        <div class="f-c-text">
-                            <p class="ffc nom ftww" align="start">Заказывайте специальную продукцию университета на нашем удобном портале!<br /> Мы в соц. сетях:</p>
+                        <div class="nesl-item url-pad">
+                            <a href="{% url 'main:home' %}" class="non-dec">
+                                <b class="fcb nf nav-url">Главная</b>
+                            </a>
                         </div>
-                        <div class="f-icons">
-                            <a href="https://github.com/ZectOff" class="f-ic">
-                                <img src="{% static 'deps/img/icons/GitIcon.svg' %}" alt="Git" class="f-icon">
+                        <div class="nesl-item url-pad">
+                            <div class="temp-box-catalog">
+                                <button class="catalog-menu" class="non-dec">
+                                    <b class="fcb nf cat-lab nav-url">
+                                        Каталог
+                                        <svg class="ic-catal" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            viewBox="0 0 307.053 307.053" xml:space="preserve">
+                                            <path d="M302.445,80.796l-11.101-11.103c-6.123-6.131-16.074-6.131-22.209,0L153.67,183.707L37.907,67.959
+                                                c-6.134-6.13-16.08-6.13-22.209,0L4.597,79.06c-6.129,6.133-6.129,16.067,0,22.201l137.83,137.829
+                                                c6.129,6.136,16.067,6.136,22.203,0l137.815-136.096C308.589,96.864,308.589,86.926,302.445,80.796z"/>
+                                        </svg>
+                                    </b>
+                                </button>
+                                <div class="menu-box">
+                                    {% tag_categories as categories%}
+                                    {% for cat in categories %}
+                                        <a href="{% url 'catalog:index' cat.slug %}" class="h-menu fcb">{{cat.name}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nesl-item url-pad">
+                            <a href="{% url 'main:news' %}" class="non-dec">
+                                <b class="fcb nf nav-url">Новости</b>
                             </a>
-                            <a href="#" class="f-ic">
-                                <img src="{% static 'deps/img/icons/VkIcon.svg' %}" alt="Vk" class="f-icon">
-                            </a>
-                            <a href="#" class="f-ic">
-                                <img src="{% static 'deps/img/icons/TelegramIcon.svg' %}" alt="Tg" class="f-icon">
+                        </div>
+                        <div class="nesl-item url-pad">
+                            <a href="{% url 'main:support' %}" class="non-dec">
+                                <b class="fcb nf nav-url">Поддержка</b>
                             </a>
                         </div>
                     </div>
-                    <div class="f-c-box">
-                        <div class="f-c-title">
-                            <p class="font-color-all-white font-weight nom ftt">Компания</p>
-                        </div>
-                        <div class="ft-urls">
-                            <a href="{% url 'main:about' %}" class="f-c-url">О компании</a>
-                            <a href="#" class="f-c-url">Услуги компании</a>
-                            <a href="#" class="f-c-url">Вакансии</a>
-                            <a href="#" class="f-c-url">Связаться с нами</a>
-                        </div>
-                    </div>
-                    <div class="f-c-box">
-                        <div class="f-c-title">
-                            <p class="font-color-all-white font-weight nom ftt">Клиент</p>
-                        </div>
-                        <div class="ft-urls">
-                            <a href="#" class="f-c-url">Поддержка</a>
-                            <a href="#" class="f-c-url">Последние новости</a>
-                            <a href="#" class="f-c-url">Сведения о компании</a>
-                            <a href="#" class="f-c-url">Кто мы такие</a>
-                        </div>
-                    </div>
-                    <div class="f-c-box">
-                        <div class="f-c-title">
-                            <p class="font-color-all-white font-weight nom ftt">10% за подписку</p>
-                        </div>
-                        <div class="f-c-text">
-                            <p class="ffc nom ftww" align="start">Подпишитесь на рассылку и получите скидку 10% по промокоду.</p>
-                        </div>
-                        <form action="#" class="ft-sub-form">
-                            <input type="email" placeholder="Введите адрес электронной почты" class="sub-inp">
-                            <button class="ft-ent-btn" type="submit">
-                                <img src="{% static 'deps/img/icons/EntBtn.svg' %}" alt="Ent ico" class="feb-i">
-                            </button>
+                    <div class="nes-links">
+                        <form class="nes-search" role="search" action="{% url "catalog:search" %}" method="get">
+                            <label for="flexSearch" class="nes-search-l">
+                                <input type="search" class="nsl-inp" name="q" placeholder="Поиск по сайту" aria-lavel="Search">
+                                <div class="nsli-btns">
+                                    <button type="reset" class="nb-icobox nbi-btn-cro">
+                                        <svg class="nb-ico-cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M4.293,18.293,10.586,12,4.293,5.707A1,1,0,0,1,5.707,4.293L12,10.586l6.293-6.293a1,1,0,1,1,1.414,1.414L13.414,12l6.293,6.293a1,1,0,1,1-1.414,1.414L12,13.414,5.707,19.707a1,1,0,0,1-1.414-1.414Z"/>
+                                        </svg>
+                                    </button>
+                                    <div class="nb-icobox">
+                                        <span class="vert-dash"></span>
+                                    </div>
+                                    <button type="submit" class="nb-icobox nbi-btn">
+                                        <svg class="nb-ico-search nbi-s" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 612.08 612.08" style="enable-background:new 0 0 612.08 612.08;" xml:space="preserve">
+                                            <path d="M237.927,0C106.555,0,0.035,106.52,0.035,237.893c0,131.373,106.52,237.893,237.893,237.893
+                                                c50.518,0,97.368-15.757,135.879-42.597l0.028-0.028l176.432,176.433c3.274,3.274,8.48,3.358,11.839,0l47.551-47.551
+                                                c3.274-3.274,3.106-8.703-0.028-11.838L433.223,373.8c26.84-38.539,42.597-85.39,42.597-135.907C475.82,106.52,369.3,0,237.927,0z
+                                                M237.927,419.811c-100.475,0-181.918-81.443-181.918-181.918S137.453,55.975,237.927,55.975s181.918,81.443,181.918,181.918
+                                                S338.402,419.811,237.927,419.811z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </label>
                         </form>
+                        <a href="{% url 'main:login' %}" class="nav-url nu-login">
+                            <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
+                            <b class="font-color-all-white nf nom">Вход</b>
+                        </a>
                     </div>
                 </div>
-                <div class="footer-copyright">
-                    <p class="f-t-cr nom">
-                        © Copyright 2024 - MUIVBrand, Все права защищены.
-                    </p>
+            </header>
+        </div>
+    </section>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer-cls">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="f-c-box">
+                    <div class="f-img">
+                        <a href="{% url 'main:home' %}">
+                            <img src="{% static "deps/img/MainLogoWhite.svg" %}" alt="Logo" class="f-logo-company">
+                        </a>
+                    </div>
+                    <div class="f-c-text">
+                        <p class="ffc nom ftww" align="start">Заказывайте специальную продукцию университета на нашем удобном портале!<br /> Мы в соц. сетях:</p>
+                    </div>
+                    <div class="f-icons">
+                        <a href="https://github.com/ZectOff" class="f-ic">
+                            <img src="{% static 'deps/img/icons/GitIcon.svg' %}" alt="Git" class="f-icon">
+                        </a>
+                        <a href="#" class="f-ic">
+                            <img src="{% static 'deps/img/icons/VkIcon.svg' %}" alt="Vk" class="f-icon">
+                        </a>
+                        <a href="#" class="f-ic">
+                            <img src="{% static 'deps/img/icons/TelegramIcon.svg' %}" alt="Tg" class="f-icon">
+                        </a>
+                    </div>
+                </div>
+                <div class="f-c-box">
+                    <div class="f-c-title">
+                        <p class="font-color-all-white font-weight nom ftt">Компания</p>
+                    </div>
+                    <div class="ft-urls">
+                        <a href="{% url 'main:about' %}" class="f-c-url">О компании</a>
+                        <a href="#" class="f-c-url">Услуги компании</a>
+                        <a href="#" class="f-c-url">Вакансии</a>
+                        <a href="#" class="f-c-url">Связаться с нами</a>
+                    </div>
+                </div>
+                <div class="f-c-box">
+                    <div class="f-c-title">
+                        <p class="font-color-all-white font-weight nom ftt">Клиент</p>
+                    </div>
+                    <div class="ft-urls">
+                        <a href="#" class="f-c-url">Поддержка</a>
+                        <a href="#" class="f-c-url">Последние новости</a>
+                        <a href="#" class="f-c-url">Сведения о компании</a>
+                        <a href="#" class="f-c-url">Кто мы такие</a>
+                    </div>
+                </div>
+                <div class="f-c-box">
+                    <div class="f-c-title">
+                        <p class="font-color-all-white font-weight nom ftt">10% за подписку</p>
+                    </div>
+                    <div class="f-c-text">
+                        <p class="ffc nom ftww" align="start">Подпишитесь на рассылку и получите скидку 10% по промокоду.</p>
+                    </div>
+                    <form action="#" class="ft-sub-form">
+                        <input type="email" placeholder="Введите адрес электронной почты" class="sub-inp">
+                        <button class="ft-ent-btn" type="submit">
+                            <img src="{% static 'deps/img/icons/EntBtn.svg' %}" alt="Ent ico" class="feb-i">
+                        </button>
+                    </form>
                 </div>
             </div>
-        </footer>
-    </div>
+            <div class="footer-copyright">
+                <p class="f-t-cr nom">
+                    © Copyright 2024 - MUIVBrand, Все права защищены.
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html> 
