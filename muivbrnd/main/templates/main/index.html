@@ -26,13 +26,13 @@
                     </a>
                 </div>
             </div>
-            <div class="iboard-img">
-                <div class="slider">
-                    <img src="{% static 'deps/img/Muiv-Cloth-opRed.png'%}" alt="" class="iboard-img">
-                    <img src="{% static 'deps/img/Muiv-Cloth-opBlue.png'%}" alt="" class="iboard-img">
-                    <img src="{% static 'deps/img/Muiv-Cloth-opGreen.png'%}" alt="" class="iboard-img">
-                    <img src="{% static 'deps/img/Muiv-Notes.png'%}" alt="" class="iboard-img">
-                    <img src="{% static 'deps/img/Muiv-Cloth.png'%}" alt="" class="iboard-img">
+            <div class="scroller">
+                <div class="sc-inner">
+                    <img src="{{ scroll_prds.0.image.url }}" alt="" class="sil-img">
+                    <img src="{{ scroll_prds.1.image.url }}" alt="" class="sil-img">
+                    <img src="{% static 'deps/img/Muiv-Notes.png'%}" alt="" class="sil-img">
+                    <img src="{{ scroll_prds.2.image.url }}" alt="" class="sil-img">
+                    <img src="{{ scroll_prds.3.image.url }}" alt="" class="sil-img">
                 </div>
             </div>
         </div>

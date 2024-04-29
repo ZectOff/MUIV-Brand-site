@@ -19,11 +19,15 @@
                     </p>
                 </div>
             </div>
-            <form action="#" class="testform">
-                <label for="ppkaka">
-                    <input class="tes-inp" type="search" name="sss" id="sss" placeholder="Search">
-                </label>
-            </form>
+            <div class="scroller">
+                <div class="sc-item-list">
+                    <img src="{{ scroll_prds.0.image.url }}" alt="" class="sil-img">
+                    <img src="{{ scroll_prds.1.image.url }}" alt="" class="sil-img">
+                    <img src="{% static 'deps/img/Muiv-Notes.png'%}" alt="" class="sil-img">
+                    <img src="{{ scroll_prds.2.image.url }}" alt="" class="sil-img">
+                    <img src="{{ scroll_prds.3.image.url }}" alt="" class="sil-img">
+                </div>
+            </div>
         </div>
     </section>
     <section class="section-showcase">

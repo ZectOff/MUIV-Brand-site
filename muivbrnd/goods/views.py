@@ -3,7 +3,7 @@ from django.shortcuts import get_list_or_404, render
 
 from goods.models import Products
 from goods.utils import q_search
-import random as rnd
+# import random as rnd
 
 
 def catalog(request, category_slug=None):

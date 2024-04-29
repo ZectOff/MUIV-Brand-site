@@ -134,6 +134,11 @@ li {
     text-wrap: nowrap;
 }
 
+.jc-s{
+    display: flex;
+    justify-content: start;
+}
+
 header {
     background: none;
     width: 100vw;
@@ -175,9 +180,12 @@ header {
     fill: #132041;
     width: 14px;
     height: auto;
+    margin-left: 6px;
 }
 
 .cat-lab {
+    display: flex;
+    flex-wrap: nowrap;
     text-wrap: nowrap;
 }
 
@@ -734,7 +742,7 @@ footer h1 {
 .iboard-text {
     align-items: center;
     justify-content: center;
-    width: 575px;
+    width: 525px;
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -756,42 +764,52 @@ footer h1 {
     word-wrap: break-word;
 }
 
-.iboard-img {
-    width: 500px;
+.scroller {
+    width: 620px;
     height: 500px;
-    overflow: hidden;
-    margin: 0 auto;
+    margin: 0;
+    position: relative;
 }
 
-.slider {
-    animation: sliderAnimate 30s infinite ease-in-out;
-    animation-delay: 3s;
+.sc-inner {
     width: 2500px;
     height: 500px;
     clear: both;
     position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }
 
-@keyframes sliderAnimate {
-    0% {
-        left: 0;
-    }
+.scroller[data-animated="true"]{
+    overflow: hidden;
+    -webkit-mask: 
+    linear-gradient(
+        90deg, 
+        transparent,
+        #FAFCFF 10%,
+        #FAFCFF 90%, 
+        transparent
+    );
+    mask: linear-gradient(90deg, transparent, #FAFCFF 10%, #FAFCFF 90%, transparent);
+}
 
-    25% {
-        left: -500px;
-    }
+.scroller[data-animated="true"] .sc-inner{
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s)  linear infinite;
+}
 
-    50% {
-        left: -1000px;
+@keyframes scroll {
+    to{
+        transform: translate(calc(-50% - 0.5rem));
     }
+}
 
-    75% {
-        left: -1500px;
-    }
-
-    100% {
-        left: 0;
-    }
+.sil-img{
+    width: 500px;
+    height: 500px;
 }
 
 .iboard-btns {
@@ -1581,9 +1599,11 @@ footer h1 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 25px 0px;
+    justify-content: start;
+    gap: 25px 50px;
+    grid-template-rows: auto;
     padding: 12px 0px;
+    overflow: hidden;
 }
 
 .cpl-el-box {
@@ -2691,4 +2711,108 @@ footer h1 {
 
 .nbi-btn-cro:hover .nb-ico-cross {
     fill: #C21631;
+}
+
+.benyak{
+    background-color: #DB5472;
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0px 2px;
+    border-radius: 0.25rem;
+}
+
+.vis-filt{
+    display: flex;
+    width: auto;
+    height: auto;
+    margin-right: auto;
+}
+
+.vf{
+    width: 100%;
+    height: auto;
+    padding: 2px 6px;
+    background-color: #1A3856;
+    border-radius: 0.25rem;
+}
+
+.qnf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px auto;
+}
+
+/* Выделение */
+p::-moz-selection{
+    background-color: #DB5472;
+}
+
+p::selection{
+    background-color: #DB5472;
+}
+
+span::-moz-selection{
+    background-color: #DB5472;
+}
+
+span::selection{
+    background-color: #DB5472;
+}
+
+button::-moz-selection{
+    background-color: #DB5472;
+}
+
+button::selection{
+    background-color: #DB5472;
+}
+
+input::-moz-selection{
+    background-color: #DB5472;
+}
+
+input::selection{
+    background-color: #DB5472;
+}
+
+label::-moz-selection{
+    background-color: #DB5472;
+}
+
+label::selection{
+    background-color: #DB5472;
+}
+
+b::-moz-selection{
+    background-color: #DB5472;
+}
+
+b::selection{
+    background-color: #DB5472;
+}
+
+s::-moz-selection{
+    background-color: #DB5472;
+}
+
+s::selection{
+    background-color: #DB5472;
+}
+
+a::-moz-selection{
+    background-color: #DB5472;
+}
+
+a::selection{
+    background-color: #DB5472;
+}
+
+img::-moz-selection{
+    background-color: #DB5472;
+}
+
+img::selection{
+    background-color: #DB5472;
 }

@@ -16,3 +16,6 @@ urlpatterns = [
         "testing", views.testing, name="testing"
     ),  # page for debugging and testing code
 ]
+
+
+# ngrok http http://localhost:8000

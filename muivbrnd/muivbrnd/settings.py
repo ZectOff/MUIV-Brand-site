@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-kasrcm0nmahkz+&=d6ce=#r!tvw$&fr#ejw#+_s=^ae40yabvr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'd0f7-46-188-122-54.ngrok-free.app', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1:8000', 'bcff-46-188-122-54.ngrok-free.app', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
 
     'debug_toolbar',
 
@@ -82,8 +83,12 @@ WSGI_APPLICATION = 'muivbrnd.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'muivbrand',
+        'USER': 'zect',
+        'PASSWORD': "root",
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
