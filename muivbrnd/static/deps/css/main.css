@@ -2816,3 +2816,27 @@ img::-moz-selection{
 img::selection{
     background-color: #DB5472;
 }
+
+h1::-moz-selection{
+    background-color: #DB5472;
+}
+
+h1::selection{
+    background-color: #DB5472;
+}
+
+h2::-moz-selection{
+    background-color: #DB5472;
+}
+
+h2::selection{
+    background-color: #DB5472;
+}
+
+textarea::-moz-selection{
+    background-color: #DB5472;
+}
+
+textarea::selection{
+    background-color: #DB5472;
+}

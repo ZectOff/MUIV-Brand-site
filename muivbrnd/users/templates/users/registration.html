@@ -1,4 +1,4 @@
-{% extends "main/index.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}{{ title }}{% endblock  %}
@@ -9,7 +9,7 @@
             <div class="bread-crumbs">
                 <div class="bc-text">
                     <p class="font-color-all-white nom">
-                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                        <b><a href="{% url 'main:home' %}" class="non-dec font-color-all-white">Главная</a></b>
                     </p>
                     <span class="font-color-all-white bc-slash"> / </span>
                 </div>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="bc-text">
                     <p class="font-color-all-white nom">
-                        <b>Вход</b>
+                        <b>Регистрация</b>
                     </p>
                 </div>
             </div>
@@ -32,41 +32,49 @@
             <div class="auth-form-box">
                 {% block auth %}
                     <div class="nice-bg">
-                        <img src="{% static "deps/img/LoginBgImg.svg" %}" alt="Login bg" class="auth-img-bg">
+                        <img src="{% static "deps/img/RegisterBgImg.svg" %}" alt="Register" class="auth-img-bg">
                     </div>
                     <div class="auth-form">
                         <div class="auth-form-title">
-                            <h1 class="fcb nom">Авторизация</h1>
+                            <h1 class="fcb nom">Регистрация</h1>
                         </div>
-                        <form class="form-container" action="{% url 'main:account' %}">
+                        <form class="form-container" action="{% url 'user:profile' %}">
                             <div class="form-input">
                                 <label for="name" class="fcb l-title">Имя пользователя</label>
-                                <input type="text" class="auth-inp" placeholder="Введите имя или E-mail" required>
+                                <input type="text" class="auth-inp" placeholder="Введите имя" required>
                             </div>
                             <div class="form-input">
                                 <label for="password" class="fcb l-title">Пароль</label>
-                                <input type="password" class="auth-inp" placeholder="Введите пароль" required>
+                                <input type="password" class="auth-inp" placeholder="Придумайте пароль" required>
                             </div>
                             <div class="form-input">
-                                <button type="submit" class="abb">Войти</button>
+                                <label for="password" class="fcb l-title">Подтверждение пароля</label>
+                                <input type="password" class="auth-inp" placeholder="Подтвердите пароль" required>
                             </div>
-                            <div class="form-input add-inf">
-                                <div class="remm">
-                                    <label class="remm-l">
+                            <div class="form-input add-inf-la">
+                                <div class="accept-tac">
+                                    <label class="remm-lr">
                                         <input type="checkbox" class="chb-inp">
-                                        <p class="fcb nom lh01">Запомнить меня</p>
+                                        Согласен(на) на обработку персональных данных
                                     </label>
                                 </div>
-                                <div class="forg-p">
-                                    <a href="#" class="forg-p-url">
-                                        Забыли пароль?
-                                    </a>
+                                <div class="accept-tac nom">
+                                    <label class="remm-lr">
+                                        <input type="checkbox" class="chb-inp">
+                                        <p class="fcb nom">Я принимаю условия <a href="#" class="lic-agr"> лицензионного соглашения</a></p>
+                                    </label>
                                 </div>
+                            </div>
+                            <div class="form-input">
+                                <button type="submit" class="abb abb-reg">Зарегистрироваться</button>
+                            </div>
+                            <div class="form-input add-inf">
+                                
                             </div>
                         </form>
                         <div class="reg-text">
                             <p class="fcb">
-                                Еще нет аккаунта? <a href="{% url 'main:register' %}" class="reg-url">Зарегистрироваться</a>
+                                Уже есть аккаунт? <a href="{% url 'user:login' %}" class="reg-url">Войти</a>
                             </p>
                         </div>
                     </div>
