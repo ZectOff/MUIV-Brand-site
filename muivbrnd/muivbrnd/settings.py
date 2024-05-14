@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-kasrcm0nmahkz+&=d6ce=#r!tvw$&fr#ejw#+_s=^ae40yabvr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'bcff-46-188-122-54.ngrok-free.app', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1:8000', 'c897-46-188-122-54.ngrok-free.app', '127.0.0.1']
 
 
 # Application definition
@@ -150,3 +150,4 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'users.User'

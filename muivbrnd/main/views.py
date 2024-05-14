@@ -12,6 +12,9 @@ pepe2 = products_list.filter(id=34)
 pepe3 = products_list.filter(id=10)
 pepe4 = products_list.filter(id=14)
 
+# При восстановлении БД, данные переменные закоментить,
+# тк они пытаються отобрать элементы от бэйсменеджера,
+# но без миграций и даты они будут пустые и будут мешать.
 sc_prd1 = pepe1[0]
 sc_prd2 = pepe2[0]
 sc_prd3 = pepe3[0]
@@ -73,33 +76,6 @@ def news(request):
     }
     return render(request, "main/news.html", posts)
 
-
-def account(request):
-
-    account_data = {
-        "title": "MUIV Brand - Аккаунт",
-    }
-    return render(request, "main/account.html", account_data)
-
-
-def login(request):
-
-    login_data = {
-        "title": "MUIV Brand - Авторизация",
-        "bclabel": ["Главная", "Авторизация", "Вход"],
-    }
-    return render(request, "main/login.html", login_data)
-
-
-def register(request):
-
-    reg_data = {
-        "title": "MUIV Brand - Регистрация",
-        "bclabel": ["Главная", "Авторизация", "Вход"],
-    }
-    return render(request, "main/register.html", reg_data)
-
-
 def support(request):
 
     sup_data = {
@@ -113,13 +89,10 @@ def testing(request):
 
     prd_random_8 = rnd.sample(list(products_list), 8)
 
-    scroll_prds = [sc_prd1, sc_prd2, sc_prd3, sc_prd4]
-
     testing_data = {
         "title": "MUIV Brand - Тестирование и отладка",
         "products": products_list,
         "products_r8": prd_random_8,
         "bclabel": ["Главная", "Тестирование приложения"],
-        "scroll_prds": scroll_prds
     }
     return render(request, "main/testing.html", testing_data)

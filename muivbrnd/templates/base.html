@@ -87,16 +87,34 @@
                                 </div>
                             </label>
                         </form>
-                        <a href="{% url 'user:login' %}" class="nav-url nu-login">
-                            <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
-                            <b class="font-color-all-white nf nom">Вход</b>
-                        </a>
+                        {% if not user.is_authenticated %}
+                            <a href="{% url 'user:login' %}" class="nav-url nu-login">
+                                <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
+                                <b class="font-color-all-white nf nom">Вход</b>
+                            </a>
+                        {% else %}
+                            <div class="us-btn-menu">
+                                <button class="non-dec ulm-btn">
+                                    <p class="ubm-txt font-color-all-white nf nom fw600">Профиль</p>
+                                </button>
+                                <div class="ubm-list-menu">
+                                    <a href="{% url 'user:profile' %}" class="h-menu fcb fuli chm">Личный кабинет</a>
+                                    {% if user.is_admin or user.is_staff %}
+                                        <a href="{% url 'admin:index' %}" class="h-menu fcb fuli chm">Админ-панель</a>
+                                    {% endif %}
+                                    <a href="{% url 'user:profile' %}" class="h-menu fcb fuli chm">Корзина</a>
+                                    <div class="ulm-dash"></div>
+                                    <a href="{% url 'user:logout' %}" class="h-menu fcb fuli chm">Выход</a>
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </header>
         </div>
     </section>
     <main>
+        {% include "includes/notifications.html" %}
         {% block content %}{% endblock %}
     </main>
     <footer class="footer-cls">

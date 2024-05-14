@@ -1,5 +1,7 @@
 from django.urls import path
-from . import views
+
+from main import views
+
 
 app_name = "main"
 
@@ -8,13 +10,8 @@ urlpatterns = [
     path("about", views.about, name="about"),
     path("contacts", views.contacts, name="contacts"),
     path("news", views.news, name="news"),
-    path("account", views.account, name="account"),
-    path("login", views.login, name="login"),
-    path("register", views.register, name="register"),
     path("support", views.support, name="support"),
-    path(
-        "testing", views.testing, name="testing"
-    ),  # page for debugging and testing code
+    path("testing", views.testing, name="testing"),  # page for debugging and testing code
 ]
 
 
