@@ -5,3 +5,18 @@
         <p class="f40 daj-c">Test includes</p>
     </div>
 {% endif %} {% endcomment %}
+
+<div class="daj-c not-box" id="js-alert-box">
+    <div class="daj-c">
+        {% if messages %}
+            {% for msg in messages %}
+                {% if msg.tags == 'success' %}
+                    <p id="notification" class="notif-text-s font-color-all-white nom f20 fw600">{{ msg }}</p>
+                {% endif %}
+                {% if msg.tags == 'warning' %}
+                    <p id="notification" class="notif-text-w font-color-all-white nom f16 fw600">{{ msg }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

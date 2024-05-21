@@ -46,22 +46,22 @@
                                     <input type="text" class="auth-inp ffns-wid" id="id_first_name"
                                         value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
                                         name="first_name" placeholder="Введите имя" required>
-                                        {% if form.first_name.errors %}
+                                        {% comment %} {% if form.first_name.errors %}
                                             <div class="alert-reg">
                                                 <p class="reg-errs non-dec nom fcb f12">{{ form.first_name.errors.as_text }}</p>
                                             </div>
-                                        {% endif %}
+                                        {% endif %} {% endcomment %}
                                 </div>
                                 <div class="fi-flb-lname">
                                     <label for="id_last_name" class="fcb l-title">Фамилия</label>
                                     <input type="text" class="auth-inp" id="id_last_name"
                                         value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
                                         name="last_name" placeholder="Введите фамилию" required>
-                                        {% if form.last_name.errors %}
+                                        {% comment %} {% if form.last_name.errors %}
                                             <div class="alert-reg">
                                                 <p class="reg-errs non-dec nom fcb f12">{{ form.last_name.errors.as_text }}</p>
                                             </div>
-                                        {% endif %}
+                                        {% endif %} {% endcomment %}
                                 </div>
                             </div>
                             <div class="form-input">

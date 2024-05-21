@@ -32,41 +32,78 @@
             <div class="user-profile-box">
                 <div class="user-menu">
                     <div class="user-avatar">
-                        <div class="us-back-l"></div>
-                        <div class="us-img">
-                            <img src="{% static 'deps/img/icons/UserIcon.png' %}" alt="User's avatar" class="ui-m">
+                        <div class="ua-img-l">
+                            <div class="us-back-l"></div>
+                            <form action="{% url 'user:profile' %}" id="form-iu" class="iu-load" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    {% if not user.image %}
+                                        <img src="{% static 'deps/img/icons/UserIcon.png' %}" alt="Аватар пользователя" class="ui-m">
+                                    {% else %}
+                                        <img src="{{ user.image.url }}" alt="Аватар пользователя" class="ui-m">
+                                    {% endif %}
+                                <label for="id_image" class="uil-lab">
+                                    <input type="file" class="uil-inp" name="image" id="id_image" onchange="form.submit()" accept="image/*">
+                                </label>
+                            </form>
                         </div>
-                        <div class="usn-text">
-                            <p class="nom u-nick">Boba Fett</p>
+                        <div class="usn-box">
+                            <div class="usn-text">
+                                <p class="nom f24 fcb">{{ user.username }}</p>
+                            </div>
+                            <div class="usn-text">
+                                <p class="nom fcg f16">{{ user.email }}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="user-menu-btns">
                         <div class="dash"></div>
-                        <div class="umb-el">
-                            <img src="{% static 'deps/img/icons/usprofile/MmenuIcon.svg' %}" alt="" class="upm-ico">
-                            <p class="umb-txt-1 font-color-all-white font-weight nom">Главная</p>
-                        </div>
-                        <div class="umb-el">
-                            <img src="{% static 'deps/img/icons/usprofile/ShCartIcon.svg' %}" alt="" class="upm-ico">
-                            <p class="umb-txt font-color-all-white font-weight nom">Корзина</p>
-                        </div>
-                        <div class="umb-el">
-                            <img src="{% static 'deps/img/icons/usprofile/HistoryIcon.svg' %}" alt="" class="upm-ico">
-                            <p class="umb-txt font-color-all-white font-weight nom">История заказов</p>
-                        </div>
-                        <div class="umb-el">
-                            <img src="{% static 'deps/img/icons/usprofile/LogOutIcon.svg' %}" alt="" class="upm-ico">
-                            <p class="umb-txt font-color-all-white font-weight nom">Выход</p>
-                        </div>
+                        {% comment %} <a href="{% url 'user:profile' %}" class="uel-url non-dec">
+                            <div class="umb-el">
+                                <svg class="upm-ico" viewBox="0 0 893 893" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M74.4167 74.4167H409.292V409.292H74.4167V74.4167ZM334.875 148.833H148.833V334.875H334.875V148.833ZM818.583 483.708V818.583H483.708V483.708H818.583ZM558.125 744.167H744.167V558.125H558.125V744.167ZM595.333 297.667V409.292H483.708V297.667H595.333ZM409.292 595.333H297.667V483.708H409.292V595.333Z"/>
+                                </svg>
+                                <p class="umb-txt fcb font-weight nom">Главная</p>
+                            </div>
+                        </a> {% endcomment %}
+                        <a href="{% url 'user:profile_menu' 'account' %}" class="uel-url non-dec">
+                            <div class="umb-el">
+                                <svg class="upm-ico" viewBox="0 0 893 893" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M74.4167 74.4167H409.292V409.292H74.4167V74.4167ZM334.875 148.833H148.833V334.875H334.875V148.833ZM818.583 483.708V818.583H483.708V483.708H818.583ZM558.125 744.167H744.167V558.125H558.125V744.167ZM595.333 297.667V409.292H483.708V297.667H595.333ZM409.292 595.333H297.667V483.708H409.292V595.333Z"/>
+                                </svg>
+                                <p class="umb-txt fcb font-weight nom">Аккаунт</p>
+                            </div>
+                        </a>
+                        <a href="{% url 'user:profile_menu' 'korzina' %}" class="uel-url non-dec">
+                            <div class="umb-el">
+                                <svg class="upm-ico" viewBox="0 0 966 966" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M953.756 149.04C944.171 138.05 930.371 131.727 915.818 131.727H222.356L212.57 73.3155C208.556 49.1279 187.63 31.3635 163.091 31.3635H50.1818C22.4313 31.3635 0 53.7948 0 81.5453C0 109.296 22.4313 131.727 50.1818 131.727H120.587L213.925 691.957C214.327 694.215 215.481 696.072 216.183 698.18C216.986 700.839 217.639 703.348 218.893 705.757C220.499 709.069 222.657 711.879 224.915 714.739C226.471 716.697 227.876 718.654 229.682 720.36C232.593 723.07 235.955 724.977 239.367 726.883C241.274 727.937 242.93 729.342 244.988 730.145C250.809 732.504 256.931 733.909 263.404 733.909H815.455C843.205 733.909 865.636 711.478 865.636 683.727C865.636 655.977 843.205 633.545 815.455 633.545H305.959L297.628 583.364H865.636C890.627 583.364 911.804 564.997 915.316 540.308L965.498 189.035C967.556 174.582 963.24 159.98 953.756 149.04ZM857.959 232.091L843.657 332.454H664.909V232.091H857.959ZM614.727 232.091V332.454H464.182V232.091H614.727ZM614.727 382.636V483H464.182V382.636H614.727ZM414 232.091V332.454H263.455C260.795 332.454 258.386 333.207 256.028 333.96L239.066 232.091H414ZM264.157 382.636H414V483H280.868L264.157 382.636ZM664.909 483V382.636H836.43L822.129 483H664.909Z"/>
+                                    <path d="M338.727 934.636C380.299 934.636 414 900.936 414 859.364C414 817.792 380.299 784.091 338.727 784.091C297.155 784.091 263.455 817.792 263.455 859.364C263.455 900.936 297.155 934.636 338.727 934.636Z"/>
+                                    <path d="M790.364 934.636C831.936 934.636 865.636 900.936 865.636 859.364C865.636 817.792 831.936 784.091 790.364 784.091C748.792 784.091 715.091 817.792 715.091 859.364C715.091 900.936 748.792 934.636 790.364 934.636Z"/>
+                                </svg>
+                                <p class="umb-txt fcb font-weight nom">Корзина</p>
+                            </div>
+                        </a>
+                        <a href="{% url 'user:profile_menu' 'istoriya-zakazov' %}" class="uel-url non-dec">
+                            <div class="umb-el">
+                                <svg class="upm-ico" viewBox="0 0 1099 1099" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M576.975 27.4751C384.65 27.4751 214.305 131.88 126.385 291.235L0 164.85V522.025H357.175L203.315 368.165C274.75 230.79 412.125 137.375 576.975 137.375C802.27 137.375 989.1 324.205 989.1 549.5C989.1 774.795 802.27 961.625 576.975 961.625C395.64 961.625 247.275 846.23 186.83 686.875H71.435C131.88 906.675 335.195 1071.53 576.975 1071.53C868.21 1071.53 1099 835.24 1099 549.5C1099 263.76 862.715 27.4751 576.975 27.4751ZM494.55 302.225V582.47L752.815 736.33L796.775 664.895L576.975 533.015V302.225H494.55Z"/>
+                                </svg>
+                                <p class="umb-txt fcb font-weight nom">История заказов</p>
+                            </div>
+                        </a>
+                        <a href="{% url 'user:logout' %}" class="uel-url non-dec">
+                            <div class="umb-el">
+                                <svg class="upm-ico" viewBox="0 0 683 683" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M88.6666 88.6668L85.3333 91.8668V299.733V507.6L88.1333 511.2C90.1333 513.733 116.667 527.6 173.467 556.133L256 597.333V554.667V512H359.333H462.8L466 508.667L469.333 505.467V434V362.667H448H426.667V416V469.333H341.333H256V320V170.667L225.733 150.533C208.933 139.467 194.8 129.867 194.133 129.2C193.333 128.533 242.8 128 309.733 128H426.667V181.333V234.667H448H469.333V163.333V91.8668L466 88.6668L462.8 85.3335H277.333H91.8666L88.6666 88.6668Z"/>
+                                    <path d="M512 245.067V277.333H408.667H305.2L302 280.667C298.8 283.733 298.667 284.8 298.667 298.667C298.667 312.533 298.8 313.6 302 316.667L305.2 320H408.667H512V352.267V384.667L554.933 341.6L598 298.667L554.933 255.733L512 212.667V245.067Z"/>
+                                </svg>
+                                <p class="umb-txt fcb font-weight nom">Выход</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="user-proile-inf">
-                    <div class="upi-title">
-                        <p class="user-nick font-color-all-white font-weight nom">Активность в сообществе</p>
-                    </div>
-                    <div class="upi-content">
-                        <p class="upi-text font-color-all-white font-weight nom">Содержание</p>
-                    </div>
+                <div class="user-profile-inf">
+                    {% block usermenu %}{% endblock %}
                 </div>
             </div>
         </div>

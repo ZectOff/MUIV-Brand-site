@@ -18,3 +18,18 @@ function addAnimation() {
         })
     })
 }
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    var notification = document.getElementById('notification');
+
+    if (notification.textContent != "") {
+        console.log(notification)
+        document.getElementById("js-alert-box").classList.add('notif-box-op');
+        setTimeout(function () {
+            document.getElementById("js-alert-box").classList.remove('notif-box-op');
+            document.getElementById("js-alert-box").classList.add('notif-box-close');
+        }, 4000);
+    }
+  }
+);
+

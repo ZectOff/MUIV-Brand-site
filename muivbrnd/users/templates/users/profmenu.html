@@ -1,0 +1,82 @@
+{% extends "users/profile.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock  %}
+
+{% block usermenu %}
+    {% if url_slug == 'account' %}
+        <div class="upi-title">
+            <p class="user-nick fcb fw600 nom daj-c">Настройки аккаунта</p>
+        </div>
+        <div class="upi-content">
+            <form action="{% url 'user:profile_menu' 'account' %}" class="user-sett-form" method="post">
+                {% csrf_token %}
+                <div class="usf-box">
+                    <div class="fn-ln-box">
+                        <div class="fi-flb-name">
+                            <label for="id_first_name" class="fcb l-title">Имя</label>
+                            <input type="text" class="auth-inp ffns-wid" id="id_first_name"
+                                value="{{ form.first_name.value }}"
+                                name="first_name" placeholder="Введите имя" required>
+                                {% if form.first_name.errors %}
+                                    <div class="alert-reg">
+                                        <p class="reg-errs non-dec nom fcb f12">{{ form.first_name.errors.as_text }}</p>
+                                    </div>
+                                {% endif %}
+                        </div>
+                        <div class="fi-flb-lname">
+                            <label for="id_last_name" class="fcb l-title">Фамилия</label>
+                            <input type="text" class="auth-inp" id="id_last_name"
+                                value="{{ form.last_name.value }}"
+                                name="last_name" placeholder="Введите фамилию" required>
+                                {% if form.last_name.errors %}
+                                    <div class="alert-reg">
+                                        <p class="reg-errs non-dec nom fcb f12">{{ form.last_name.errors.as_text }}</p>
+                                    </div>
+                                {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <label for="id_username" class="fcb l-title">Логин</label>
+                        <input type="text" class="auth-inp" id="id_username"
+                                value="{{ form.username.value }}"
+                                name="username" placeholder="Введите логин" required>
+                                {% if form.username.errors %}
+                                    <div class="alert-reg">
+                                        <p class="reg-errs non-dec nom fcb f12">{{ form.username.errors.as_text }}</p>
+                                    </div>
+                                {% endif %}
+                    </div>
+                    <div class="form-input">
+                        <label for="id_email" class="fcb l-title">E-mail</label>
+                        <input type="email" class="auth-inp" id="id_email"
+                                value="{{ form.email.value }}"
+                                name="email" placeholder="Введите логин" required>
+                                {% if form.email.errors %}
+                                    <div class="alert-reg">
+                                        <p class="reg-errs non-dec nom fcb f12">{{ form.email.errors.as_text }}</p>
+                                    </div>
+                                {% endif %}
+                    </div>
+                    <div class="form-input">
+                        <button type="submit" class="abb-save">Сохранить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% elif url_slug == 'korzina' %}
+        <div class="upi-title">
+            <p class="user-nick fcb fw600 nom daj-c">Корзина товаров</p>
+        </div>
+        <div class="upi-content">
+            <p class="upi-text fcb fw600 f26 nom">В корзине ниче нет</p>
+        </div>
+    {% elif url_slug == 'istoriya-zakazov' %}
+        <div class="upi-title">
+            <p class="user-nick fcb fw600 nom daj-c">История заказов</p>
+        </div>
+        <div class="upi-content">
+            <p class="upi-text fcb fw600 f26 nom">Вы ничего не заказывали</p>
+        </div>
+    {% endif %}
+{% endblock %}

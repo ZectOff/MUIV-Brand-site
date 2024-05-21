@@ -98,7 +98,7 @@
                                     <p class="ubm-txt font-color-all-white nf nom fw600">Профиль</p>
                                 </button>
                                 <div class="ubm-list-menu">
-                                    <a href="{% url 'user:profile' %}" class="h-menu fcb fuli chm">Личный кабинет</a>
+                                    <a href="{% url 'user:profile_menu' 'account' %}" class="h-menu fcb fuli chm">Личный кабинет</a>
                                     {% if user.is_admin or user.is_staff %}
                                         <a href="{% url 'admin:index' %}" class="h-menu fcb fuli chm">Админ-панель</a>
                                     {% endif %}
@@ -127,7 +127,7 @@
                         </a>
                     </div>
                     <div class="f-c-text">
-                        <p class="ffc nom ftww jc-s" align="start">Заказывайте специальную продукцию университета на нашем удобном портале!<br /> Мы в соц. сетях:</p>
+                        <p class="ffc nom ftww jc-s nopin" align="start">Заказывайте специальную продукцию университета на нашем удобном портале!<br /> Мы в соц. сетях:</p>
                     </div>
                     <div class="f-icons">
                         <a href="https://github.com/ZectOff" class="f-ic">
@@ -143,7 +143,7 @@
                 </div>
                 <div class="f-c-box">
                     <div class="f-c-title">
-                        <p class="font-color-all-white font-weight nom ftt">Компания</p>
+                        <p class="font-color-all-white font-weight nom ftt nopin">Компания</p>
                     </div>
                     <div class="ft-urls">
                         <a href="{% url 'main:about' %}" class="f-c-url">О компании</a>
@@ -154,7 +154,7 @@
                 </div>
                 <div class="f-c-box">
                     <div class="f-c-title">
-                        <p class="font-color-all-white font-weight nom ftt">Клиент</p>
+                        <p class="font-color-all-white font-weight nom ftt nopin">Клиент</p>
                     </div>
                     <div class="ft-urls">
                         <a href="#" class="f-c-url">Поддержка</a>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="f-c-box">
                     <div class="f-c-title">
-                        <p class="font-color-all-white font-weight nom ftt">10% за подписку</p>
+                        <p class="font-color-all-white font-weight nom ftt nopin">10% за подписку</p>
                     </div>
                     <div class="f-c-text">
                         <p class="ffc nom ftww jc-s" align="start">Подпишитесь на рассылку и получите скидку 10% по промокоду.</p>
@@ -179,7 +179,7 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                <p class="f-t-cr nom">
+                <p class="f-t-cr nom nopin">
                     © Copyright 2024 - MUIVBrand, Боровиков Илья Денисович, Все права защищены.
                 </p>
             </div>

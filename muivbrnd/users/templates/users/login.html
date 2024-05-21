@@ -40,6 +40,9 @@
                         </div>
                         <form class="form-container" action="{% url 'user:login' %}" method="post">
                             {% csrf_token %}
+                            {% if request.GET.next %}
+                                <input type="hidden" name="next" value={{request.GET.next}}>
+                            {% endif %}
                             <div class="form-input">
                                 <label for="id_username" class="fcb l-title">Имя пользователя</label>
                                 <input type="text" class="auth-inp" id="id_username" name="username" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" placeholder="Введите имя или E-mail" required>
