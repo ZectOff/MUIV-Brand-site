@@ -19,8 +19,9 @@ def login(request):
                 auth.login(request, user)
                 messages.success(request, f"{username}, Вы успешно вошли в аккаунт.")
 
-                if request.POST.get("next", None):
-                    return HttpResponseRedirect(request.POST.get("next"))
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('user:logout'):
+                    return HttpResponseRedirect(request.POST.get('next'))
                 
                 return HttpResponseRedirect(reverse('main:home'))
     else:
@@ -67,15 +68,9 @@ def profile(request):
 
     context = {
         'title': 'MUIV Brand - Личный кабинет',
-        'form': form_img,
+        'form_img': form_img,
     }
     return render(request, 'users/profile.html', context)
-
-@login_required
-def logout(request):
-    messages.warning(request, f"{request.user.username}, Вы вышли из аккаунта")
-    auth.logout(request)
-    return redirect(reverse('main:home'))
 
 @login_required
 def profile_menu(request, profile_slug=None):
@@ -84,6 +79,7 @@ def profile_menu(request, profile_slug=None):
         form = ProfileForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, "Данные аккаунта успешно обновлены!")
             return HttpResponseRedirect(reverse('user:profile'))
     else:
         form = ProfileForm(instance=request.user)
@@ -95,3 +91,12 @@ def profile_menu(request, profile_slug=None):
     }
 
     return render(request, 'users/profmenu.html', context)
+
+def users_cart(request):
+    return render(request, 'users/users_cart.html')
+
+@login_required
+def logout(request):
+    messages.warning(request, f"{request.user.username}, Вы вышли из аккаунта")
+    auth.logout(request)
+    return redirect(reverse('main:home'))

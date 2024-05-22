@@ -1,0 +1,43 @@
+{% load static %}
+
+<div class="cil-and-n">
+  <div class="ct-name">
+    <p class="fcb f26 fw600 nom">Корзина</p>
+  </div>
+  <div class="cil-scroll-box"> {% comment %} Scroll {% endcomment %}
+    {% for cart in carts %}
+      <div class="cart-items-list">
+        <div class="cil-img-box">
+          <img src="{{ cart.product.image.url }}" alt="Товар" class="cilib-item">
+        </div>
+        <div class="cil-details">
+          <div class="cil-name">
+            <p class="fcb f18 fw600 nom">{{ cart.product.name }}</p>
+          </div>
+          <div class="cil-manip">
+            <div class="cil-pl-mi">
+              <button type="button" class="pb-btn">
+                <p class="fcb f32 nom pbb-txt">+</p>
+              </button>
+              <input type="text" class="cilm-count" value="{{ cart.quantity }}" readonly>
+              <button type="button" class="pb-btn ">
+                <p class="fcb f32 nom pbb-txt">-</p>
+              </button>
+              <div class="cil-count daj-c">
+                <p class="fcb f18 nom now">x {{ cart.product.sell_price }} ₽ = {{ cart.products_price }} ₽</p>
+              </div>
+            </div>
+            <a href="{% url 'cart:cart_remove' 1 %}" class="cil-remove-btn nom non-dec">
+              <svg class="delete-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M41 6H32V4C32 1.8 30.2 0 28 0H20C17.8 0 16 1.8 16 4V6H7C4.8 6 3 7.8 3 10V14H4C6.6 14 7 15.9 7 16.1L10.5 43.1C10.8 45.8 13.3 48 16 48H32C34.7 48 37.1 45.8 37.5 43.2L41 16.2C41 16.1 41.4 14.1 44 14H45V10C45 7.8 43.2 6 41 6ZM18 4C18 2.9 18.9 2 20 2H28C29.1 2 30 2.9 30 4V6H28V5.5C28 4.7 27.3 4 26.5 4H21.5C20.7 4 20 4.7 20 5.5V6H18V4ZM5 10C5 8.9 5.9 8 7 8H41C42.1 8 43 8.9 43 10V12H5V10ZM39 15.9L35.5 42.9C35.3 44.6 33.7 46 32 46H16C14.3 46 12.7 44.6 12.5 42.9L9 15.8C8.9 15.3 8.7 14.6 8.2 14H39.8C39.3 14.7 39.1 15.4 39 15.9Z"/>
+                <path d="M26 21H22V39H26V21Z"/>
+                <path d="M30 21H34L32 39H30V21Z"/>
+                <path d="M14 21H18V39H16L14 21Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

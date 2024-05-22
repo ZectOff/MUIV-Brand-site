@@ -1,5 +1,8 @@
 {% load static %}
 {% load goods_tags %}
+{% load carts_tags %}
+
+{% user_carts request as carts %}
 
 <!doctype html>
 <html lang="ru">
@@ -87,6 +90,7 @@
                                 </div>
                             </label>
                         </form>
+                        {% block modal_win_cart %}{% endblock %}
                         {% if not user.is_authenticated %}
                             <a href="{% url 'user:login' %}" class="nav-url nu-login">
                                 <img src="{% static 'deps/img/icons/UserIcon.svg'%}" alt="" class="usericon">
@@ -102,7 +106,7 @@
                                     {% if user.is_admin or user.is_staff %}
                                         <a href="{% url 'admin:index' %}" class="h-menu fcb fuli chm">Админ-панель</a>
                                     {% endif %}
-                                    <a href="{% url 'user:profile' %}" class="h-menu fcb fuli chm">Корзина</a>
+                                    <a href="{% url 'user:users-cart' %}" class="h-menu fcb fuli chm">Корзина</a>
                                     <div class="ulm-dash"></div>
                                     <a href="{% url 'user:logout' %}" class="h-menu fcb fuli chm">Выход</a>
                                 </div>

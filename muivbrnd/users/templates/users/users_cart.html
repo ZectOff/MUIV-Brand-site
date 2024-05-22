@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+
+{% block content %}
+  <section class="section-showcase bc-sect">
+    <div class="uniq-container bc-cont">
+      <div class="bread-crumbs">
+        <div class="bc-text">
+          <p class="font-color-all-white nom">
+              <b><a href="{% url 'main:home' %}" class="non-dec font-color-all-white">Главная</a></b>
+          </p>
+          <span class="font-color-all-white bc-slash"> / </span>
+        </div>
+        <div class="bc-text">
+          <p class="font-color-all-white nom">
+              <b>Корзина товаров</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-showcase" id="blue-sect">
+    <div class="uniq-container cart-uc">
+      <div class="cart-us-content">
+        <div class="cuc-left-box">
+          <div class="cart-content">
+            {% include 'carts/includes/included_cart.html' %}
+          </div>
+        </div>
+        <div class="cuc-right-box">
+          <div class="cart-result">
+            <div class="c-r-title">
+              <p class="fcb f18 nom">Итого <b class="fcb f18">{{ carts.total_quantity }}</b> товар(а) на сумму:</p>
+            </div>
+            <div class="crt-res">
+              <p class="fcb f20 fw600 nom"><b class="fcb f22">{{ carts.total_price }}</b> ₽</p>
+            </div>
+          </div>
+          <a href="#" class="cart-btn-arr daj-c non-dec">
+            <p class="font-color-all-white nom f20 fw600">Оформить заказ</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock  %}

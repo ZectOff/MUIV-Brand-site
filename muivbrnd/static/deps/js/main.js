@@ -19,6 +19,14 @@ function addAnimation() {
     })
 }
 
+function closebtn () {
+    document.getElementById('mcc-control').style.visibility='hidden';
+}
+
+function openbtn () {
+    document.getElementById('mcc-control').style.visibility='visible';
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     var notification = document.getElementById('notification');
 
@@ -29,6 +37,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             document.getElementById("js-alert-box").classList.remove('notif-box-op');
             document.getElementById("js-alert-box").classList.add('notif-box-close');
         }, 4000);
+        clearTimeout();
     }
   }
 );

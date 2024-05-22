@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block modal_win_cart %}
+{% include "includes/cart_button.html" %}
+{% endblock %}
+
 {% block title %}{{ title }}"{{product.name}}"{% endblock  %}
 
 {% block content %}
@@ -94,7 +98,7 @@
                             </div>
                             <div class="adpl-btns">
                                 <button class="adpl-btn-fav f32">&#9829;</button>
-                                <button class="adpl-btn-buy f20">Купить</button>
+                                <a href="{% url 'cart:cart_add' product.slug %}" class="adpl-btn-buy f20 non-dec">В корзину</a>
                             </div>
                         </div>
                         <div class="adp-ult-desc">
