@@ -17,7 +17,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
-                messages.success(request, f"{username}, Вы успешно вошли в аккаунт.")
+                messages.success(request, f"{username}, Вы вошли в аккаунт.")
 
                 redirect_page = request.POST.get('next', None)
                 if redirect_page and redirect_page != reverse('user:logout'):
@@ -85,7 +85,7 @@ def profile_menu(request, profile_slug=None):
         form = ProfileForm(instance=request.user)
 
     context = {
-        'title': 'MUIV Brand - Личный кабинет, главная',
+        'title': 'MUIV Brand - Личный кабинет',
         'form': form,
         'url_slug': profile_slug,
     }
@@ -93,7 +93,10 @@ def profile_menu(request, profile_slug=None):
     return render(request, 'users/profmenu.html', context)
 
 def users_cart(request):
-    return render(request, 'users/users_cart.html')
+    context = {
+        'title': 'MUIV Brand - Корзина товаров',
+    }
+    return render(request, 'users/users_cart.html', context)
 
 @login_required
 def logout(request):

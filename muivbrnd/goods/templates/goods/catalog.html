@@ -198,7 +198,8 @@
                             </div>
                             <div class="prd-btn">
                                 <div class="btn-cart">
-                                    <a href="{% url 'cart:cart_add' prod.slug %}" class="btn-order">
+                                    <a href="{% url 'cart:cart_add' %}" class="btn-order add-to-cart" data-product-id="{{ prod.id }}">
+                                        {% csrf_token %}
                                         <div class="btn-cart-img">
                                             <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="485.213px" height="485.212px" viewBox="0 0 485.213 485.212" style="enable-background:new 0 0 485.213 485.212;" xml:space="preserve">
                                                 <polygon points="424.562,363.906 172.036,363.906 65.893,121.304 0.001,121.304 0.001,90.978 85.737,90.978 191.876,333.584      424.562,333.584    "/>

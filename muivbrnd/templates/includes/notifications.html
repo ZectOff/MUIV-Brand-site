@@ -11,12 +11,20 @@
         {% if messages %}
             {% for msg in messages %}
                 {% if msg.tags == 'success' %}
-                    <p id="notification" class="notif-text-s font-color-all-white nom f20 fw600">{{ msg }}</p>
+                    <div class="not-txt" role="alert">
+                        <p id="notification" class="notif-text-s font-color-all-white nom fw500 f20">{{ msg }}</p>
+                    </div>
                 {% endif %}
                 {% if msg.tags == 'warning' %}
-                    <p id="notification" class="notif-text-w font-color-all-white nom f16 fw600">{{ msg }}</p>
+                    <div class="not-txt" role="alert">
+                        <p id="notification" class="notif-text-w font-color-all-white nom f20">{{ msg }}</p>
+                    </div>
                 {% endif %}
             {% endfor %}
+        {% else %}
+            <div class="not-txt" role="alert">
+                <p id="jq-notification" class="notif-text-s font-color-all-white nom f20"></p>
+            </div>
         {% endif %}
     </div>
 </div>

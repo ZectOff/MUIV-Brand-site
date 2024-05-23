@@ -4,6 +4,8 @@
 
 {% user_carts request as carts %}
 
+{% block title %}{{ title }}{% endblock  %}
+
 {% block content %}
   <section class="section-showcase bc-sect">
     <div class="uniq-container bc-cont">
@@ -26,23 +28,15 @@
     <div class="uniq-container cart-uc">
       <div class="cart-us-content">
         <div class="cuc-left-box">
-          <div class="cart-content">
+          <div class="cart-content" id="jq-cart-items-container">
             {% include 'carts/includes/included_cart.html' %}
           </div>
         </div>
-        <div class="cuc-right-box">
-          <div class="cart-result">
-            <div class="c-r-title">
-              <p class="fcb f18 nom">Итого <b class="fcb f18">{{ carts.total_quantity }}</b> товар(а) на сумму:</p>
-            </div>
-            <div class="crt-res">
-              <p class="fcb f20 fw600 nom"><b class="fcb f22">{{ carts.total_price }}</b> ₽</p>
-            </div>
+        {% if carts %}
+          <div class="cuc-right-box">
+            <p class="fcb">Order btn</p> {% comment %} Блок для вставки кнопки {% endcomment %}
           </div>
-          <a href="#" class="cart-btn-arr daj-c non-dec">
-            <p class="font-color-all-white nom f20 fw600">Оформить заказ</p>
-          </a>
-        </div>
+        {% endif %}
       </div>
     </div>
   </section>

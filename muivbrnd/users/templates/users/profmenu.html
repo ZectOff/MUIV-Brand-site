@@ -72,22 +72,9 @@
             <p class="user-nick fcb fw600 nom daj-c">Корзина товаров</p>
         </div>
         <div class="upi-content">
-            <div class="cart-content">
+            <div class="cart-content" id="jq-cart-items-container">
                 <div class="cc-space">
                     {% include 'carts/includes/included_cart.html' %}
-                    <div class="cart-res-and-btn">
-                        <div class="cart-result">
-                            <div class="c-r-title">
-                                <p class="fcb f18 nom">Итого <b class="fcb f18">{{ carts.total_quantity }}</b> товар(а) на сумму:</p>
-                            </div>
-                            <div class="crt-res">
-                                <p class="fcb f22 fw600 nom"><b class="fcb f18">{{ carts.total_price }}</b> ₽</p>
-                            </div>
-                        </div>
-                        <a href="#" class="cart-btn-arr daj-c non-dec">
-                            <p class="font-color-all-white nom f20 fw600">Оформить заказ</p>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

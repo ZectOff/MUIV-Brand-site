@@ -48,7 +48,7 @@
                 <div class="ppb-all-content">
                     <div class="pac-box">
                         <div class="ppbic-sl-btns">
-                            <!--Цикл-->
+                            <!--Цикл на случай нескольких фото товара-->
                             <div class="sl-btn">
                                 <img src="{{ product.image.url }}" alt="" class="slb-img">
                             </div>
@@ -98,7 +98,10 @@
                             </div>
                             <div class="adpl-btns">
                                 <button class="adpl-btn-fav f32">&#9829;</button>
-                                <a href="{% url 'cart:cart_add' product.slug %}" class="adpl-btn-buy f20 non-dec">В корзину</a>
+                                <a href="{% url 'cart:cart_add' %}" class="adpl-btn-buy f20 non-dec add-to-cart"
+                                data-product-id="{{ product.id }}">
+                                {% csrf_token %}
+                                В корзину</a>
                             </div>
                         </div>
                         <div class="adp-ult-desc">
