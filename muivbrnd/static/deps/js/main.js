@@ -44,7 +44,6 @@ $(document).ready(function () {
                 succesMessage.html(data.message);
                 $("#js-alert-box").addClass('notif-box-op');
                 succesMessage.fadeIn(400);
-                alert($('#jq-notification'));
 
                 setTimeout( function () {
                     succesMessage.fadeOut(400);
