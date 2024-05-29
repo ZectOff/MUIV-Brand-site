@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+
+{% block title %}{{ title }}{% endblock  %}
+
+{% block content %}
+  <section class="section-showcase bc-sect">
+    <div class="uniq-container bc-cont">
+      <div class="bread-crumbs">
+        <div class="bc-text">
+          <p class="font-color-all-white nom">
+              <b><a href="{% url 'main:home' %}" class="non-dec font-color-all-white">Главная</a></b>
+          </p>
+          <span class="font-color-all-white bc-slash"> / </span>
+        </div>
+        <div class="bc-text">
+          <p class="font-color-all-white nom">
+            <b>Оформление заказа</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-showcase" id="blue-sect">
+    <div class="uniq-container cart-uc">
+      <div class="cart-us-content clb-spec">
+        <div class="cuc-left-box clb-spec spec-pad">
+          <div class="cart-content clb-spec" id="jq-cart-items-container">
+            <div class="cil-and-n">
+              <div class="ct-name">
+                <p class="fcb f26 fw600 nom">Оформление заказа</p>
+              </div>
+              {% include 'carts/includes/included_cart.html' %}
+            </div>
+          </div>
+          <div class="ord-details-title-box daj-c">
+            <p class="fcb nom fw600 f26">Детали заказа</p>
+          </div>
+          <div class="ord-details-box daj-c">
+            <div class="odb-content">
+              <form action="{% url 'orders:create_order' %}" method="post" class="odb-form"> <!-- Начало формы -->
+                {% csrf_token %}
+                <div class="fn-ln-box">
+                  <div class="fi-flb-name w-100">
+                    <label for="id_first_name" class="fcb l-title">Имя</label>
+                    <input type="text" class="auth-inp ffns-wid" id="id_first_name"
+                      value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
+                      name="first_name" placeholder="Имя" required>
+                  </div>
+                  <div class="fi-flb-lname w-100">
+                    <label for="id_last_name" class="fcb l-title">Фамилия</label>
+                    <input type="text" class="auth-inp" id="id_last_name"
+                      value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
+                      name="last_name" placeholder="Фамилия" required>
+                  </div>
+                </div>
+                <div class="form-input">
+                  <label for="id_phone_number" class="fcb l-title">Номер телефона</label>
+                  <input type="text" class="auth-inp" id="id_phone_number"
+                    value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
+                    name="phone_number" placeholder="В формате - XXX-XXX-XX-XX" required>
+                    {% if form.phone_number.errors %}
+                      <div class="alert-reg">
+                        <p class="reg-errs non-dec nom fcb f12">{{ form.phone_number.errors.as_text }}</p>
+                      </div>
+                    {% endif %}
+                </div>
+                <div class="form-input mar-0 d-flex">
+                  <label for="delivery" class="fcb l-title nom fln-class">Способ доставки: </label>
+                  <div class="ord-btn-radio">
+                    <label class="cmb-form-l rig-mar-1" for="id_requires_delivery1">
+                      <input class="cmb-form-inp jq-el-check1" type="radio" name="requires_delivery" id="id_requires_delivery1" value="1" checked>
+                      <div class="cfi-cus cc-rad">
+                        <svg class="chb-ic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 611.99 611.99" style="enable-background:new 0 0 611.99 611.99;" xml:space="preserve">
+                          <path d="M589.105,80.63c-30.513-31.125-79.965-31.125-110.478,0L202.422,362.344l-69.061-70.438 c-30.513-31.125-79.965-31.125-110.478,0c-30.513,31.125-30.513,81.572,0,112.678l124.29,126.776 c30.513,31.125,79.965,31.125,110.478,0l331.453-338.033C619.619,162.202,619.619,111.755,589.105,80.63z"/>
+                        </svg>
+                      </div>
+                      <p class="fcb f20 nom cmb-txt">Доставка</p>
+                    </label>
+                    <label class="cmb-form-l" for="id_requires_delivery2">
+                      <input class="cmb-form-inp jq-el-check2" type="radio" name="requires_delivery" id="id_requires_delivery2" value="0">
+                      <div class="cfi-cus cc-rad">
+                        <svg class="chb-ic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 611.99 611.99" style="enable-background:new 0 0 611.99 611.99;" xml:space="preserve">
+                          <path d="M589.105,80.63c-30.513-31.125-79.965-31.125-110.478,0L202.422,362.344l-69.061-70.438 c-30.513-31.125-79.965-31.125-110.478,0c-30.513,31.125-30.513,81.572,0,112.678l124.29,126.776 c30.513,31.125,79.965,31.125,110.478,0l331.453-338.033C619.619,162.202,619.619,111.755,589.105,80.63z"/>
+                        </svg>
+                      </div>
+                      <p class="fcb f20 nom cmb-txt">Самовывоз</p>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-input mar-10-top jq-addr-vis">
+                  <label for="id_delivery_address" class="fcb l-title">Адрес доставки</label>
+                  <textarea name="delivery_address" id="id_delivery_address" class="sfi-inpc sfii-txt ta-spec" rows="2"></textarea>
+                  {% if form.delivery_address.errors %}
+                    <div class="alert-reg">
+                      <p class="reg-errs non-dec nom fcb f12">{{ form.delivery_address.errors.as_text }}</p>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="form-input mar-0 d-flex">
+                  <label for="payment" class="fcb l-title fln-class">Способ оплаты: </label>
+                  <div class="ord-btn-radio">
+                    <label class="cmb-form-l rig-mar-1" for="id_payment_on_get1">
+                      <input class="cmb-form-inp" type="radio" name="payment_on_get" id="id_payment_on_get1" value="0" checked>
+                      <div class="cfi-cus cc-rad">
+                        <svg class="chb-ic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 611.99 611.99" style="enable-background:new 0 0 611.99 611.99;" xml:space="preserve">
+                          <path d="M589.105,80.63c-30.513-31.125-79.965-31.125-110.478,0L202.422,362.344l-69.061-70.438 c-30.513-31.125-79.965-31.125-110.478,0c-30.513,31.125-30.513,81.572,0,112.678l124.29,126.776 c30.513,31.125,79.965,31.125,110.478,0l331.453-338.033C619.619,162.202,619.619,111.755,589.105,80.63z"/>
+                        </svg>
+                      </div>
+                      <p class="fcb f20 nom cmb-txt">Оплата картой</p>
+                    </label>
+                    <label class="cmb-form-l" for="id_payment_on_get2">
+                      <input class="cmb-form-inp" type="radio" name="payment_on_get" id="id_payment_on_get2" value="1">
+                      <div class="cfi-cus cc-rad">
+                        <svg class="chb-ic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 611.99 611.99" style="enable-background:new 0 0 611.99 611.99;" xml:space="preserve">
+                          <path d="M589.105,80.63c-30.513-31.125-79.965-31.125-110.478,0L202.422,362.344l-69.061-70.438 c-30.513-31.125-79.965-31.125-110.478,0c-30.513,31.125-30.513,81.572,0,112.678l124.29,126.776 c30.513,31.125,79.965,31.125,110.478,0l331.453-338.033C619.619,162.202,619.619,111.755,589.105,80.63z"/>
+                        </svg>
+                      </div>
+                      <p class="fcb f20 nom cmb-txt">Наличными/картой при получении</p>
+                    </label>
+                  </div>
+                </div>
+                <button type="submit" class="cart-btn-arr daj-c non-dec spec-btn-odb">
+                  <p class="font-color-all-white nom f20 fw600">Оформить заказ</p>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock  %}

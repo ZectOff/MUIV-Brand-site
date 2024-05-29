@@ -16,14 +16,24 @@
         <div class="mcb-content">
             <div class="cart-container">
                 <div class="cart-label">
-                  <div class="ct-btn-close">
-                    <button class="cbc-btn" id="cbc-btn-id">
-                      <p class="fcb f26 fw600 nom txt-cbc">X</p>
-                    </button>
-                  </div>
+                    <div class="ct-btn-close">
+                        <button class="cbc-btn" id="cbc-btn-id">
+                            <p class="fcb f26 fw600 nom txt-cbc">X</p>
+                        </button>
+                    </div>
                 </div>
                 <div class="cart-content" id="jq-cart-items-container">
-                    {% include 'carts/includes/included_cart.html' %}
+                    <div class="cil-and-n">
+                        <div class="ct-name">
+                            <p class="fcb f26 fw600 nom">Корзина</p>
+                        </div>
+                        {% include 'carts/includes/included_cart.html' %}
+                        {% if carts %}
+                            <a href="{% url 'orders:create_order' %}" class="cart-btn-arr daj-c non-dec">
+                                <p class="font-color-all-white nom f20 fw600">Оформить заказ</p>
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

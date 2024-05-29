@@ -1,6 +1,10 @@
 {% extends 'main/index.html' %}
 {% load static %}
 
+{% block modal_win_cart %}
+{% include "carts/includes/included_cart.html" %}
+{% endblock %}
+
 {% block title%}MUIVBrand - Контакты{% endblock%}
 
 {% block content %}

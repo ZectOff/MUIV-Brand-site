@@ -40,6 +40,10 @@ li {
     margin: 0;
 }
 
+.w-100{
+    width: 100%;
+}
+
 .nop {
     padding: 0;
 }
@@ -583,6 +587,7 @@ footer h1 {
 .section-showcase {
     width: 100vw;
     padding-top: 20px;
+    height: auto;
 }
 
 #ss-spec {
@@ -2988,16 +2993,24 @@ footer h1 {
     border-radius: 0.5rem;
 }
 
+.us-ico-load{
+    width: 60px;
+    height: auto;
+    fill: #132041;
+}
+
 .uil-lab{
     position: absolute;
     z-index: 2;
     background-color: #DB5472;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100px;
     height: 100px;
     cursor: pointer;
     visibility: hidden;
-    opacity: .2;
+    opacity: .45;
 }
 
 .ui-m:hover~.uil-lab{
@@ -3388,6 +3401,8 @@ footer h1 {
     color: #ffffff;
     padding: 8px 0px;
     border-radius: 0.375rem;
+    outline: none;
+    border: none;
 }
 
 #blue-sect{
@@ -3403,7 +3418,7 @@ footer h1 {
     background-color: #ffffff;
     width: 100%;
     min-height: 600px;
-    max-height: 860px;
+    max-height: 2000px;
     height: auto;
     padding: 12px 16px;
     display: flex;
@@ -3433,7 +3448,7 @@ footer h1 {
 .cuc-left-box{
     width: 100%;
     min-height: 100%;
-    max-height: 800px;
+    max-height: 2000px;
     height: auto;
     box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
     border-radius: 0.375rem;
@@ -3495,6 +3510,68 @@ footer h1 {
 
 .c-r-title, .crt-res, .cil-name{
     text-wrap: nowrap;
+}
+
+.ord-details-box{
+    padding: 0px 16px;
+    margin-bottom: 20px;
+}
+
+.odb-content{
+    width: 100%;
+}
+
+.odb-form{
+    width: 100%;
+    height: auto;
+    padding: 10px 50px;
+    border: 1px solid #E0E0E0;
+    border-radius: 0.375rem;
+}
+
+.ord-btn-radio{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.mar-0{
+    margin: 0;
+}
+
+.spec-pad{
+    padding: 0px 50px;
+}
+
+.fln-class{
+    width: auto;
+    margin-right: 15px;
+}
+
+.d-flex{
+    display: flex;
+    flex-direction: row;
+}
+
+.rig-mar-1{
+    margin-right: 20px;
+}
+
+.clb-spec{
+    height: auto;
+    min-height: auto;
+    max-height: auto;
+}
+
+.spec-btn-odb{
+    margin: 10px 0px;
+}
+
+/* .jq-addr-vis{
+    display: none;
+} */
+
+.ta-spec{
+    height: auto;
 }
 
 /* Выделение */

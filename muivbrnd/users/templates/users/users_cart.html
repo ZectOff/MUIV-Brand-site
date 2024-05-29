@@ -29,7 +29,12 @@
       <div class="cart-us-content">
         <div class="cuc-left-box">
           <div class="cart-content" id="jq-cart-items-container">
-            {% include 'carts/includes/included_cart.html' %}
+            <div class="cil-and-n">
+              <div class="ct-name">
+                <p class="fcb f26 fw600 nom">Корзина</p>
+              </div>
+              {% include 'carts/includes/included_cart.html' %}
+            </div>
           </div>
         </div>
         {% if carts %}

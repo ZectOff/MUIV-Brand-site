@@ -209,4 +209,13 @@ $(document).ready(function () {
         }, 4500);
         clearTimeout();
     }
+
+    $("input[name='requires_delivery']").change(function () {
+        var selectedValue = $(this).val();
+        if (selectedValue === "1") {
+            $(".jq-addr-vis").show();
+        } else {
+            $(".jq-addr-vis").hide();
+        }
+    });
 });
