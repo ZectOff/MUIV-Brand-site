@@ -74,12 +74,19 @@
         <div class="upi-content">
             <div class="cart-content" id="jq-cart-items-container">
                 <div class="cc-space">
-                    <div class="cil-and-n">
+                    {% if carts %}
                         <div class="ct-name">
-                          <p class="fcb f26 fw600 nom">Корзина</p>
+                            <p class="fcb f26 fw600 nom">Корзина</p>
                         </div>
-                        {% include 'carts/includes/included_cart.html' %}
-                    </div>
+                    {% endif %}
+                    {% include 'carts/includes/included_cart.html' %}
+                    {% if carts %}
+                        <div class="custom-2">
+                            <a href="{% url 'orders:create_order' %}" class="cart-btn-arr daj-c non-dec">
+                                <p class="font-color-all-white nom f20 fw600">Оформить заказ</p>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -88,7 +95,51 @@
             <p class="user-nick fcb fw600 nom daj-c">История заказов</p>
         </div>
         <div class="upi-content">
-            <p class="upi-text fcb fw600 f26 nom">Вы ничего не заказывали</p>
+            <div class="orders-hist-box">
+                <div class="col-md-12">
+                    <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
+                        <h3 class="text-center mb-4 fcb">Мои заказы</h3>
+                        <!-- Разметка заказов -->
+                        <div class="container">
+                            <div class="accordion" id="accordionExample">
+                                {% for order in orders %}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{ order.id }}">
+                                            <button class="accordion-button fcb {% if order != orders.0 %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                                                <p class="fcb nom">Заказ № {{ order.id }} - {{ order.created_timestamp }} | Статус: <strong class="mx-2 fcb">{{ order.status }}</strong></p>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders.0 %}show{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <table class="table table-dark table-hover">
+                                                    <thead class="custom-3">
+                                                        <tr class="custom-3">
+                                                            <th>Товар</th>
+                                                            <th>Количество</th>
+                                                            <th>Цена</th>
+                                                            <th>Общая стоимость</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for item in order.orderitem_set.all %}
+                                                            <tr>
+                                                                <td><a class="text-white" href="{% url 'goods:product' item.product.slug %}">{{ item.product.name }}</a></td>
+                                                                <td>{{ item.quantity }}</td>
+                                                                <td>{{ item.price }}</td>
+                                                                <td>{{ item.products_price }}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endif %}
 {% endblock %}

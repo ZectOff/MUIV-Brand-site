@@ -6,6 +6,7 @@ from goods.models import Products
 
 products_list = Products.objects.all()
 prod_cloth = products_list.filter(category=2)
+prod_kanc = products_list.filter(category=4)
 
 pepe1 = products_list.filter(id=13)
 pepe2 = products_list.filter(id=34)
@@ -14,7 +15,7 @@ pepe4 = products_list.filter(id=14)
 
 # При восстановлении БД, данные переменные закоментить,
 # тк они пытаються отобрать элементы от бэйсменеджера,
-# но без миграций и даты они будут пустые и будут мешать.
+# но без миграций и дампа они будут пустые и будут мешать.
 sc_prd1 = pepe1[0]
 sc_prd2 = pepe2[0]
 sc_prd3 = pepe3[0]
@@ -26,6 +27,7 @@ def index(request):
 
     # prd_pop_canc = rnd.sample(list(p), 3)
     prd_pop_cloth = rnd.sample(list(prod_cloth), 4)
+    prd_pop_kanc = rnd.sample(list(prod_kanc), 4)
 
     scroll_prds = [sc_prd1, sc_prd2, sc_prd3, sc_prd4]
 
@@ -35,6 +37,7 @@ def index(request):
         "instruction": [1, 2, 3, 4],
         "products_r8": prd_random_8,
         "products_pop_cloth": prd_pop_cloth,
+        "products_pop_kanc": prd_pop_kanc,
         "scroll_prds": scroll_prds,
     }
     return render(request, "main/index.html", data)
@@ -89,10 +92,18 @@ def testing(request):
 
     prd_random_8 = rnd.sample(list(products_list), 8)
 
+    # prd_pop_canc = rnd.sample(list(p), 3)
+    prd_pop_cloth = rnd.sample(list(prod_cloth), 4)
+    prd_pop_kanc = rnd.sample(list(prod_kanc), 4)
+
+    scroll_prds = [sc_prd1, sc_prd2, sc_prd3, sc_prd4]
+
     testing_data = {
         "title": "MUIV Brand - Тестирование и отладка",
         "products": products_list,
         "products_r8": prd_random_8,
+        "products_pop_cloth": prd_pop_cloth,
+        "products_pop_kanc": prd_pop_kanc,
         "bclabel": ["Главная", "Тестирование приложения"],
     }
     return render(request, "main/testing.html", testing_data)

@@ -21,51 +21,6 @@
                     </p>
                 </div>
             </div>
-            <div class="scroller">
-                <div class="sc-item-list">
-                    <img src="#" alt="" class="sil-img">
-                    <img src="#" alt="" class="sil-img">
-                    <img src="#" alt="" class="sil-img">
-                    <img src="#" alt="" class="sil-img">
-                    <img src="#" alt="" class="sil-img">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section-showcase">
-        <div class="uniq-container">
-            <div class="title-showcase">
-                <h1 class="font-color-all-white uniq-title">Случайные товары</h1>
-            </div>
-            <div class="prd-list">
-                {% for prod in products %}
-                    <div class="prd-card-box">
-                        <div class="prd-img-box">
-                            {% if prod.image.url %}
-                                <img class="prd-img" src="{{ prod.image.url }}" alt="Product">
-                            {% else %}
-                                <img class="prd-img" src="{% static 'deps/img/PrdWOImg.svg' %}" alt="Product">
-                            {% endif %}
-                        </div>
-                        <div class="prd-desc">
-                            <p class="fcb"><b>{{ prod.name }}</b></p>
-                            <p class="fcb"><b class="prdd-price">{{ prod.price }} ₽</b></p>
-                        </div>
-                        <div class="prd-btn">
-                            <div class="btn-cart">
-                                <a href="#" class="btn-order">
-                                    <div class="btn-cart-text">
-                                        <b class="fcb">В корзину</b>
-                                    </div>
-                                    <div class="btn-cart-img">
-                                        <img src="{% static 'deps/img/icons/CartIcon.svg' %}" alt="Cart" class="cart-icon">
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
         </div>
     </section>
 {% endblock  %} 

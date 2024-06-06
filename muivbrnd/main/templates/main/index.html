@@ -129,85 +129,97 @@
             <div class="sampm" style="width: 100%; padding: 0px 18px;">
                 <div class="title-popular ts-fb">
                     <div class="tp-text">
-                        <h1 class="fcb uniq-title nf fw600" id="spec-tp">Самые популярные</h1>
-                    </div>
-                    <div class="tp-btn">
-                        <div class="da">
-                            <a href="#" class="font-color-all-white btn-local fw600 nf daj-c">Смотреть все</a>
-                        </div>
+                        <h1 class="fcb uniq-title nf fw600" id="spec-tp">Вам может понравиться</h1>
                     </div>
                 </div>
             </div>
-            <div class="pop-list">
-                <div class="pop-card-box">
-                    <div class="pop-imgs">
-                        <div class="pi-left">
-                            <a href="#" class="pop-img-left">
-                                <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pop-img-left">
-                            </a>
+            <div class="rec-list-box">
+                <div class="rlb-left">
+                    <div class="rlb-left-shadow">
+                        <div class="rlb-title">
+                            <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">Одежда</p>
                         </div>
-                        <div class="pi-right">
-                            <a href="#" class="pop-img-right-1">
-                                <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pir-1">
-                            </a>
-                            <a href="#" class="pop-img-right-2">
-                                <img src="{% static 'deps/img/ProductTemplate.png' %}" alt="" class="pir-2">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="pop-tit-fav">
-                        <div class="ptf-txt">
-                            <p class="font-color-all-white nom font-weight ptf-p">Канцелярия</p>
-                            <div class="ptf-likes">
-                                <img src="{% static 'deps/img/icons/HeartIcon.svg' %}" alt="" class="ptf-heart">
-                                <p class="ptf-num nom">1,2K</p>
+                        <div class="rlb-imgs-box">
+                            <div class="rib-items">
+                                <div class="rib-item-1">
+                                    <div class="ribi-img ri-color-1">
+                                        <a href="{% url 'catalog:product' products_pop_cloth.0.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_cloth.0.image.url }}" alt="" class="ribi-img-self">
+                                        </a>
+                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                </div>
+                                <div class="rib-item-2">
+                                    <div class="ribi-img ri-color-2">
+                                        <a href="{% url 'catalog:product' products_pop_cloth.1.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_cloth.1.image.url }}" alt="" class="ribi-img-self">
+                                        </a>
+                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                </div>
+                                <div class="rib-item-3">
+                                    <div class="ribi-img ri-color-3">
+                                        <a href="{% url 'catalog:product' products_pop_cloth.2.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_cloth.2.image.url }}" alt="" class="ribi-img-self">
+                                        </a>
+                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                </div>
+                                <div class="rib-item-4">
+                                    <div class="ribi-img ri-color-4">
+                                        <a href="{% url 'catalog:product' products_pop_cloth.3.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_cloth.3.image.url }}" alt="" class="ribi-img-self">
+                                        </a>
+                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="pcb-mon">
-                            <p class="font-color-all-white nom font-weight ppm">Популярные товары в марте</p>
-                        </div>
+                        <a href="#" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
                     </div>
                 </div>
-                <div class="pop-card-box">
-                    <div class="pcb-inb">
-                        <div class="pop-imgs">
-                            <div class="pi-left-an">
-                                <img src="{{ products_pop_cloth.0.image.url }}" alt="" class="pil-an">
-                            </div>
-                            <div class="pop-imgs-trio">
-                                <div class="pit-cont-row">
-                                    <div class="pci-1">
-                                        <a href="{% url 'catalog:product' products_pop_cloth.1.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_cloth.1.image.url }}" alt="" class="pc-img-1">
+                <div class="rlb-left">
+                    <div class="rlb-left-shadow">
+                        <div class="rlb-title">
+                            <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">Канцелярия</p>
+                        </div>
+                        <div class="rlb-imgs-box">
+                            <div class="rib-items">
+                                <div class="rib-item-2">
+                                    <div class="ribi-img ri-color-5">
+                                        <a href="{% url 'catalog:product' products_pop_kanc.0.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_kanc.0.image.url }}" alt="" class="ribi-img-self">
                                         </a>
                                     </div>
-                                    <div class="pci-2">
-                                        <a href="{% url 'catalog:product' products_pop_cloth.2.slug %}" class="src-prod">
-                                            <img src="{{ products_pop_cloth.2.image.url }}" alt="" class="pc-img-2">
-                                        </a>
-                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                 </div>
-                                <div class="pit-cont">
-                                    <a href="{% url 'catalog:product' products_pop_cloth.3.slug %}" class="src-prod">
-                                        <img src="{{ products_pop_cloth.3.image.url }}" alt="" class="pc-img-3">
-                                    </a>
+                                <div class="rib-item-1">
+                                    <div class="ribi-img ri-color-6">
+                                        <a href="{% url 'catalog:product' products_pop_kanc.1.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_kanc.1.image.url }}" alt="" class="ribi-img-self">
+                                        </a>
+                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                </div>
+                                <div class="rib-item-4">
+                                    <div class="ribi-img ri-color-7">
+                                        <a href="{% url 'catalog:product' products_pop_kanc.2.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_kanc.2.image.url }}" alt="" class="ribi-img-self">
+                                        </a>
+                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                </div>
+                                <div class="rib-item-3">
+                                    <div class="ribi-img ri-color-8">
+                                        <a href="{% url 'catalog:product' products_pop_kanc.3.slug%}" class="src-prod">
+                                            <img src="{{ products_pop_kanc.3.image.url }}" alt="" class="ribi-img-self">
+                                        </a>
+                                    </div>
+                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="pop-tit-fav">
-                            <div class="ptf-txt">
-                                <p class="font-color-all-white nom font-weight ptf-p">Одежда</p>
-                                <div class="ptf-likes">
-                                    <a href="#" class="src-prod">
-                                        <img src="{% static 'deps/img/icons/HeartIcon.svg' %}" alt="" class="ptf-heart">
-                                    </a>
-                                    <p class="ptf-num nom">3,7K</p>
-                                </div>
-                            </div>
-                            <div class="pcb-mon">
-                                <p class="font-color-all-white nom font-weight ppm">Популярные товары в марте</p>
-                            </div>
-                        </div>
+                        <a href="#" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
                     </div>
                 </div>
             </div>

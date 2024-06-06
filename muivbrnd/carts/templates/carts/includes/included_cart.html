@@ -2,6 +2,11 @@
 
 
 {% if carts %}
+  {% if not orders %}
+    <div class="ct-name">
+      <p class="fcb f26 fw600 nom">Корзина</p>
+    </div>
+  {% endif %}
   <div class="cil-scroll-box"> {% comment %} Scroll {% endcomment %}
     {% for cart in carts %}
       <div class="cart-items-list">
@@ -51,6 +56,13 @@
       </div> 
     </div>
   </div>
+  {% if carts and not orders %}
+    <div class="custom-2">
+      <a href="{% url 'orders:create_order' %}" class="cart-btn-arr daj-c non-dec">
+        <p class="font-color-all-white nom f20 fw600">Оформить заказ</p>
+      </a>
+    </div>
+  {% endif %}
 {% else %}
   <div class="no-carts-box">
     <div class="ncb-content">
