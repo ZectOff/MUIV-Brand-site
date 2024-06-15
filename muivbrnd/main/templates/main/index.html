@@ -133,96 +133,189 @@
                     </div>
                 </div>
             </div>
-            <div class="rec-list-box">
-                <div class="rlb-left">
-                    <div class="rlb-left-shadow">
-                        <div class="rlb-title">
-                            <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">Одежда</p>
-                        </div>
-                        <div class="rlb-imgs-box">
-                            <div class="rib-items">
-                                <div class="rib-item-1">
-                                    <div class="ribi-img ri-color-1">
-                                        <a href="{% url 'catalog:product' products_pop_cloth.0.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_cloth.0.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+            {% if user.is_authenticated and is_orders %}
+                <div class="rec-list-box">
+                    <div class="rlb-left">
+                        <div class="rlb-left-shadow">
+                            <div class="rlb-title">
+                                <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">{{ topcat_name_1 }}</p>
+                            </div>
+                            <div class="rlb-imgs-box">
+                                <div class="rib-items">
+                                    <div class="rib-item-1">
+                                        <div class="ribi-img ri-color-1">
+                                            <a href="{% url 'catalog:product' rec_list_1.0.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_1.0.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
-                                </div>
-                                <div class="rib-item-2">
-                                    <div class="ribi-img ri-color-2">
-                                        <a href="{% url 'catalog:product' products_pop_cloth.1.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_cloth.1.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+                                    <div class="rib-item-2">
+                                        <div class="ribi-img ri-color-2">
+                                            <a href="{% url 'catalog:product' rec_list_1.1.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_1.1.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
-                                </div>
-                                <div class="rib-item-3">
-                                    <div class="ribi-img ri-color-3">
-                                        <a href="{% url 'catalog:product' products_pop_cloth.2.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_cloth.2.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+                                    <div class="rib-item-3">
+                                        <div class="ribi-img ri-color-3">
+                                            <a href="{% url 'catalog:product' rec_list_1.2.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_1.2.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
-                                </div>
-                                <div class="rib-item-4">
-                                    <div class="ribi-img ri-color-4">
-                                        <a href="{% url 'catalog:product' products_pop_cloth.3.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_cloth.3.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+                                    <div class="rib-item-4">
+                                        <div class="ribi-img ri-color-4">
+                                            <a href="{% url 'catalog:product' rec_list_1.3.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_1.3.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                 </div>
                             </div>
+                            <a href="{% url 'catalog:index' topcat_slug_1 %}" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
                         </div>
-                        <a href="#" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
                     </div>
-                </div>
-                <div class="rlb-left">
-                    <div class="rlb-left-shadow">
-                        <div class="rlb-title">
-                            <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">Канцелярия</p>
-                        </div>
-                        <div class="rlb-imgs-box">
-                            <div class="rib-items">
-                                <div class="rib-item-2">
-                                    <div class="ribi-img ri-color-5">
-                                        <a href="{% url 'catalog:product' products_pop_kanc.0.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_kanc.0.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+                    <div class="rlb-left">
+                        <div class="rlb-left-shadow">
+                            <div class="rlb-title">
+                                <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">{{ topcat_name_2 }}</p>
+                            </div>
+                            <div class="rlb-imgs-box">
+                                <div class="rib-items">
+                                    <div class="rib-item-2">
+                                        <div class="ribi-img ri-color-5">
+                                            <a href="{% url 'catalog:product' rec_list_2.0.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_2.0.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
-                                </div>
-                                <div class="rib-item-1">
-                                    <div class="ribi-img ri-color-6">
-                                        <a href="{% url 'catalog:product' products_pop_kanc.1.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_kanc.1.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+                                    <div class="rib-item-1">
+                                        <div class="ribi-img ri-color-6">
+                                            <a href="{% url 'catalog:product' rec_list_2.1.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_2.1.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
-                                </div>
-                                <div class="rib-item-4">
-                                    <div class="ribi-img ri-color-7">
-                                        <a href="{% url 'catalog:product' products_pop_kanc.2.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_kanc.2.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+                                    <div class="rib-item-4">
+                                        <div class="ribi-img ri-color-7">
+                                            <a href="{% url 'catalog:product' rec_list_2.2.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_2.2.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
-                                </div>
-                                <div class="rib-item-3">
-                                    <div class="ribi-img ri-color-8">
-                                        <a href="{% url 'catalog:product' products_pop_kanc.3.slug%}" class="src-prod">
-                                            <img src="{{ products_pop_kanc.3.image.url }}" alt="" class="ribi-img-self">
-                                        </a>
+                                    <div class="rib-item-3">
+                                        <div class="ribi-img ri-color-8">
+                                            <a href="{% url 'catalog:product' rec_list_2.3.slug%}" class="src-prod">
+                                                <img src="{{ rec_list_2.3.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                     </div>
-                                    <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
                                 </div>
                             </div>
+                            <a href="{% url 'catalog:index' topcat_slug_2 %}" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
                         </div>
-                        <a href="#" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
                     </div>
                 </div>
-            </div>
+            {% else %}
+                <div class="rec-list-box">
+                    <div class="rlb-left">
+                        <div class="rlb-left-shadow">
+                            <div class="rlb-title">
+                                <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">Одежда</p>
+                            </div>
+                            <div class="rlb-imgs-box">
+                                <div class="rib-items">
+                                    <div class="rib-item-1">
+                                        <div class="ribi-img ri-color-1">
+                                            <a href="{% url 'catalog:product' products_pop_cloth.0.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_cloth.0.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                    <div class="rib-item-2">
+                                        <div class="ribi-img ri-color-2">
+                                            <a href="{% url 'catalog:product' products_pop_cloth.1.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_cloth.1.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                    <div class="rib-item-3">
+                                        <div class="ribi-img ri-color-3">
+                                            <a href="{% url 'catalog:product' products_pop_cloth.2.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_cloth.2.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                    <div class="rib-item-4">
+                                        <div class="ribi-img ri-color-4">
+                                            <a href="{% url 'catalog:product' products_pop_cloth.3.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_cloth.3.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'catalog:index' 'odezhda' %}" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
+                        </div>
+                    </div>
+                    <div class="rlb-left">
+                        <div class="rlb-left-shadow">
+                            <div class="rlb-title">
+                                <p class="font-color-all-white nom fw600 f26 rlb-tit-txt">Канцелярия</p>
+                            </div>
+                            <div class="rlb-imgs-box">
+                                <div class="rib-items">
+                                    <div class="rib-item-2">
+                                        <div class="ribi-img ri-color-5">
+                                            <a href="{% url 'catalog:product' products_pop_kanc.0.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_kanc.0.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                    <div class="rib-item-1">
+                                        <div class="ribi-img ri-color-6">
+                                            <a href="{% url 'catalog:product' products_pop_kanc.1.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_kanc.1.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                    <div class="rib-item-4">
+                                        <div class="ribi-img ri-color-7">
+                                            <a href="{% url 'catalog:product' products_pop_kanc.2.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_kanc.2.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                    <div class="rib-item-3">
+                                        <div class="ribi-img ri-color-8">
+                                            <a href="{% url 'catalog:product' products_pop_kanc.3.slug%}" class="src-prod">
+                                                <img src="{{ products_pop_kanc.3.image.url }}" alt="" class="ribi-img-self">
+                                            </a>
+                                        </div>
+                                        <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec">В корзину</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'catalog:index' 'kancelyariya' %}" class="rlb-btn fw600 f26 nom non-dec">Смотреть все</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
     <section class="section-showcase hto-section">

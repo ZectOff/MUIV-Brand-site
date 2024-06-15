@@ -13,7 +13,7 @@
             <div class="bread-crumbs">
                 <div class="bc-text">
                     <p class="font-color-all-white nom">
-                        <b><a href="{% url 'main:home' %}" class="non-dec">Главная</a></b>
+                        <b><a href="{% url 'main:home' %}" class="non-dec font-color-all-white">Главная</a></b>
                     </p>
                     <span class="font-color-all-white bc-slash"> / </span>
                 </div>
@@ -27,15 +27,40 @@
     </section>
     <section class="section-showcase post-cont">
         <div class="uniq-container un-post">
-            {% for post in posts %}
-                <div class="post-box">
-                    <div class="post-title">
-                        <h1 class="font-color-all-white">{{ post }}</h1>
+            <div class="post-box-temp">
+                <div class="pbt-img-box">
+                    <img  class="pbt-img" src="{% static 'deps/img/MuivNewsAccess.png' %}" alt="Новость15062024">
+                </div>
+                <div class="pbt-content">
+                    <div class="pbt-title">
+                        <div class="pbt-title-txt">
+                            <h1 class="fcb nom fw600 f32">Новые аксессуары уже в продаже!</h1>
+                        </div>
+                        <div class="pbt-title-date">
+                            <p class="nom fcb f16 fw600">15.06.2024</p>
+                        </div>
                     </div>
-                    <div class="post-content">
-                        <div class="post-img"><p class="font-color-all-white nom font-weight">Image</p></div>
-                        <div class="post-text">
-                            <p class="font-color-all-white nom font-weight">В этот раз случилась {{ post }}</p>
+                    <div class="pbt-text">
+                        <p class="nom fcb-l f16">Дорогие клиенты нашего информационного портала, рады сообщить вам о поступлении в продажу новых товаров! Теперь на нашем сайте вы можете приобрести обложки для студенческого билета в трех расцветках - серой, красной и синей! Также добавились и новые кружки в белой красной и синей расцветке! Следите за нашими обновлениями и до встречи!</p>
+                    </div>
+                </div>
+            </div>
+            {% for post in posts %}
+                <div class="post-box-temp">
+                    <div class="pbt-img-box pib-custom">
+                        <img  class="pbt-img pi-custom" src="{% static 'deps/img/EmptyNews.png' %}" alt="Новость31052024">
+                    </div>
+                    <div class="pbt-content">
+                        <div class="pbt-title">
+                            <div class="pbt-title-txt">
+                                <h1 class="fcb nom fw600 f32">{{ post }}</h1>
+                            </div>
+                            <div class="pbt-title-date">
+                                <p class="nom fcb f16 fw600">31.05.2024</p>
+                            </div>
+                        </div>
+                        <div class="pbt-text">
+                            <p class="nom fcb-l f16">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
                     </div>
                 </div>

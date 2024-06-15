@@ -132,9 +132,9 @@
                 </div>
             </div>
             <div class="cat-right-cont">
-                <div class="cat-search-l">
+                {% comment %} <div class="cat-search-l">
                     <input class="csl-inp" type="text" id="searchInput" placeholder="Введите название или ID товара">
-                </div>
+                </div> {% endcomment %}
                 {% if request.GET.q %}
                     <div class="vis-filt">
                         <p class="vf font-color-all-white fw500">Поиск: {{ request.GET.q }}</p>

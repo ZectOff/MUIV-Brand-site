@@ -1148,7 +1148,6 @@ footer h1 {
 }
 
 .post-cont {
-    padding-top: 50px;
     margin-bottom: 60px;
 }
 
@@ -3757,6 +3756,66 @@ footer h1 {
     width: 100%;
     height: 2px;
     z-index: 1;
+}
+
+.post-box-temp{
+    position: relative;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 0.375rem;
+    border: 1px solid #A0B3C6;
+    margin-bottom: 25px;
+}
+
+.pbt-content{
+    width: 100%;
+    height: auto;
+    padding: 12px 18px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.pbt-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #A0B3C6;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+}
+
+.pbt-text{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pbt-img-box{
+    width: 250px;
+    height: 250px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.pbt-img{
+    width: 250px;
+    height: auto;
+}
+
+.pi-custom{
+    width: 180px;
+    height: auto;
+}
+
+.pib-custom{
+    width: 250px !important;
+    min-width: 250px !important;
+    height: 250px;
 }
 
 /* Выделение */
