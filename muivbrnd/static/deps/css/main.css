@@ -163,6 +163,10 @@ li {
     justify-content: start;
 }
 
+#bc-hrefs:hover{
+    color:red;
+}
+
 .fuli{
     width: 100%;
 }
@@ -659,10 +663,10 @@ footer h1 {
     cursor: pointer;
 }
 
-.prd-img:hover {
+/* .prd-img:hover {
     height: 190px;
     margin-bottom: 0;
-}
+} */
 
 .prd-desc {
     display: flex;

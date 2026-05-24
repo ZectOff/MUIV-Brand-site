@@ -14,7 +14,7 @@
             <div class="bread-crumbs">
                 <div class="bc-text">
                     <p class="font-color-all-white nom">
-                        <b><a href="{% url 'main:home' %}" class="non-dec font-color-all-white">Главная</a></b>
+                        <b><a href="{% url 'main:home' %}" class="non-dec font-color-all-white" id="bc-hrefs">Главная</a></b>
                     </p>
                     <span class="font-color-all-white bc-slash"> / </span>
                 </div>
@@ -47,6 +47,7 @@
                     </div>
                     <div class="cmb-list">
                         <div class="en-dash-0"></div>
+                        {% tag_categories as categories %}
                         {% for cat in categories %}
                             <div class="cm-btn">
                                 <a href="{% url 'catalog:index' cat.slug %}" class="cm-url fcb-ll nom font-weight">{{ cat.name }}</a>

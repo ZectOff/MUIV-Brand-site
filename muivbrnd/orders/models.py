@@ -5,10 +5,10 @@ from users.models import User
 
 
 class OrderitemQueryset(models.QuerySet):
-    
+  
     def total_price(self):
         return sum(cart.products_price() for cart in self)
-    
+ 
     def total_quantity(self):
         if self:
             return sum(cart.quantity for cart in self)
