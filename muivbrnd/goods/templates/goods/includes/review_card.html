@@ -1,0 +1,27 @@
+{% load goods_tags static %}
+<article class="product-review-card{% if user_review and review.id == user_review.id %} is-own{% endif %}">
+    <div class="product-review-card-head">
+        <div class="product-review-author-block">
+            <div class="product-review-avatar">
+                {% if review.user.image %}
+                    <img src="{{ review.user.image.url }}" alt="" class="product-review-avatar-img">
+                {% else %}
+                    <img src="{% static 'deps/img/icons/UserIcon.png' %}" alt="" class="product-review-avatar-img product-review-avatar-img--default">
+                {% endif %}
+            </div>
+            <div class="product-review-author-meta">
+                <p class="product-review-author nf fw600 fcb">
+                    {{ review.user.first_name|default:review.user.username }}
+                    {% if user_review and review.id == user_review.id %}
+                        <span class="product-review-own-badge">Ваш отзыв</span>
+                    {% endif %}
+                </p>
+                <p class="product-review-date nf f16">{{ review.created_at|date:"d.m.Y" }}</p>
+            </div>
+        </div>
+        <p class="product-review-card-rating adpr-txt fw600 nf fcb">
+            {% star_rating review.rating show_value=True %}
+        </p>
+    </div>
+    <p class="product-review-text nf f16 fcb">{{ review.text|linebreaksbr }}</p>
+</article>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static goods_tags %}
 
 {% block modal_win_cart %}
 {% include "includes/cart_button.html" %}
@@ -75,7 +75,14 @@
                             </p>
                         </div>
                         <div class="adp-rate">
-                            <p class="adpr-txt fw600 f26 nf fcb">5.0 <span class="benk">&#9733; &#9733; &#9733; &#9733; &#9733;</span></p>
+                            <p class="adpr-txt fw600 f26 nf fcb product-rating-summary">
+                                {% star_rating rating_stats.average show_value=True %}
+                                {% if rating_stats.count %}
+                                    <span class="product-rating-count nf f16 fw500">({{ rating_stats.count }} {% if rating_stats.count == 1 %}отзыв{% elif rating_stats.count < 5 %}отзыва{% else %}отзывов{% endif %})</span>
+                                {% else %}
+                                    <span class="product-rating-count nf f16 fw500">(пока нет отзывов)</span>
+                                {% endif %}
+                            </p>
                         </div>
                         <div class="adp-label">
                             <div class="adp-price-l">
@@ -137,12 +144,88 @@
         </div>
     </section>
     <section class="section-showcase prd-comms-sect">
-        <div class="uniq-container ts-fb">
+        <div class="uniq-container ts-fb product-reviews-wrap">
             <div class="title-showcase">
                 <div class="tp-text">
                     <h1 class="fcb nf uniq-title fw600" id="spec-tp">Отзывы о товаре</h1>
+                    {% if rating_stats.count %}
+                        <p class="product-reviews-summary nf f16 fcb">
+                            {% star_rating rating_stats.average show_value=True %}
+                            <span class="product-rating-count">({{ rating_stats.count }} {% if rating_stats.count == 1 %}отзыв{% elif rating_stats.count < 5 %}отзыва{% else %}отзывов{% endif %})</span>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
+
+            {% if messages %}
+                <ul class="product-review-messages">
+                    {% for message in messages %}
+                        <li class="product-review-message product-review-message-{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="product-reviews-top">
+                <div class="product-reviews-action">
+                    {% if user.is_authenticated %}
+                        {% if user_review %}
+                            <div class="product-review-notice product-review-notice-info">
+                                Вы уже оставили отзыв на этот товар.
+                            </div>
+                        {% elif can_review %}
+                            <div class="product-review-form-box">
+                                <h2 class="product-review-form-title nf fw600 fcb">Оставить отзыв</h2>
+                                {% include "goods/includes/review_form.html" with form=review_form %}
+                            </div>
+                        {% elif not has_purchased %}
+                            <div class="product-review-notice">
+                                Отзыв могут оставить только покупатели, которые заказали этот товар.
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="product-review-notice product-review-notice-login">
+                            <p class="product-review-notice-text nf f16 fcb nom">
+                                <a href="{% url 'user:login' %}?next={{ request.path }}" class="product-review-login-link">Войдите</a>,
+                                чтобы оставить отзыв после покупки товара.
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="product-reviews-list" data-reviews-total="{{ reviews|length }}">
+                {% for review in reviews|slice:":3" %}
+                    {% include "goods/includes/review_card.html" %}
+                {% empty %}
+                    <p class="product-reviews-empty nf f16 fcb">Отзывов пока нет. Будьте первым после покупки!</p>
+                {% endfor %}
+
+                {% if reviews|length > 3 %}
+                    <div class="product-reviews-more" hidden>
+                        {% for review in reviews|slice:"3:" %}
+                            {% include "goods/includes/review_card.html" %}
+                        {% endfor %}
+                    </div>
+                    <button type="button" class="product-reviews-show-all nf" aria-expanded="false">
+                        все отзывы
+                    </button>
+                {% endif %}
+            </div>
+            {% if reviews|length > 3 %}
+            <script>
+                (function () {
+                    var list = document.querySelector('.product-reviews-list[data-reviews-total]');
+                    if (!list) return;
+                    var btn = list.querySelector('.product-reviews-show-all');
+                    var more = list.querySelector('.product-reviews-more');
+                    if (!btn || !more) return;
+                    btn.addEventListener('click', function () {
+                        more.hidden = false;
+                        btn.hidden = true;
+                    });
+                })();
+            </script>
+            {% endif %}
         </div>
     </section>
 {% endblock  %}

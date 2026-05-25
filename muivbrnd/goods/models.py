@@ -1,4 +1,6 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.conf import settings
 
 import math
 import locale
@@ -56,3 +58,39 @@ class Products(models.Model):
     
     def self_discount_int(self):
         return int(self.discount)
+
+
+class ProductReview(models.Model):
+    product = models.ForeignKey(
+        to=Products,
+        on_delete=models.CASCADE,
+        related_name='reviews',
+        verbose_name='Товар',
+    )
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='product_reviews',
+        verbose_name='Пользователь',
+    )
+    rating = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        verbose_name='Оценка',
+    )
+    text = models.TextField(verbose_name='Текст отзыва')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+
+    class Meta:
+        db_table = 'product_review'
+        verbose_name = 'Отзыв о товаре'
+        verbose_name_plural = 'Отзывы о товарах'
+        ordering = ('-created_at',)
+        constraints = [
+            models.UniqueConstraint(
+                fields=('user', 'product'),
+                name='unique_user_product_review',
+            ),
+        ]
+
+    def __str__(self):
+        return f'{self.product.name} — {self.user} ({self.rating})'

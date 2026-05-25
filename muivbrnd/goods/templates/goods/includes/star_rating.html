@@ -1,0 +1,12 @@
+<span class="product-stars" aria-label="Оценка {% if has_rating %}{{ rating_value }}{% else %}нет{% endif %} из 5">
+    {% for i in "12345" %}
+        {% if forloop.counter <= full_stars %}
+            <span class="benk product-star-filled">&#9733;</span>
+        {% else %}
+            <span class="product-star-empty">&#9734;</span>
+        {% endif %}
+    {% endfor %}
+</span>
+{% if show_value and has_rating %}
+    <span class="product-rating-value">{{ rating_value|floatformat:1 }}</span>
+{% endif %}

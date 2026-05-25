@@ -37,6 +37,17 @@ def support(request):
     return render(request, "main/support.html", sup_data)
 
 
+def page_not_found(request, exception):
+    return render(
+        request,
+        '404.html',
+        {
+            'title': 'MUIV Brand - Страница не найдена',
+        },
+        status=404,
+    )
+
+
 def testing(request):
     from recommendations.services import (
         build_homepage_context,

@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db import transaction
 from django.forms import ValidationError
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from carts.models import Cart
 
@@ -52,7 +53,12 @@ def create_order(request):
                         cart_items.delete()
 
                         messages.success(request, 'Заказ оформлен!')
-                        return redirect('user:profile')
+                        return redirect(
+                            reverse(
+                                'user:profile_menu',
+                                kwargs={'profile_slug': 'istoriya-zakazov'},
+                            )
+                        )
             except ValidationError as e:
                 messages.success(request, str(e))
                 return redirect('cart:order')

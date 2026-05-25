@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block modal_win_cart %}
+{% include "includes/cart_button.html" %}
+{% endblock %}
+
+{% block content %}
+<section class="section-showcase page-404-sect">
+    <div class="uniq-container page-404-cont">
+        <div class="page-404-message">
+            <p class="page-404-lead nf fw600 fcb">Упс..</p>
+            <p class="page-404-text nf fcb">
+                Ошибка 404 — товар не найден (или категория не найдена / страница не существует)
+            </p>
+            <a href="{% url 'main:home' %}" class="page-404-link non-dec nf fw600">На главную</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

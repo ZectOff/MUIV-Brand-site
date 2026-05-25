@@ -1,0 +1,37 @@
+<form method="post" class="product-review-form" action="">
+    {% csrf_token %}
+    <input type="hidden" name="review_submit" value="1">
+
+    <div class="product-review-field product-review-field--rating">
+        <div class="product-review-rating-row">
+            <span class="product-review-label nf fw600 fcb" id="product-review-rating-label">Ваша оценка</span>
+            <div class="product-review-stars" role="radiogroup" aria-labelledby="product-review-rating-label">
+                {% for value in "54321"|make_list %}
+                    <input type="radio"
+                           name="rating"
+                           value="{{ value }}"
+                           id="review-rating-{{ value }}"
+                           class="product-review-star-input"
+                           required
+                           {% if form.rating.value|stringformat:"s" == value %}checked{% endif %}>
+                    <label for="review-rating-{{ value }}" class="product-review-star-label" title="{{ value }} из 5">
+                        <span aria-hidden="true">&#9733;</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        {% if form.rating.errors %}
+            <p class="product-review-error">{{ form.rating.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    <div class="product-review-field">
+        <label for="{{ form.text.id_for_label }}" class="product-review-label nf fw600 fcb">{{ form.text.label }}</label>
+        {{ form.text }}
+        {% if form.text.errors %}
+            <p class="product-review-error">{{ form.text.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="product-review-submit nf fw600">Отправить отзыв</button>
+</form>

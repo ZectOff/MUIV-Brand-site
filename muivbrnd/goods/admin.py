@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from goods.models import Categories, Products
+from goods.models import Categories, ProductReview, Products
 
 # admin.site.register(Categories)
 # admin.site.register(Products)
@@ -27,3 +27,12 @@ class ProductsAdmin(admin.ModelAdmin):
         ("price", "discount"),
         "quantity",
     ]
+
+
+@admin.register(ProductReview)
+class ProductReviewAdmin(admin.ModelAdmin):
+    list_display = ('product', 'user', 'rating', 'created_at')
+    list_filter = ('rating', 'created_at', 'product__category')
+    search_fields = ('product__name', 'user__username', 'text')
+    readonly_fields = ('created_at',)
+    raw_id_fields = ('product', 'user')

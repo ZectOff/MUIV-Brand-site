@@ -1,16 +1,22 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
-from goods.models import Products
+from goods.forms import ProductReviewForm
+from goods.models import ProductReview, Products
+from goods.services import (
+    get_product_rating_stats,
+    get_product_reviews,
+    user_can_add_review,
+    user_has_purchased_product,
+)
 from goods.utils import q_search
-# import random as rnd
 
 
 def catalog(request, category_slug=None):
-
-    # prd_list = Products.objects.all()
-    # length_ofp = len(prd_list)
 
     page = request.GET.get('page', 1)
     on_sale = request.GET.get('on_sale', None)
@@ -20,7 +26,6 @@ def catalog(request, category_slug=None):
     if query:
         goods = q_search(query)
     elif category_slug == "vse-tovary":
-        # goods = rnd.sample(list(prd_list), length_ofp)
         goods = Products.objects.all()
     else:
         goods = Products.objects.filter(category__slug=category_slug)
@@ -43,13 +48,64 @@ def catalog(request, category_slug=None):
     }
     return render(request, 'goods/catalog.html', context)
 
-def product(request, product_slug):
 
-    get_prd = Products.objects.get(slug=product_slug)
+def _handle_review_post(request, product):
+    if not request.user.is_authenticated:
+        login_url = reverse('user:login')
+        return redirect(f'{login_url}?next={request.path}')
+
+    if not user_has_purchased_product(request.user, product):
+        messages.error(
+            request,
+            'Отзыв могут оставить только те, кто уже заказал этот товар.',
+        )
+        return redirect(request.path)
+
+    if ProductReview.objects.filter(user=request.user, product=product).exists():
+        messages.warning(request, 'Вы уже оставили отзыв на этот товар.')
+        return redirect(request.path)
+
+    form = ProductReviewForm(request.POST)
+    if form.is_valid():
+        review = form.save(commit=False)
+        review.user = request.user
+        review.product = product
+        review.save()
+        messages.success(request, 'Спасибо! Ваш отзыв опубликован.')
+        return redirect(request.path)
+
+    return form
+
+
+def product(request, product_slug):
+    product_obj = get_object_or_404(Products, slug=product_slug)
+    review_form = ProductReviewForm()
+
+    if request.method == 'POST' and request.POST.get('review_submit'):
+        result = _handle_review_post(request, product_obj)
+        if isinstance(result, ProductReviewForm):
+            review_form = result
+        elif result is not None:
+            return result
+
+    user_review = None
+    can_review = False
+    if request.user.is_authenticated:
+        user_review = ProductReview.objects.filter(
+            user=request.user,
+            product=product_obj,
+        ).first()
+        can_review = user_can_add_review(request.user, product_obj)
 
     prd_data = {
         'title': 'MUIV Brand - Карта товара ',
         'catgoods': ['Img-1', 'Img-2', 'Img-3',],
-        'product': get_prd
+        'product': product_obj,
+        'reviews': get_product_reviews(product_obj),
+        'rating_stats': get_product_rating_stats(product_obj),
+        'review_form': review_form,
+        'user_review': user_review,
+        'can_review': can_review,
+        'has_purchased': user_has_purchased_product(request.user, product_obj),
     }
     return render(request, 'goods/product.html', context=prd_data)
