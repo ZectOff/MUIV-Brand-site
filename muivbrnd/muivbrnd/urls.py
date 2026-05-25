@@ -19,12 +19,14 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 from muivbrnd import settings
+from analytics import views
 
 admin.site.site_header = 'MUIV Brand — панель управления'
 admin.site.site_title = 'MUIV Brand'
 admin.site.index_title = 'Управление магазином'
 
 urlpatterns = [
+    path('admin/analytics/', admin.site.admin_view(views.dashboard), name='analytics_dashboard'),
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
     path('catalog/', include('goods.urls', namespace='catalog')),

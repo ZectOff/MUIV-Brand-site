@@ -13,6 +13,8 @@
 </div>
 {% endblock %}
 
+{% block content_title %}{% endblock %}
+
 {% block content %}
 <div class="analytics-dashboard">
     <div class="analytics-header">
@@ -61,8 +63,18 @@
     </div>
 
     <section class="analytics-panel analytics-panel-full">
-        <h2>Динамика заказов</h2>
-        <p class="analytics-panel-desc">Последние 30 дней</p>
+        <div class="analytics-panel-head">
+            <div>
+                <h2>Динамика заказов</h2>
+                <p class="analytics-panel-desc">{{ timeline_period_label }}</p>
+            </div>
+            <div class="analytics-period-filter">
+                <a href="?period=day" class="analytics-period-btn{% if timeline_period == 'day' %} is-active{% endif %}">День</a>
+                <a href="?period=week" class="analytics-period-btn{% if timeline_period == 'week' %} is-active{% endif %}">Неделя</a>
+                <a href="?period=month" class="analytics-period-btn{% if timeline_period == 'month' %} is-active{% endif %}">Месяц</a>
+                <a href="?period=year" class="analytics-period-btn{% if timeline_period == 'year' %} is-active{% endif %}">Год</a>
+            </div>
+        </div>
         <div class="analytics-chart-wrap analytics-chart-line">
             <canvas id="timelineChart"></canvas>
         </div>
@@ -83,7 +95,13 @@
                 <tbody>
                     {% for item in top_products %}
                     <tr>
-                        <td>{{ item.name }}</td>
+                        <td>
+                            {% if item.slug %}
+                                <a href="{% url 'catalog:product' item.slug %}" class="analytics-product-link">{{ item.name }}</a>
+                            {% else %}
+                                {{ item.name }}
+                            {% endif %}
+                        </td>
                         <td>{{ item.category }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.revenue|floatformat:0 }} ₽</td>

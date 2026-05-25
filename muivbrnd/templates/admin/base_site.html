@@ -3,6 +3,11 @@
 
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
+{% block extrahead %}
+{{ block.super }}
+<link rel="icon" href="{% static 'deps/img/icons/MainLogoWT.ico' %}" sizes="236x249">
+{% endblock %}
+
 {% block extrastyle %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'admin/css/muivbrnd-admin.css' %}">

@@ -2,12 +2,22 @@
 {% load i18n %}
 
 {% block content %}
-<div class="muiv-admin-welcome">
-    <h2>Добро пожаловать в MUIV Brand</h2>
-    <p>
-        Здесь можно управлять товарами, заказами, корзинами и пользователями.
-        <a href="{% url 'main:home' %}">Перейти на сайт →</a>
-    </p>
+<div class="muiv-admin-home-hero">
+    <section class="muiv-admin-analytics-card">
+        <div class="muiv-admin-card-body">
+            <span class="muiv-admin-card-badge">Аналитика</span>
+            <h2>Аналитика продаж</h2>
+            <p>Графики популярных товаров, категорий и динамики заказов</p>
+        </div>
+        <a href="{% url 'analytics_dashboard' %}" class="muiv-admin-analytics-btn">Открыть дашборд →</a>
+    </section>
+    <section class="muiv-admin-welcome">
+        <h2>Добро пожаловать в MUIV Brand</h2>
+        <p>
+            Здесь можно управлять товарами, заказами, корзинами и пользователями.
+            <a href="{% url 'main:home' %}">Перейти на сайт →</a>
+        </p>
+    </section>
 </div>
 {{ block.super }}
 {% endblock %}

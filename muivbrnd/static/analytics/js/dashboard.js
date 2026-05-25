@@ -103,6 +103,8 @@
         });
     }
 
+    let timelineChart = null;
+
     function initTimelineChart(timeline) {
         const canvas = document.getElementById('timelineChart');
         if (!canvas || typeof Chart === 'undefined') return;
@@ -111,7 +113,11 @@
         const orders = timeline.map((t) => t.orders);
         const revenue = timeline.map((t) => t.revenue);
 
-        new Chart(canvas, {
+        if (timelineChart) {
+            timelineChart.destroy();
+        }
+
+        timelineChart = new Chart(canvas, {
             type: 'line',
             data: {
                 labels: labels,
@@ -147,7 +153,13 @@
                 },
                 scales: {
                     x: {
-                        ticks: { color: '#4F6A84', font: chartFont },
+                        ticks: {
+                            color: '#4F6A84',
+                            font: chartFont,
+                            autoSkip: false,
+                            maxRotation: 45,
+                            minRotation: 0,
+                        },
                         grid: { color: '#EDF6FF' },
                     },
                     y: {

@@ -99,6 +99,33 @@ html[data-theme="dark"] {
 
 body {
     font-family: 'Proxima Nova', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+#content {
+    font-size: 1rem;
+}
+
+#content h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+div.breadcrumbs {
+    border-bottom: 1px solid var(--hairline-color);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    padding: 14px 24px;
+}
+
+#user-tools {
+    font-size: 0.9375rem;
+}
+
+#user-tools a {
+    font-size: 0.9375rem;
 }
 
 #header {
@@ -135,7 +162,7 @@ body {
 
 .muiv-admin-site-link {
     color: #A0B3C6;
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     text-decoration: none;
     padding: 4px 12px;
@@ -150,36 +177,140 @@ body {
     background-color: rgba(194, 22, 49, 0.15);
 }
 
-div.breadcrumbs {
-    border-bottom: 1px solid var(--hairline-color);
-    font-weight: 500;
-}
-
 .module h2,
 .module caption,
 .inline-group h2 {
     background: linear-gradient(90deg, #132041 0%, #4F6A84 100%);
     color: #ffffff;
     border-radius: 0.375rem 0.375rem 0 0;
+    font-size: 1rem;
+    padding: 14px 18px;
 }
 
 #content-main .module {
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     overflow: hidden;
     border: 1px solid var(--hairline-color);
-    box-shadow: 0 1px 4px rgba(19, 32, 65, 0.06);
+    box-shadow: 0 2px 8px rgba(19, 32, 65, 0.06);
+    margin-bottom: 1.5rem;
 }
 
-.dashboard #content-main .module table th {
-    width: auto;
+.module table th,
+.module table td {
+    font-size: 0.9375rem;
+    padding: 12px 16px;
+    line-height: 1.45;
+}
+
+.module table th {
+    font-weight: 600;
 }
 
 .dashboard #content {
-    max-width: 1200px;
+    max-width: 1280px;
+    padding: 24px 28px 32px;
+}
+
+/* Таблицы модулей на главной (Заказы, Корзины и т.д.) */
+.dashboard #content-main .module > table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.dashboard #content-main .module > table > caption {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 14px 18px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.dashboard #content-main .module > table > caption a.section {
+    display: block;
+    width: 100%;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.dashboard #content-main .module > table > tbody {
+    display: block;
+    width: 100%;
+}
+
+.dashboard #content-main .module > table > tbody > tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.dashboard #content-main .module table th[scope="row"] {
+    width: auto;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.dashboard #content-main .module table td {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.dashboard #content-main .module table td:nth-child(2),
+.dashboard #content-main .module table td:nth-child(3) {
+    width: 9.5rem;
+    text-align: center;
+}
+
+.dashboard #content-main .module table td:nth-child(2) a,
+.dashboard #content-main .module table td:nth-child(3) a {
+    display: inline-block;
+    min-width: 6.75rem;
+    text-align: left;
+    padding: 4px 8px 4px 22px;
+    box-sizing: border-box;
+}
+
+.dashboard #content-main .module table td a.addlink,
+.dashboard #content-main .module table td a.changelink,
+.dashboard #content-main .module table td a.viewlink {
+    font-weight: 600;
+    font-size: 0.9375rem;
 }
 
 .dashboard .module table td a {
     font-weight: 600;
+    font-size: 1rem;
+}
+
+#content-related .module h2,
+#content-related .module h3 {
+    font-size: 1rem;
+}
+
+#content-related .module p,
+#content-related .actionlist li {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+#content-related .actionlist li {
+    padding: 10px 0;
+}
+
+.muiv-admin-home-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 36px;
 }
 
 input[type="submit"],
@@ -259,13 +390,6 @@ fieldset.module.aligned {
     height: 48px;
 }
 
-.login .muiv-admin-login-subtitle {
-    color: #4F6A84;
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin: 0;
-}
-
 .login #container {
     border-radius: 0.75rem;
     border: 1px solid #D8E4F0;
@@ -273,20 +397,29 @@ fieldset.module.aligned {
     overflow: hidden;
 }
 
+.login .muiv-admin-login-subtitle {
+    color: #4F6A84;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
 .login #content-main {
-    padding: 8px 16px 16px;
+    padding: 12px 20px 20px;
 }
 
 .login .form-row label {
     color: #132041;
     font-weight: 600;
+    font-size: 1rem;
 }
 
 .login .form-row #id_username,
 .login .form-row #id_password {
     border: 1px solid #A0B3C6;
     border-radius: 0.375rem;
-    padding: 10px 12px;
+    padding: 12px 14px;
+    font-size: 1rem;
     font-family: 'Proxima Nova', Arial, sans-serif;
 }
 
@@ -298,7 +431,8 @@ fieldset.module.aligned {
 
 .login .submit-row input {
     width: 100%;
-    padding: 10px 16px;
+    padding: 12px 18px;
+    font-size: 1rem;
     background: #C21631;
     border: none;
 }
@@ -307,34 +441,135 @@ fieldset.module.aligned {
     background: #A01228;
 }
 
+/* ——— Главная админки: карточки ——— */
+
+.muiv-admin-analytics-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: #ffffff;
+    border: 1px solid #D8E4F0;
+    border-left: 4px solid #C21631;
+    border-radius: 0.75rem;
+    padding: 28px 32px;
+    box-shadow: 0 4px 20px rgba(19, 32, 65, 0.08);
+}
+
+.muiv-admin-card-body {
+    flex: 1;
+    min-width: 220px;
+}
+
+.muiv-admin-card-badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 12px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #C21631;
+    background: rgba(194, 22, 49, 0.1);
+    border-radius: 0.25rem;
+}
+
+.muiv-admin-analytics-card h2 {
+    margin: 0 0 10px;
+    color: #132041;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.muiv-admin-analytics-card p {
+    margin: 0;
+    color: #4F6A84;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    max-width: 36rem;
+}
+
+.muiv-admin-analytics-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #C21631;
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(194, 22, 49, 0.25);
+    transition: background-color 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+
+.muiv-admin-analytics-btn:hover {
+    background: #A01228;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(194, 22, 49, 0.35);
+}
+
 .muiv-admin-welcome {
     background: linear-gradient(135deg, #132041 0%, #4F6A84 100%);
     color: #ffffff;
     border-radius: 0.75rem;
-    padding: 24px 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 16px rgba(19, 32, 65, 0.15);
+    padding: 28px 32px;
+    box-shadow: 0 4px 20px rgba(19, 32, 65, 0.12);
 }
 
 .muiv-admin-welcome h2 {
-    margin: 0 0 8px;
-    font-size: 1.25rem;
+    margin: 0 0 12px;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #ffffff;
+    line-height: 1.3;
 }
 
 .muiv-admin-welcome p {
     margin: 0;
     color: #EDF6FF;
-    font-size: 0.9375rem;
-    line-height: 1.5;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    max-width: 40rem;
 }
 
 .muiv-admin-welcome a {
     color: #ffffff;
     font-weight: 600;
+    font-size: 1.0625rem;
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
+}
+
+.muiv-admin-welcome a:hover {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.analytics-admin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 12px;
+    color: #A0B3C6;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid rgba(160, 179, 198, 0.45);
+    border-radius: 0.375rem;
+    transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+}
+
+.analytics-admin-link:hover {
+    color: #ffffff;
+    border-color: #C21631;
+    background-color: rgba(194, 22, 49, 0.15);
 }
 
 @media (max-width: 767px) {
@@ -344,5 +579,24 @@ fieldset.module.aligned {
 
     #header {
         flex-wrap: wrap;
+    }
+
+    .muiv-admin-home-hero {
+        gap: 20px;
+        margin-bottom: 28px;
+    }
+
+    .muiv-admin-analytics-card,
+    .muiv-admin-welcome {
+        padding: 22px 20px;
+    }
+
+    .muiv-admin-analytics-card h2,
+    .muiv-admin-welcome h2 {
+        font-size: 1.25rem;
+    }
+
+    .muiv-admin-analytics-btn {
+        width: 100%;
     }
 }
