@@ -1,4 +1,4 @@
-{% load static %}
+{% load static goods_tags %}
 <div class="rec-list-box">
     {% for block in recommendation_blocks %}
         <div class="rlb-left">
@@ -12,11 +12,8 @@
                             <div class="rib-item-{{ forloop.counter }}">
                                 <div class="ribi-img ri-color-{% if forloop.parentloop.counter == 1 %}{{ forloop.counter }}{% else %}{{ forloop.counter|add:4 }}{% endif %}">
                                     <a href="{% url 'catalog:product' product.slug %}" class="src-prod">
-                                        {% if product.image %}
-                                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="ribi-img-self">
-                                        {% else %}
-                                            <img src="{% static 'deps/img/PrdWOImg.svg' %}" alt="{{ product.name }}" class="ribi-img-self">
-                                        {% endif %}
+                                        {% product_category_icon product as cat_icon %}
+                                        {% include "goods/includes/product_photo.html" with product=product icon_path=cat_icon img_class="ribi-img-self" variant="rec" only %}
                                     </a>
                                 </div>
                                 <a href="#" class="ribi-btn font-color-all-white f18 fw600 nom non-dec add-to-cart" data-product-id="{{ product.id }}">В корзину</a>

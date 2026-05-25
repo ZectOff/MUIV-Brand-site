@@ -1,0 +1,29 @@
+{% load static goods_tags %}
+{% if product|has_product_image %}
+    {% if link_url %}
+        <a href="{{ link_url }}" class="{{ link_class|default:'prd-img' }}">
+    {% endif %}
+    <img
+        class="{{ img_class }}"
+        src="{{ product.image.url }}"
+        alt="{{ product.name }}"
+    >
+    {% if link_url %}
+        </a>
+    {% endif %}
+{% else %}
+    <div class="product-no-photo product-no-photo--{{ variant|default:'card' }}">
+        {% if link_url %}
+            <a href="{{ link_url }}" class="product-no-photo__link {{ link_class|default:'' }}">
+        {% endif %}
+        <img
+            class="product-no-photo__icon"
+            src="{% static icon_path %}"
+            alt=""
+        >
+        <p class="product-no-photo__caption nf">У товара еще нет фото</p>
+        {% if link_url %}
+            </a>
+        {% endif %}
+    </div>
+{% endif %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static goods_tags %}
 
 {% block title %}{{ title }}{% endblock  %}
 
@@ -33,11 +33,8 @@
             <div class="scroller">
                 <div class="sc-inner">
                     {% for product in scroll_prds %}
-                        {% if product.image %}
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="sil-img">
-                        {% else %}
-                            <img src="{% static 'deps/img/Muiv-Notes.png' %}" alt="" class="sil-img">
-                        {% endif %}
+                        {% product_category_icon product as cat_icon %}
+                        {% include "goods/includes/product_photo.html" with product=product icon_path=cat_icon img_class="sil-img" variant="scroll" only %}
                     {% endfor %}
                 </div>
             </div>
@@ -63,14 +60,8 @@
                 {% for prod in products_r8 %}
                     <div class="prd-card-box">
                         <div class="prd-img-box">
-                            {% if prod.image.url and prod.image != None %}
-                                <a href="{% url 'catalog:product' prod.slug %}" class="prd-img">
-                                    {% comment %} <img class="prd-img" src="{{ prod.image.url }}" alt="{{ prod.name }}"> {% endcomment %}
-                                    <img class="prd-img" src="{% static 'deps/img/PrdWOImg.svg' %}" alt="Product">
-                                </a>
-                            {% else %}
-                                <img class="prd-img" src="{% static 'deps/img/PrdWOImg.svg' %}" alt="Product">
-                            {% endif %}
+                            {% product_category_icon prod as cat_icon %}
+                            {% include "goods/includes/product_photo.html" with product=prod icon_path=cat_icon link_url=prod.get_absolute_url img_class="prd-img" link_class="prd-img" variant="card" only %}
                         </div>
                         <div class="prd-desc">
                             <p class="fcb nf fw600 pn-of">{{ prod.name }}</p>

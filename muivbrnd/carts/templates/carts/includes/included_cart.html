@@ -1,4 +1,4 @@
-{% load static %}
+{% load static goods_tags %}
 
 
 {% if carts %}
@@ -11,7 +11,8 @@
     {% for cart in carts %}
       <div class="cart-items-list">
         <div class="cil-img-box">
-          <img src="{{ cart.product.image.url }}" alt="Товар" class="cilib-item">
+          {% product_category_icon cart.product as cat_icon %}
+          {% include "goods/includes/product_photo.html" with product=cart.product icon_path=cat_icon img_class="cilib-item" variant="cart" only %}
         </div>
         <div class="cil-details">
           <div class="cil-name">
