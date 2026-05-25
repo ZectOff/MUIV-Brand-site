@@ -1,0 +1,111 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'analytics/css/dashboard.css' %}">
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Главная</a>
+    &rsaquo; Аналитика
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="analytics-dashboard">
+    <div class="analytics-header">
+        <div>
+            <h1>Аналитика продаж</h1>
+            <p class="analytics-subtitle">Статистика заказов, популярные товары и категории</p>
+        </div>
+        <a href="{% url 'admin:index' %}" class="analytics-back-link">← К панели управления</a>
+    </div>
+
+    <div class="analytics-kpi-grid">
+        <div class="analytics-kpi-card">
+            <span class="analytics-kpi-label">Заказов</span>
+            <span class="analytics-kpi-value">{{ summary.orders_count }}</span>
+        </div>
+        <div class="analytics-kpi-card">
+            <span class="analytics-kpi-label">Продано единиц</span>
+            <span class="analytics-kpi-value">{{ summary.items_sold }}</span>
+        </div>
+        <div class="analytics-kpi-card">
+            <span class="analytics-kpi-label">Выручка</span>
+            <span class="analytics-kpi-value">{{ summary.revenue|floatformat:0 }} ₽</span>
+        </div>
+        <div class="analytics-kpi-card">
+            <span class="analytics-kpi-label">Средний чек</span>
+            <span class="analytics-kpi-value">{{ summary.avg_order|floatformat:0 }} ₽</span>
+        </div>
+    </div>
+
+    <div class="analytics-charts-grid">
+        <section class="analytics-panel analytics-panel-wide">
+            <h2>Популярные товары</h2>
+            <p class="analytics-panel-desc">Топ-10 по количеству в заказах</p>
+            <div class="analytics-chart-wrap">
+                <canvas id="productsChart"></canvas>
+            </div>
+        </section>
+
+        <section class="analytics-panel">
+            <h2>Категории</h2>
+            <p class="analytics-panel-desc">Доля продаж по категориям</p>
+            <div class="analytics-chart-wrap analytics-chart-donut">
+                <canvas id="categoriesChart"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <section class="analytics-panel analytics-panel-full">
+        <h2>Динамика заказов</h2>
+        <p class="analytics-panel-desc">Последние 30 дней</p>
+        <div class="analytics-chart-wrap analytics-chart-line">
+            <canvas id="timelineChart"></canvas>
+        </div>
+    </section>
+
+    <section class="analytics-panel analytics-panel-full">
+        <h2>Детализация по товарам</h2>
+        <div class="analytics-table-wrap">
+            <table class="analytics-table">
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Категория</th>
+                        <th>Кол-во</th>
+                        <th>Выручка</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in top_products %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.revenue|floatformat:0 }} ₽</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="analytics-empty">Пока нет данных о продажах</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+{{ top_products|json_script:"top-products-data" }}
+{{ top_categories|json_script:"top-categories-data" }}
+{{ orders_timeline|json_script:"orders-timeline-data" }}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="{% static 'analytics/js/dashboard.js' %}"></script>
+{% endblock %}
