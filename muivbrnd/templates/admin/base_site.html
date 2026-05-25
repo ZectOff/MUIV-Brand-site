@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/muivbrnd-admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'deps/img/MainLogoWhite.svg' %}" alt="MUIV Brand" class="muiv-admin-logo">
+    </a>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<a href="{% url 'main:home' %}" class="muiv-admin-site-link">← На сайт</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="muiv-admin-welcome">
+    <h2>Добро пожаловать в MUIV Brand</h2>
+    <p>
+        Здесь можно управлять товарами, заказами, корзинами и пользователями.
+        <a href="{% url 'main:home' %}">Перейти на сайт →</a>
+    </p>
+</div>
+{{ block.super }}
+{% endblock %}

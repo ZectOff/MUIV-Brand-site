@@ -20,6 +20,10 @@ from django.conf.urls.static import static
 
 from muivbrnd import settings
 
+admin.site.site_header = 'MUIV Brand — панель управления'
+admin.site.site_title = 'MUIV Brand'
+admin.site.index_title = 'Управление магазином'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),

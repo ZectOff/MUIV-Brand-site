@@ -1,0 +1,348 @@
+/* MUIV Brand — кастомная тема Django Admin */
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/static/deps/fonts/proximanova_regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html[data-theme="light"],
+:root {
+    --primary: #132041;
+    --secondary: #030E2A;
+    --accent: #C21631;
+    --primary-fg: #ffffff;
+
+    --body-fg: #132041;
+    --body-bg: #FAFCFF;
+    --body-quiet-color: #4F6A84;
+    --body-loud-color: #030E2A;
+
+    --header-color: #ffffff;
+    --header-branding-color: #ffffff;
+    --header-bg: #132041;
+    --header-link-color: #ffffff;
+
+    --breadcrumbs-fg: #EDF6FF;
+    --breadcrumbs-link-fg: #ffffff;
+    --breadcrumbs-bg: #4F6A84;
+
+    --link-fg: #4F6A84;
+    --link-hover-color: #C21631;
+    --link-selected-fg: #132041;
+
+    --hairline-color: #D8E4F0;
+    --border-color: #A0B3C6;
+
+    --error-fg: #C21631;
+
+    --message-success-bg: #E8F5EA;
+    --message-warning-bg: #FFF8E6;
+    --message-error-bg: #FDECEF;
+
+    --darkened-bg: #EDF6FF;
+    --selected-bg: #E2EEF9;
+    --selected-row: #F5D0D6;
+
+    --button-fg: #ffffff;
+    --button-bg: #C21631;
+    --button-hover-bg: #A01228;
+    --default-button-bg: #132041;
+    --default-button-hover-bg: #030E2A;
+    --close-button-bg: #4F6A84;
+    --close-button-hover-bg: #132041;
+    --delete-button-bg: #C21631;
+    --delete-button-hover-bg: #A01228;
+
+    --object-tools-fg: #ffffff;
+    --object-tools-bg: #4F6A84;
+    --object-tools-hover-bg: #132041;
+
+    --font-family-primary: 'Proxima Nova', Arial, sans-serif;
+    --font-family-monospace: ui-monospace, Menlo, Consolas, monospace;
+}
+
+html[data-theme="dark"] {
+    --primary: #4F6A84;
+    --secondary: #030E2A;
+    --accent: #C21631;
+    --primary-fg: #FAFCFF;
+
+    --body-fg: #EDF6FF;
+    --body-bg: #0A1628;
+    --body-quiet-color: #A0B3C6;
+    --body-loud-color: #FAFCFF;
+
+    --header-bg: #030E2A;
+    --header-link-color: #FAFCFF;
+
+    --breadcrumbs-bg: #132041;
+    --breadcrumbs-link-fg: #FAFCFF;
+
+    --link-fg: #A0B3C6;
+    --link-hover-color: #DB5472;
+    --link-selected-fg: #EDF6FF;
+
+    --hairline-color: #1A2D56;
+    --border-color: #25405B;
+
+    --darkened-bg: #132041;
+    --selected-bg: #1A2D56;
+    --selected-row: #3D1A24;
+
+    --button-bg: #C21631;
+    --button-hover-bg: #DB5472;
+    --default-button-bg: #4F6A84;
+    --default-button-hover-bg: #132041;
+}
+
+body {
+    font-family: 'Proxima Nova', Arial, sans-serif;
+}
+
+#header {
+    background: linear-gradient(135deg, #132041 0%, #030E2A 100%);
+    border-bottom: 3px solid #C21631;
+    box-shadow: 0 2px 12px rgba(19, 32, 65, 0.18);
+}
+
+#branding {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#branding #site-name {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+#branding #site-name a {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.muiv-admin-logo {
+    height: 36px;
+    width: auto;
+    display: block;
+}
+
+.muiv-admin-site-link {
+    color: #A0B3C6;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 4px 12px;
+    border: 1px solid rgba(160, 179, 198, 0.45);
+    border-radius: 0.375rem;
+    transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+}
+
+.muiv-admin-site-link:hover {
+    color: #ffffff;
+    border-color: #C21631;
+    background-color: rgba(194, 22, 49, 0.15);
+}
+
+div.breadcrumbs {
+    border-bottom: 1px solid var(--hairline-color);
+    font-weight: 500;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: linear-gradient(90deg, #132041 0%, #4F6A84 100%);
+    color: #ffffff;
+    border-radius: 0.375rem 0.375rem 0 0;
+}
+
+#content-main .module {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--hairline-color);
+    box-shadow: 0 1px 4px rgba(19, 32, 65, 0.06);
+}
+
+.dashboard #content-main .module table th {
+    width: auto;
+}
+
+.dashboard #content {
+    max-width: 1200px;
+}
+
+.dashboard .module table td a {
+    font-weight: 600;
+}
+
+input[type="submit"],
+button,
+.button,
+.submit-row input {
+    border-radius: 0.375rem !important;
+    font-family: 'Proxima Nova', Arial, sans-serif;
+    font-weight: 600;
+    transition: background-color 0.15s, transform 0.1s;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.button:hover,
+.submit-row input:hover {
+    transform: translateY(-1px);
+}
+
+#changelist-filter {
+    border-radius: 0.5rem;
+    border: 1px solid var(--hairline-color);
+    background: var(--body-bg);
+}
+
+#changelist-filter h2 {
+    background: #132041;
+    color: #ffffff;
+    border-radius: 0.375rem 0.375rem 0 0;
+}
+
+#changelist-filter li.selected a {
+    color: #C21631;
+    font-weight: 600;
+}
+
+.results thead th {
+    background: #EDF6FF;
+    color: #132041;
+    font-weight: 600;
+}
+
+.results tbody tr:nth-child(even) {
+    background: rgba(237, 246, 255, 0.55);
+}
+
+.results tbody tr:hover {
+    background: rgba(194, 22, 49, 0.06);
+}
+
+fieldset.module.aligned {
+    border-radius: 0.5rem;
+}
+
+.login {
+    background: linear-gradient(160deg, #FAFCFF 0%, #EDF6FF 45%, #D8E4F0 100%);
+    min-height: 100vh;
+}
+
+.login #header {
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    padding-top: 48px;
+}
+
+.login #branding {
+    justify-content: center;
+}
+
+.login #branding #site-name a {
+    flex-direction: column;
+    gap: 8px;
+}
+
+.login .muiv-admin-logo {
+    height: 48px;
+}
+
+.login .muiv-admin-login-subtitle {
+    color: #4F6A84;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.login #container {
+    border-radius: 0.75rem;
+    border: 1px solid #D8E4F0;
+    box-shadow: 0 8px 32px rgba(19, 32, 65, 0.12);
+    overflow: hidden;
+}
+
+.login #content-main {
+    padding: 8px 16px 16px;
+}
+
+.login .form-row label {
+    color: #132041;
+    font-weight: 600;
+}
+
+.login .form-row #id_username,
+.login .form-row #id_password {
+    border: 1px solid #A0B3C6;
+    border-radius: 0.375rem;
+    padding: 10px 12px;
+    font-family: 'Proxima Nova', Arial, sans-serif;
+}
+
+.login .form-row #id_username:focus,
+.login .form-row #id_password:focus {
+    border-color: #132041;
+    outline: 2px solid rgba(19, 32, 65, 0.15);
+}
+
+.login .submit-row input {
+    width: 100%;
+    padding: 10px 16px;
+    background: #C21631;
+    border: none;
+}
+
+.login .submit-row input:hover {
+    background: #A01228;
+}
+
+.muiv-admin-welcome {
+    background: linear-gradient(135deg, #132041 0%, #4F6A84 100%);
+    color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(19, 32, 65, 0.15);
+}
+
+.muiv-admin-welcome h2 {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.muiv-admin-welcome p {
+    margin: 0;
+    color: #EDF6FF;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.muiv-admin-welcome a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+    .muiv-admin-logo {
+        height: 28px;
+    }
+
+    #header {
+        flex-wrap: wrap;
+    }
+}
