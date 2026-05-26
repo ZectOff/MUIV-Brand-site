@@ -1,6 +1,6 @@
 from django.db.models import Avg, Count
 
-from goods.models import ProductReview, Products
+from goods.models import ProductFavorite, ProductReview, Products
 from orders.models import OrderItem
 
 
@@ -37,4 +37,29 @@ def get_product_reviews(product):
         ProductReview.objects.filter(product=product)
         .select_related('user')
         .order_by('-rating', '-created_at')
+    )
+
+
+def is_product_favorite(user, product):
+    if not user or not user.is_authenticated:
+        return False
+    return ProductFavorite.objects.filter(user=user, product=product).exists()
+
+
+def toggle_product_favorite(user, product):
+    favorite, created = ProductFavorite.objects.get_or_create(
+        user=user,
+        product=product,
+    )
+    if created:
+        return True
+    favorite.delete()
+    return False
+
+
+def get_user_favorite_products(user):
+    return (
+        Products.objects.filter(favorited_by__user=user)
+        .select_related('category')
+        .distinct()
     )

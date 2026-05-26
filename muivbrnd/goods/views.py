@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
@@ -7,9 +8,13 @@ from django.urls import reverse
 
 from goods.forms import ProductReviewForm
 from goods.models import ProductReview, Products
+from goods.product_media import get_product_gallery_images
 from goods.services import (
     get_product_rating_stats,
     get_product_reviews,
+    get_user_favorite_products,
+    is_product_favorite,
+    toggle_product_favorite,
     user_can_add_review,
     user_has_purchased_product,
 )
@@ -78,7 +83,10 @@ def _handle_review_post(request, product):
 
 
 def product(request, product_slug):
-    product_obj = get_object_or_404(Products, slug=product_slug)
+    product_obj = get_object_or_404(
+        Products.objects.select_related('category').prefetch_related('additional_images'),
+        slug=product_slug,
+    )
     review_form = ProductReviewForm()
 
     if request.method == 'POST' and request.POST.get('review_submit'):
@@ -97,15 +105,48 @@ def product(request, product_slug):
         ).first()
         can_review = user_can_add_review(request.user, product_obj)
 
+    gallery_images = get_product_gallery_images(product_obj)
+    is_favorite = is_product_favorite(request.user, product_obj)
+
     prd_data = {
         'title': 'MUIV Brand - Карта товара ',
         'catgoods': ['Img-1', 'Img-2', 'Img-3',],
         'product': product_obj,
+        'gallery_images': gallery_images,
         'reviews': get_product_reviews(product_obj),
         'rating_stats': get_product_rating_stats(product_obj),
         'review_form': review_form,
         'user_review': user_review,
         'can_review': can_review,
         'has_purchased': user_has_purchased_product(request.user, product_obj),
+        'is_favorite': is_favorite,
     }
     return render(request, 'goods/product.html', context=prd_data)
+
+
+@login_required
+def favorites(request):
+    products = get_user_favorite_products(request.user)
+    context = {
+        'title': 'MUIV Brand — Избранное',
+        'products': products,
+    }
+    return render(request, 'goods/favorites.html', context)
+
+
+@login_required
+def favorite_toggle(request):
+    if request.method != 'POST':
+        return JsonResponse({'message': 'Метод не поддерживается'}, status=405)
+
+    product_id = request.POST.get('product_id')
+    if not product_id:
+        return JsonResponse({'message': 'Не указан товар'}, status=400)
+
+    product_obj = get_object_or_404(Products, id=product_id)
+    is_favorite = toggle_product_favorite(request.user, product_obj)
+
+    return JsonResponse({
+        'is_favorite': is_favorite,
+        'message': 'Добавлено в избранное' if is_favorite else 'Удалено из избранного',
+    })

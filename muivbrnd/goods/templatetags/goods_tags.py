@@ -4,6 +4,7 @@ from django.utils.http import urlencode
 
 from goods.models import Categories
 from goods.product_media import category_placeholder_icon, product_has_image
+from goods.services import is_product_favorite
 
 register = template.Library()
 
@@ -11,6 +12,11 @@ register = template.Library()
 @register.filter
 def has_product_image(product):
     return product_has_image(product)
+
+
+@register.filter
+def is_favorite_product(user, product):
+    return is_product_favorite(user, product)
 
 
 @register.simple_tag

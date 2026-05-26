@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static goods_tags %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <section class="section-showcase bc-sect">
+        <div class="uniq-container bc-cont">
+            <div class="bread-crumbs">
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b><a href="{% url 'main:home' %}" class="non-dec font-color-all-white">Главная</a></b>
+                    </p>
+                    <span class="font-color-all-white bc-slash"> / </span>
+                </div>
+                <div class="bc-text">
+                    <p class="font-color-all-white nom">
+                        <b>Избранное</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-showcase cat-sect">
+        <div class="uniq-container cat-cont">
+            <div class="favorites-page">
+                <div class="title-showcase ts-fb">
+                    <div class="tp-text">
+                        <h1 class="fcb nf uniq-title fw600">Избранные товары</h1>
+                    </div>
+                </div>
+                <div class="cat-prds-list">
+                    {% for prod in products %}
+                        {% include "goods/includes/product_card.html" with prod=prod %}
+                    {% empty %}
+                        <div class="favorites-empty">
+                            <img src="{% static 'deps/img/icons/HeartIcon.svg' %}" alt="" class="favorites-empty__icon">
+                            <p class="fcb nf fw600 f26">В избранном пока нет товаров</p>
+                            <a href="{% url 'catalog:index' 'vse-tovary' %}" class="font-color-all-white nf non-dec favorites-empty__link">Перейти в каталог</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

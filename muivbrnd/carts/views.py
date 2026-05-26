@@ -43,6 +43,7 @@ def cart_add(request):
     response_data = {
         "message": "Товар добавлен в корзину",
         "cart_items_html": cart_items_html,
+        "cart_total_quantity": user_cart.total_quantity(),
     }
 
     return JsonResponse(response_data)
@@ -66,6 +67,7 @@ def cart_change(request):
         "message": "Количество изменено",
         "cart_items_html": cart_items_html,
         "quantity_deleted": updated_quntity,
+        "cart_total_quantity": user_cart.total_quantity(),
     }
 
     return JsonResponse(response_data)
@@ -87,6 +89,7 @@ def cart_remove(request):
         "message": "Товар удален из корзины",
         "cart_items_html": cart_items_html,
         "quantity_deleted": quantity,
+        "cart_total_quantity": user_cart.total_quantity(),
     }
 
     return JsonResponse(response_data)

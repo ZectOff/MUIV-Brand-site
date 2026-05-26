@@ -122,10 +122,45 @@ div.breadcrumbs {
 
 #user-tools {
     font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
-#user-tools a {
+#user-tools a,
+#user-tools #logout-form button,
+#logout-form button {
+    font-family: var(--font-family-primary);
     font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--header-link-color);
+    line-height: 1.4;
+}
+
+#user-tools #logout-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+#user-tools #logout-form button {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0;
+    cursor: pointer;
+    vertical-align: baseline;
+}
+
+#user-tools a:hover,
+#user-tools #logout-form button:hover,
+#user-tools #logout-form button:active {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom-color: transparent;
 }
 
 #header {

@@ -1,3 +1,18 @@
+function updateCartBadge(count) {
+    var $badge = $('#cart-tot-count');
+    if (!$badge.length) {
+        return;
+    }
+
+    count = parseInt(count, 10) || 0;
+
+    if (count > 1) {
+        $badge.text(count).removeClass('is-empty').prop('hidden', false);
+    } else {
+        $badge.text('').addClass('is-empty').prop('hidden', true);
+    }
+}
+
 $(document).ready(function () {
     const scrollers = document.querySelectorAll(".scroller");
     
@@ -25,8 +40,7 @@ $(document).ready(function () {
     $(document).on("click", ".add-to-cart", function(e) {
         e.preventDefault();
         
-        var goodsInCartCounts = $('#cart-tot-count');
-        var cartCount = parseInt(goodsInCartCounts.text() || 0);
+        var cartCount = parseInt($('#cart-tot-count').text() || 0);
 
         var product_id = $(this).data('product-id');
 
@@ -57,8 +71,11 @@ $(document).ready(function () {
                 }, 4500);
                 clearTimeout();
                 
-                cartCount++;
-                goodsInCartCounts.text(cartCount);
+                if (data.cart_total_quantity !== undefined) {
+                    updateCartBadge(data.cart_total_quantity);
+                } else {
+                    updateCartBadge(cartCount + 1);
+                }
 
                 var cartItemsContainer = $('#jq-cart-items-container');
                 cartItemsContainer.html(data.cart_items_html);
@@ -74,8 +91,7 @@ $(document).ready(function () {
     $(document).on("click", ".remove-from-cart", function(e) {
         e.preventDefault();
         
-        var goodsInCartCounts = $('#cart-tot-count');
-        var cartCount = parseInt(goodsInCartCounts.text() || 0);
+        var cartCount = parseInt($('#cart-tot-count').text() || 0);
 
         var cart_id = $(this).data('cart-id');
 
@@ -106,8 +122,11 @@ $(document).ready(function () {
                 }, 4500);
                 clearTimeout();
                 
-                cartCount -= data.quantity_deleted;
-                goodsInCartCounts.text(cartCount);
+                if (data.cart_total_quantity !== undefined) {
+                    updateCartBadge(data.cart_total_quantity);
+                } else {
+                    updateCartBadge(cartCount - (data.quantity_deleted || 0));
+                }
 
                 var cartItemsContainer = $('#jq-cart-items-container');
                 cartItemsContainer.html(data.cart_items_html);
@@ -171,10 +190,12 @@ $(document).ready(function () {
                 }, 4500);
                 clearTimeout();
 
-                var goodsInCartCounts = $('#cart-tot-count');
-                var cartCount = parseInt(goodsInCartCounts.text() || 0);
-                cartCount += change;
-                goodsInCartCounts.text(cartCount);
+                if (data.cart_total_quantity !== undefined) {
+                    updateCartBadge(data.cart_total_quantity);
+                } else {
+                    var cartCount = parseInt($('#cart-tot-count').text() || 0);
+                    updateCartBadge(cartCount + change);
+                }
 
                 var cartItemsContainer = $('#jq-cart-items-container');
                 cartItemsContainer.html(data.cart_items_html);
@@ -217,5 +238,50 @@ $(document).ready(function () {
         } else {
             $(".jq-addr-vis").hide();
         }
+    });
+
+    $(document).on("click", ".toggle-favorite", function (e) {
+        e.preventDefault();
+
+        var button = $(this);
+        var productId = button.data("product-id");
+        var favoriteUrl = button.data("favorite-url");
+
+        $.ajax({
+            type: "POST",
+            url: favoriteUrl,
+            data: {
+                product_id: productId,
+                csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
+            },
+            success: function (data) {
+                if (data.is_favorite) {
+                    button.addClass("is-active");
+                    button.attr("aria-pressed", "true");
+                    button.attr("title", "Убрать из избранного");
+                } else {
+                    button.removeClass("is-active");
+                    button.attr("aria-pressed", "false");
+                    button.attr("title", "Добавить в избранное");
+                }
+
+                succesMessage.html(data.message);
+                $("#js-alert-box").addClass("notif-box-op");
+                succesMessage.fadeIn(400);
+
+                setTimeout(function () {
+                    succesMessage.fadeOut(400);
+                    $("#js-alert-box").removeClass("notif-box-op");
+                    $("#js-alert-box").addClass("notif-box-close");
+                }, 4000);
+                setTimeout(function () {
+                    $("#jq-notification").empty();
+                    $("#js-alert-box").removeClass("notif-box-close");
+                }, 4500);
+            },
+            error: function () {
+                console.log("Ошибка при изменении избранного");
+            },
+        });
     });
 });

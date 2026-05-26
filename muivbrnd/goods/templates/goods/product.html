@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% load static goods_tags %}
 
-{% block modal_win_cart %}
-{% include "includes/cart_button.html" %}
-{% endblock %}
-
 {% block title %}{{ title }}"{{product.name}}"{% endblock  %}
 
 {% block content %}
@@ -46,17 +42,33 @@
                     </p>
                 </div>
                 <div class="ppb-all-content">
-                    <div class="pac-box">
+                    <div class="pac-box product-gallery">
                         {% product_category_icon product as cat_icon %}
-                        {% if product|has_product_image %}
-                            <div class="ppbic-sl-btns">
-                                <div class="sl-btn">
-                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="slb-img">
-                                </div>
+                        {% if gallery_images %}
+                            <div class="ppbic-sl-btns product-gallery-thumbs">
+                                {% for img in gallery_images %}
+                                    <button
+                                        type="button"
+                                        class="sl-btn product-gallery-thumb{% if forloop.first %} is-active{% endif %}"
+                                        data-image-url="{{ img.url }}"
+                                        data-image-alt="{{ img.alt }}"
+                                        aria-label="Показать фото {{ forloop.counter }}"
+                                        aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                                    >
+                                        <img src="{{ img.url }}" alt="{{ img.alt }}" class="slb-img">
+                                    </button>
+                                {% endfor %}
                             </div>
                             <div class="ppb-ic-big">
                                 <div class="pib-slides">
-                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="pib-prd">
+                                    <img
+                                        src="{{ gallery_images.0.url }}"
+                                        alt="{{ gallery_images.0.alt }}"
+                                        class="pib-prd"
+                                        id="product-main-image"
+                                        data-default-url="{{ gallery_images.0.url }}"
+                                        data-default-alt="{{ gallery_images.0.alt }}"
+                                    >
                                 </div>
                             </div>
                         {% else %}
@@ -101,7 +113,16 @@
                                 </div>
                             </div>
                             <div class="adpl-btns">
-                                <button class="adpl-btn-fav f32">&#9829;</button>
+                                {% if user.is_authenticated %}
+                                    <button
+                                        type="button"
+                                        class="adpl-btn-fav f32 toggle-favorite{% if is_favorite %} is-active{% endif %}"
+                                        data-product-id="{{ product.id }}"
+                                        data-favorite-url="{% url 'catalog:favorite_toggle' %}"
+                                        aria-pressed="{% if is_favorite %}true{% else %}false{% endif %}"
+                                        title="{% if is_favorite %}Убрать из избранного{% else %}Добавить в избранное{% endif %}"
+                                    >&#9829;</button>
+                                {% endif %}
                                 <a href="{% url 'cart:cart_add' %}" class="adpl-btn-buy f20 non-dec add-to-cart"
                                 data-product-id="{{ product.id }}">
                                 {% csrf_token %}
@@ -225,4 +246,74 @@
             {% endif %}
         </div>
     </section>
+    {% if gallery_images|length > 1 %}
+    <script>
+        (function () {
+            var mainImage = document.getElementById('product-main-image');
+            var thumbsWrap = document.querySelector('.product-gallery-thumbs');
+            if (!mainImage || !thumbsWrap) return;
+
+            var thumbs = thumbsWrap.querySelectorAll('.product-gallery-thumb');
+            var defaultUrl = mainImage.getAttribute('data-default-url');
+            var defaultAlt = mainImage.getAttribute('data-default-alt') || '{{ product.name }}';
+            var pinnedThumb = null;
+
+            function setMainImage(url, alt) {
+                if (!url) return;
+                mainImage.src = url;
+                mainImage.alt = alt || defaultAlt;
+            }
+
+            function clearThumbStates() {
+                thumbs.forEach(function (item) {
+                    item.classList.remove('is-active', 'is-pinned');
+                    item.setAttribute('aria-pressed', 'false');
+                });
+            }
+
+            function applyPinnedState() {
+                clearThumbStates();
+                if (!pinnedThumb) {
+                    setMainImage(defaultUrl, defaultAlt);
+                    if (thumbs[0]) {
+                        thumbs[0].classList.add('is-active');
+                        thumbs[0].setAttribute('aria-pressed', 'true');
+                    }
+                    return;
+                }
+                pinnedThumb.classList.add('is-active', 'is-pinned');
+                pinnedThumb.setAttribute('aria-pressed', 'true');
+                setMainImage(
+                    pinnedThumb.getAttribute('data-image-url'),
+                    pinnedThumb.getAttribute('data-image-alt')
+                );
+            }
+
+            thumbs.forEach(function (thumb) {
+                thumb.addEventListener('mouseenter', function () {
+                    setMainImage(
+                        thumb.getAttribute('data-image-url'),
+                        thumb.getAttribute('data-image-alt')
+                    );
+                    thumbs.forEach(function (item) {
+                        item.classList.remove('is-active');
+                    });
+                    thumb.classList.add('is-active');
+                    if (pinnedThumb) {
+                        pinnedThumb.classList.add('is-pinned');
+                    }
+                });
+
+                thumb.addEventListener('click', function () {
+                    pinnedThumb = thumb;
+                    applyPinnedState();
+                });
+            });
+
+            thumbsWrap.addEventListener('mouseleave', function () {
+                applyPinnedState();
+            });
+        })();
+    </script>
+    {% endif %}
 {% endblock  %}

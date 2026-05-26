@@ -22,3 +22,40 @@ def product_has_image(product) -> bool:
         return image.storage.exists(image.name)
     except Exception:
         return False
+
+
+def image_field_url(image_field):
+    if not image_field or not getattr(image_field, 'name', None):
+        return None
+    try:
+        if not image_field.storage.exists(image_field.name):
+            return None
+        return image_field.url
+    except Exception:
+        return None
+
+
+def get_product_gallery_images(product):
+    gallery = []
+
+    main_image_url = image_field_url(getattr(product, 'image', None))
+    if main_image_url:
+        gallery.append({
+            'url': main_image_url,
+            'alt': product.name,
+        })
+
+    additional_images = getattr(product, 'additional_images', None)
+    if additional_images is None:
+        return gallery
+
+    for item in additional_images.all():
+        image_url = image_field_url(item.image)
+        if not image_url:
+            continue
+        gallery.append({
+            'url': image_url,
+            'alt': item.title or product.name,
+        })
+
+    return gallery

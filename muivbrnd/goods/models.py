@@ -60,6 +60,69 @@ class Products(models.Model):
         return int(self.discount)
 
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(
+        to=Products,
+        on_delete=models.CASCADE,
+        related_name='additional_images',
+        verbose_name='Товар',
+    )
+    image = models.ImageField(upload_to='goods_images', verbose_name='Изображение')
+    title = models.CharField(
+        max_length=150,
+        blank=True,
+        null=True,
+        verbose_name='Подпись',
+        help_text='Необязательно. Короткое описание/подпись изображения.',
+    )
+    sort_order = models.PositiveSmallIntegerField(
+        default=0,
+        verbose_name='Порядок',
+        help_text='Чем меньше число, тем раньше картинка в галерее.',
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+
+    class Meta:
+        db_table = 'product_image'
+        verbose_name = 'Изображение товара'
+        verbose_name_plural = 'Изображения товара'
+        ordering = ('sort_order', 'id')
+
+    def __str__(self):
+        return f'{self.product.name} — фото #{self.id}'
+
+
+class ProductFavorite(models.Model):
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='favorite_products',
+        verbose_name='Пользователь',
+    )
+    product = models.ForeignKey(
+        to=Products,
+        on_delete=models.CASCADE,
+        related_name='favorited_by',
+        verbose_name='Товар',
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+
+    class Meta:
+        db_table = 'product_favorite'
+        verbose_name = 'Избранный товар'
+        verbose_name_plural = 'Избранные товары'
+        ordering = ('-created_at',)
+        constraints = [
+            models.UniqueConstraint(
+                fields=('user', 'product'),
+                name='unique_user_product_favorite',
+            ),
+        ]
+
+    def __str__(self):
+        return f'{self.user} — {self.product.name}'
+
+
 class ProductReview(models.Model):
     product = models.ForeignKey(
         to=Products,

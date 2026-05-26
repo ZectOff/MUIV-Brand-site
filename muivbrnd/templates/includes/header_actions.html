@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="header-actions">
+    <div class="header-action-wrap header-action-wrap--cart">
+        {% include "includes/cart_button.html" %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'catalog:favorites' %}" class="header-action header-action--favorites non-dec">
+            <span class="header-action__icon-wrap">
+                {% include "includes/icons/header_heart.html" %}
+            </span>
+            <span class="header-action__label nf">Избранные</span>
+        </a>
+
+        <div class="header-action-wrap header-action-wrap--profile us-btn-menu">
+            <button type="button" class="header-action header-action--profile ulm-btn non-dec">
+                <span class="header-action__icon-wrap">
+                    {% include "includes/icons/header_user.html" %}
+                </span>
+                <span class="header-action__label nf">Профиль</span>
+            </button>
+            <div class="ubm-list-menu ubm-list-menu--profile">
+                <a href="{% url 'user:profile_menu' 'account' %}" class="h-menu fcb fuli chm">Личный кабинет</a>
+                {% if user.is_staff %}
+                    <a href="{% url 'admin:index' %}" class="h-menu fcb fuli chm">Админ-панель</a>
+                {% endif %}
+                <a href="{% url 'user:profile_menu' 'istoriya-zakazov' %}" class="h-menu fcb fuli chm">Заказы</a>
+                <div class="ulm-dash"></div>
+                <a href="{% url 'user:logout' %}" class="h-menu fcb fuli chm">Выход</a>
+            </div>
+        </div>
+    {% else %}
+        <a href="{% url 'user:login' %}" class="header-action header-action--login non-dec">
+            <span class="header-action__icon-wrap">
+                {% include "includes/icons/header_user.html" %}
+            </span>
+            <span class="header-action__label nf">Вход</span>
+        </a>
+    {% endif %}
+</div>
